@@ -29,9 +29,11 @@ public class CameraController : MonoBehaviour
     public Quaternion newRot;
     public Vector3 newZoom;
 
-
+    //New variables
     public Vector2 camInput;
+    public float camSensitivity;
     public float rotateValue;
+    public float rotateSensitivity;
     public float zoomValue;
     public float zoomSensitivity;
 
@@ -42,7 +44,8 @@ public class CameraController : MonoBehaviour
         //Sets default values.
         newPos = transform.position;
         newRot = transform.rotation;
-        moveSpeed = normalSpeed;
+        normalSpeed = camSensitivity;
+        fastSpeed = camSensitivity * 2;
         newZoom = camTransform.localPosition;
     }
 
@@ -51,8 +54,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         //--Camera positioning--
-        newPos += (transform.TransformDirection(camInput.x, 0, camInput.y)) * moveSpeed;
-        //newPos += (transform.forward * (moveSpeed * camSensitivitySlider.value));
+        newPos += (transform.TransformDirection(camInput.x, 0, camInput.y)) * camSensitivity;
 
         //Lerp the objects position from the current position to the newPos vector over time.
         transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * moveTime);
@@ -62,11 +64,11 @@ public class CameraController : MonoBehaviour
         //Read the X and Y value of the input, and then set the newRot quaternion accordingly.
         if (rotateValue > 0)
         {
-            newRot *= Quaternion.Euler(Vector3.up * rotAmount);
+            newRot *= Quaternion.Euler(Vector3.up * rotateSensitivity);
         }
         if (rotateValue < 0)
         {
-            newRot *= Quaternion.Euler(Vector3.up * -rotAmount);
+            newRot *= Quaternion.Euler(Vector3.up * -rotateSensitivity);
         }
         //Lerp the objects rotation from the current rotation to the newRot quaternion rotation over time. 
         transform.rotation = Quaternion.Lerp(transform.rotation, newRot, Time.deltaTime * moveTime);
@@ -96,11 +98,11 @@ public class CameraController : MonoBehaviour
 
         if (value > 0)
         {
-            moveSpeed = fastSpeed;
+            camSensitivity = fastSpeed;
         }
         else
         {
-            moveSpeed = normalSpeed;
+            camSensitivity = normalSpeed;
         }
     }
 
@@ -120,87 +122,6 @@ public class CameraController : MonoBehaviour
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    //Sets default values.
-    //    newPos = transform.position;
-    //    newRot = transform.rotation;
-    //    newZoom = camTransform.localPosition;
-    //    moveSpeed = normalSpeed;
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    //Set moveDirection to the vector2 value from the moveCam action, and then call OnCameraMove with that value.
-    //    //moveDirection = InputReader.moveCam.ReadValue<Vector2>();
-    //    //OnCameraMove(moveDirection);
-    //    //Set rotateDirection to the vector2 value from the rotateCam action, and then call OnCameraRotate with that value.
-    //    rotateDirection = InputReader.rotateCam.ReadValue<Vector2>();
-    //    OnCameraRotate(rotateDirection);
-    //    //Set zoomDirection to the vector2 value from the zoomCam action, and then call OnCameraZoomKeys with that value.
-    //    zoomDirectionKeys = InputReader.zoomCamKeys.ReadValue<Vector2>();
-    //    OnCameraZoomKeys(zoomDirectionKeys);
-    //    //Call OnCameraZoomScroll.
-    //    OnCameraZoomScrool(zoomDirectionScroll);
-    //}
-
-    //private void OnCameraMove(Vector2 input)
-    //{
-    //    //Read the X and Y value of the input, and then set the newPos vector in appropriate directions.
-    //    if (input.y > 0)
-    //    {
-    //        newPos += (transform.forward * (moveSpeed * camSensitivitySlider.value));
-    //    }
-    //    if (input.y < 0)
-    //    {
-    //        newPos += (transform.forward * (-moveSpeed * camSensitivitySlider.value));
-    //    }
-    //    if (input.x > 0)
-    //    {
-    //        newPos += (transform.right * (moveSpeed * camSensitivitySlider.value));
-    //    }
-    //    if (input.x < 0)
-    //    {
-    //        newPos += (transform.right * (-moveSpeed * camSensitivitySlider.value));
-    //    }
-    //    //Lerp the objects position from the current position to the newPos vector over time.
-    //    transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * moveTime);
-    //}
-
-    //private void OnCameraRotate(Vector2 input)
-    //{
-    //    //Read the X and Y value of the input, and then set the newRot quaternion accordingly.
-    //    if (input.x > 0)
-    //    {
-    //        newRot *= Quaternion.Euler(Vector3.up * rotAmount);
-    //    }
-    //    if (input.x < 0)
-    //    {
-    //        newRot *= Quaternion.Euler(Vector3.up * -rotAmount);
-    //    }
-    //    //Lerp the objects rotation from the current rotation to the newRot quaternion rotation over time. 
-    //    transform.rotation = Quaternion.Lerp(transform.rotation, newRot, Time.deltaTime * moveTime);
-    //}
-
     //private void OnCameraZoomKeys(Vector2 input)
     //{
     //    //Read the X and Y value of the input, and then set the newZoom vector accordingly.
@@ -211,21 +132,6 @@ public class CameraController : MonoBehaviour
     //    if(input.y < 0)
     //    {
     //        newZoom -= zoomAmount;
-    //    }
-    //    //Lerp the camera's local position from the current local position to the newZoom vector over time.
-    //    camTransform.localPosition = Vector3.Lerp(camTransform.localPosition, newZoom, Time.deltaTime * moveTime);
-    //}
-
-    //private void OnCameraZoomScrool(float input)
-    //{
-    //    //Read the float value of the input, and then set the newZoom vector accordingly.
-    //    if (input > 0)
-    //    {
-    //        newZoom += zoomScrollAmount;
-    //    }
-    //    if (input < 0)
-    //    {
-    //        newZoom -= zoomScrollAmount;
     //    }
     //    //Lerp the camera's local position from the current local position to the newZoom vector over time.
     //    camTransform.localPosition = Vector3.Lerp(camTransform.localPosition, newZoom, Time.deltaTime * moveTime);
