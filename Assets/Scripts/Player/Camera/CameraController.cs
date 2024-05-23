@@ -48,9 +48,6 @@ public class CameraController : MonoBehaviour
         fastSpeed = camSensitivity * 2;
         newZoom = camTransform.localPosition;
     }
-
-    //newPos += (transform.forward * (moveSpeed * camSensitivitySlider.value));
-
     private void Update()
     {
         //--Camera positioning--
