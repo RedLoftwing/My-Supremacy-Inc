@@ -26,7 +26,7 @@ public class Water : MonoBehaviour
     public int[] triangles;
 
     // Start is called before the first frame update
-    void OnValidate()
+    void Start()
     {
         CreateWaterMesh();
     }
