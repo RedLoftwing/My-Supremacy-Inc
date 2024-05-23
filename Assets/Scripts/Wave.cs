@@ -11,7 +11,9 @@ public class Wave : MonoBehaviour
     [SerializeField] private Mesh waterMesh;
     [SerializeField] private MeshFilter waterMeshFilter;
     private Vector3[] waterMeshVertices;
-    [SerializeField] private List<Vector3> localWaterMeshVertices = new List<Vector3>();
+    public List<MyVertices> localVertices = new List<MyVertices>();
+    //public List<Vector3> localWaterMeshVertices = new List<Vector3>();
+    private List<int> localVertexIndices = new List<int>();
 
     [SerializeField] private float valueTest;
 
@@ -27,6 +29,7 @@ public class Wave : MonoBehaviour
         waterMeshFilter = water.GetComponent<MeshFilter>();
         waterMesh = waterMeshFilter.mesh;
         waterMeshVertices = waterMesh.vertices;
+
     }
 
     private void Update()
@@ -39,28 +42,53 @@ public class Wave : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        for(int i = 0; i < waterMeshVertices.Length; i++)
+        //for (int i = 0; i < waterMeshVertices.Length; i++)
+        //{
+        //    waterMeshVertices[i] += (Vector3.up * Time.deltaTime) * Random.Range(-valueTest, valueTest);
+        //}
+
+        //for (int i = 0; i < localWaterMeshVertices.Count; i++)
+        //{
+        //    localWaterMeshVertices[i] += (Vector3.up * Time.deltaTime) * Random.Range(-valueTest, valueTest);
+        //}
+
+        for (int i = 0; i < localVertices.Count; i++)
         {
-            waterMeshVertices[i] += (Vector3.up * Time.deltaTime) * Random.Range(-valueTest, valueTest);
+            int index = localVertices[i].GetIndex();
+            waterMeshVertices[index] += (Vector3.up * Time.deltaTime) * Random.Range(-valueTest, valueTest);
         }
+
+        //for (int i = 0; i < localVertexIndices.Count; i++)
+        //{
+        //    int index = localVertexIndices[i];
+        //    waterMeshVertices[index] = localWaterMeshVertices[i];
+        //}
 
         waterMesh.vertices = waterMeshVertices;
         waterMesh.RecalculateBounds();
+
+        //waterMesh.vertices = localWaterMeshVertices.ToArray();
+        //waterMesh.RecalculateBounds();
     }
 
     private void FindLocalVertices()
     {
-        localWaterMeshVertices.Clear();
+        localVertices.Clear();
+        //localWaterMeshVertices.Clear();
         Vector3 halfSize = size * 0.5f;
         Vector3 minBounds = transform.position - halfSize;
         Vector3 maxBounds = transform.position + halfSize;
 
-        foreach(Vector3 vertex in waterMesh.vertices)
+        Vector3[] allVertices = waterMesh.vertices;
+
+        for (int i = 0; i < allVertices.Length; i++)
         {
-            Vector3 worldVertex = waterMeshFilter.transform.TransformPoint(vertex); // Convert to world space
+            Vector3 worldVertex = waterMeshFilter.transform.TransformPoint(allVertices[i]); // Convert to world space
             if (IsWithinBounds(worldVertex, minBounds, maxBounds))
             {
-                localWaterMeshVertices.Add(worldVertex);
+                localVertices.Add(new MyVertices(i, allVertices[i]));
+                //localWaterMeshVertices.Add(allVertices[i]);
+                localVertexIndices.Add(i); // Store the index
             }
         }
 

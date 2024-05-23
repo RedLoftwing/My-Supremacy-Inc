@@ -1,27 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 [RequireComponent(typeof(MeshRenderer))]
 public class Water : MonoBehaviour
 {
+    [SerializeField] private Wave wave;
+
     [SerializeField] private Mesh mesh;
     [SerializeField] private float meshWidth;
     [SerializeField] private float meshDepth;
     [SerializeField] private float maxMeshHeight;
-    [SerializeField] private int cellCountX;
-    [SerializeField] private int cellCountZ;
+    [SerializeField] private int cellCount;
+    private int cellCountX, cellCountZ;
 
     //[SerializeField] private float perlinStepSizeX = 0.1f;
     //[SerializeField] private float perlinStepSizeZ = 0.1f;
 
-    [SerializeField] private Vector3[] vertices;
+    //[SerializeField] private Vector3[] vertices;
+    [SerializeField] private MyVertices[] myVertices;
+    [SerializeField] private Vector3[] verticesVectors;
     //private Color[] colours;
-    private Vector2[] uvs;
+    public Vector2[] uvs;
     //private Vector3[] normals;
-    private int[] triangles;
+    public int[] triangles;
 
     // Start is called before the first frame update
     void OnValidate()
@@ -38,11 +40,16 @@ public class Water : MonoBehaviour
             meshFilter.mesh = mesh;
         }
 
+        cellCountX = cellCount;
+        cellCountZ = cellCount;
+
         int verticesRowCount = cellCountX + 1;
         int verticesCount = verticesRowCount * (cellCountZ + 1);
         int trianglesCount = 6 * cellCountX * cellCountZ;
 
-        vertices = new Vector3[verticesCount];
+        //vertices = new Vector3[verticesCount];
+        myVertices = new MyVertices[verticesCount];
+        verticesVectors = new Vector3[verticesCount];
         uvs = new Vector2[verticesCount];
         //colours = new Color[verticesCount];
         //normals = new Vector3[verticesCount];
@@ -61,18 +68,12 @@ public class Water : MonoBehaviour
             {
                 float percentageX = (float)x / (float)cellCountX;
                 float startX = percentageX * meshWidth;
-
-                // CHANGE ME! This height variable controls the height of each vertex in the generated grid.
-                // If you want to see different heights per vertex you will need to change this in each iteration of these loops
-                //Generate perlin noise...
-                //float perlinNoise = Mathf.PerlinNoise(perlinStepSizeX * x, perlinStepSizeZ * z) * maxMeshHeight;
                 float height = maxMeshHeight;
 
-
-
-                vertices[vertexIndex] = new Vector3(startX, height, startZ);
-                uvs[vertexIndex] = new Vector2(percentageX, percentageZ);       // No texturing so just set to zero
-                //normals[vertexIndex] = Vector3.up;      // These should be set based on heights of terrain but we can use Recalulated normals on mesh to calculate for us
+                myVertices[vertexIndex] = new MyVertices(vertexIndex, new Vector3(startX, height, startZ));
+                verticesVectors[vertexIndex] = new Vector3(startX, height, startZ);
+                uvs[vertexIndex] = new Vector2(percentageX, percentageZ);
+                //normals[vertexIndex] = Vector3.up;
                 ++vertexIndex;
             }
         }
@@ -95,8 +96,11 @@ public class Water : MonoBehaviour
             }
         }
 
-        // Assign all of the data that has been created to the mesh and update it
-        mesh.vertices = vertices;
+        //// Assign all of the data that has been created to the mesh and update it
+        //Vector3[] returnedVertices = myVertices;
+
+        mesh.vertices = verticesVectors;
+        Debug.Log("mesh uvs: " + mesh.uv.Length + ". \nuvs: " + uvs + ". \nmesh triangles: " + mesh.triangles.Length + ". \ntriangles: " + triangles);
         mesh.uv = uvs;
         mesh.triangles = triangles;
         //mesh.colors = colours;
