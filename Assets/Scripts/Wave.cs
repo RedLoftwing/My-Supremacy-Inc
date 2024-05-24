@@ -55,7 +55,9 @@ public class Wave : MonoBehaviour
         for (int i = 0; i < localVertices.Count; i++)
         {
             int index = localVertices[i].GetIndex();
-            waterMeshVertices[index] += (Vector3.up * Time.deltaTime) * Random.Range(-valueTest, valueTest);
+            //waterMeshVertices[index] += (Vector3.up * Time.deltaTime) * Random.Range(-valueTest, valueTest);
+            float newHeight = waterMeshVertices[index].y + (0.001f);
+            waterMeshVertices[index] = (new Vector3(waterMeshVertices[index].x, newHeight, waterMeshVertices[index].z));
         }
 
         //for (int i = 0; i < localVertexIndices.Count; i++)
