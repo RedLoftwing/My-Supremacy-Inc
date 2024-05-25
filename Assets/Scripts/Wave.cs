@@ -1,82 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class Wave : MonoBehaviour
 {
-    [SerializeField] private Transform[] nodeArray;
     public Vector3 size;
-
+    [SerializeField] private float waterLowerSpeed;
+    [SerializeField] private float waterRiseSpeed;
     [SerializeField] private GameObject water;
-    [SerializeField] private Mesh waterMesh;
-    [SerializeField] private MeshFilter waterMeshFilter;
+    private Mesh waterMesh;
+    private MeshFilter waterMeshFilter;
     private Vector3[] waterMeshVertices;
-    public List<MyVertices> localVertices = new List<MyVertices>();
-    //public List<Vector3> localWaterMeshVertices = new List<Vector3>();
+    private List<MyVertices> localVertices = new List<MyVertices>();
     private List<int> localVertexIndices = new List<int>();
+    private SplineAnimate splineAnimate;
 
-    [SerializeField] private float valueTest;
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        //Find the Nodes gameobject and then store all it's children as a transform array.
-        nodeArray = GameObject.Find("GroundNodes").GetComponentsInChildren<Transform>();
-        //TODO: Create alternative to the A* Package pathfinding.
-        ////Set target to first main entry in the nodeArray.
-        //this.gameObject.GetComponent<AIDestinationSetter>().target = nodeArray[1];
-
+        water = FindAnyObjectByType<Water>().gameObject;
         waterMeshFilter = water.GetComponent<MeshFilter>();
         waterMesh = waterMeshFilter.mesh;
         waterMeshVertices = waterMesh.vertices;
-
+        splineAnimate = this.GetComponent<SplineAnimate>();
+        splineAnimate.Container = GameObject.FindGameObjectWithTag("Spline3").GetComponent<SplineContainer>();
     }
 
     private void Update()
     {
         FindLocalVertices();
 
-        //IF the distance between this gameobject and the first main node in the array is less than 1...destroy this gameobject.
-        if (Vector3.Distance(transform.position, nodeArray[1].position) < 1)
-        {
-            Destroy(this.gameObject);
-        }
-
-        //for (int i = 0; i < waterMeshVertices.Length; i++)
+        ////IF the distance between this gameobject and the first main node in the array is less than 1...destroy this gameobject.
+        //if (Vector3.Distance(transform.position, nodeArray[1].position) < 1)
         //{
-        //    waterMeshVertices[i] += (Vector3.up * Time.deltaTime) * Random.Range(-valueTest, valueTest);
-        //}
-
-        //for (int i = 0; i < localWaterMeshVertices.Count; i++)
-        //{
-        //    localWaterMeshVertices[i] += (Vector3.up * Time.deltaTime) * Random.Range(-valueTest, valueTest);
+        //    Destroy(this.gameObject);
         //}
 
         for (int i = 0; i < localVertices.Count; i++)
         {
             int index = localVertices[i].GetIndex();
-            //waterMeshVertices[index] += (Vector3.up * Time.deltaTime) * Random.Range(-valueTest, valueTest);
-            float newHeight = waterMeshVertices[index].y + (0.001f);
-            waterMeshVertices[index] = (new Vector3(waterMeshVertices[index].x, newHeight, waterMeshVertices[index].z));
+            waterMeshVertices[index] = (new Vector3(waterMeshVertices[index].x, waterMeshVertices[index].y + waterRiseSpeed, waterMeshVertices[index].z));
         }
 
-        //for (int i = 0; i < localVertexIndices.Count; i++)
-        //{
-        //    int index = localVertexIndices[i];
-        //    waterMeshVertices[index] = localWaterMeshVertices[i];
-        //}
+        for(int i = 0;i < waterMeshVertices.Length; i++)
+        {
+            if (waterMeshVertices[i].y > 2)
+            {
+                waterMeshVertices[i] = (new Vector3(waterMeshVertices[i].x, waterMeshVertices[i].y - waterLowerSpeed, waterMeshVertices[i].z));
+            }
+        }
 
         waterMesh.vertices = waterMeshVertices;
         waterMesh.RecalculateBounds();
-
-        //waterMesh.vertices = localWaterMeshVertices.ToArray();
-        //waterMesh.RecalculateBounds();
     }
 
     private void FindLocalVertices()
     {
         localVertices.Clear();
-        //localWaterMeshVertices.Clear();
+        localVertexIndices.Clear();
         Vector3 halfSize = size * 0.5f;
         Vector3 minBounds = transform.position - halfSize;
         Vector3 maxBounds = transform.position + halfSize;
@@ -89,23 +70,9 @@ public class Wave : MonoBehaviour
             if (IsWithinBounds(worldVertex, minBounds, maxBounds))
             {
                 localVertices.Add(new MyVertices(i, allVertices[i]));
-                //localWaterMeshVertices.Add(allVertices[i]);
-                localVertexIndices.Add(i); // Store the index
+                localVertexIndices.Add(i);
             }
         }
-
-
-        //for(int i = 0;i < waterMeshVertices.Length;i++)
-        //{
-        //    var distance = Vector3.Distance(waterMeshVertices[i], transform.position);
-
-        //    var sphereRadius = 10;
-
-        //    if(distance < sphereRadius)
-        //    {
-        //        localWaterMeshVertices.Add(waterMeshVertices[i]);
-        //    }
-        //}
     }
 
     private bool IsWithinBounds(Vector3 point, Vector3 minBounds, Vector3 maxBounds)

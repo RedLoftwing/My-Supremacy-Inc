@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.VisualScripting;
 
-public class Enemy : MonoBehaviour
+public class Enemy : PathDriver
 {
     [SerializeField] private GameState gameStateScript;
     [SerializeField] private Cheats cheatsScript;
@@ -13,9 +12,6 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private bool isExplodable;
     [SerializeField] private GameObject explosionVFX;
-    [SerializeField] private Transform[] nodeArray;
-    [SerializeField] private Transform targetNode;
-    private int nodeValue = 1;
 
     private float distanceToBase;
     private float distanceToNextPoint;
@@ -32,35 +28,7 @@ public class Enemy : MonoBehaviour
         //Sets defaultHealth value.
         defaultHealth = health;
 
-
-        if (!this.gameObject.CompareTag("Aerial"))
-        {
-            //Find the Nodes gameobject and then store all it's children as a transform array.
-            nodeArray = GameObject.Find("GroundNodes").GetComponentsInChildren<Transform>();
-        }
-        else
-        {
-            //Find the Nodes gameobject and then store all it's children as a transform array.
-            nodeArray = GameObject.Find("AirNodes").GetComponentsInChildren<Transform>();
-        }
-
-        UpdateInfo();
-    }
-
-    private void UpdateInfo()
-    {
-        //Set the targetNode to the correct tranform in the array.
-        targetNode = nodeArray[nodeValue];
-        //
-        transform.LookAt(targetNode);
-    }
-
-    public void WaypointReached()
-    {
-        nodeValue++;
-        UpdateInfo();
-        //Debug.Log("Node Value is: " + nodeValue + ". Target Node is: " + targetNode);
-        //Debug.Log("ANTI-Ding");
+        Initialise();
     }
 
     //Called when health needs to be decreased.

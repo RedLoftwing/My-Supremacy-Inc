@@ -10,6 +10,10 @@ TagManager:
   - Unarmoured
   - Armoured
   - Aerial
+  - Wave
+  - Spline1
+  - Spline2
+  - Spline3
   layers:
   - Default
   - TransparentFX
