@@ -1,21 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
 public class WorldInteraction : MonoBehaviour
 {
-    private GridGenerator levelGrid;
     [SerializeField] private UserInterface userInterfaceScript;
-    [SerializeField] private PlayerStats playerStatsScript;
+    [SerializeField] private Player.PlayerStats playerStatsScript;
     [SerializeField] private Cheats cheatsScript;
 
-    public static bool isClickDisabled = false;
+    public static bool IsClickDisabled;
     [SerializeField] private Transform gridHighlight;
     [SerializeField] public GameObject chosenTower;
     [SerializeField] public GameObject hologramTower;
-    private GameObject activeHologramTower;
+    private GameObject _activeHologramTower;
 
     [SerializeField] private LayerMask terrainLayerMask;
     [SerializeField] private LayerMask towerLayerMask;
@@ -23,36 +20,32 @@ public class WorldInteraction : MonoBehaviour
     //[SerializeField] private Material transparentMaterial;
     //[SerializeField] private Transform[] childObjects;
 
-    private void Awake()
-    {
-        //Finds the object containing the GridGenerator script, and stores it.
-        levelGrid = FindObjectOfType<GridGenerator>();
-    }
-
     private void Update()
     {
-        //IF the pointer is over UI...set isClickDisabled to true...ELSE set to false. Prevents interaction of elements behind UI.
-        if(EventSystem.current.IsPointerOverGameObject())
-        {
-            isClickDisabled = true;
-        }
-        else
-        {
-            isClickDisabled = false;
-        }
+        //IF the pointer is over UI...set _isClickDisabled to true...ELSE set to false. Prevents interaction of elements behind UI.
+        
+        // if(EventSystem.current.IsPointerOverGameObject())
+        // {
+        //     _isClickDisabled = true;
+        // }
+        // else
+        // {
+        //     _isClickDisabled = false;
+        // }
+
+        IsClickDisabled = EventSystem.current.IsPointerOverGameObject();
     }
 
     public void RayCastClick()
     {
         //IF the pointer is not over UI...
-        if (!isClickDisabled)
+        if (!IsClickDisabled)
         {
             //Conduct a raycast from the camera to where the player has clicked, and store it.
-            RaycastHit hitInfo;
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
             //If the raycast hits something on the specified layer mask...
-            if (Physics.Raycast(ray, out hitInfo, 10000, terrainLayerMask))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 10000, terrainLayerMask))
             {
                 //Get the TileInfo component from the tile's child, and store it.
                 var tileInfo = hitInfo.collider.GetComponentInChildren<TileInfo>();
@@ -72,10 +65,10 @@ public class WorldInteraction : MonoBehaviour
                             //IF isInfiniteCash is false...and then IF the cost of the tower is less than or equal to the amount of cash available...
                             if (!cheatsScript.isInfiniteCash)
                             {
-                                if (chosenTower.GetComponent<Tower>().towerCost <= playerStatsScript.cash)
+                                if (chosenTower.GetComponent<Towers.Tower>().towerCost <= playerStatsScript.cash)
                                 {
                                     //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
-                                    playerStatsScript.SpendCash(chosenTower.GetComponent<Tower>().towerCost);
+                                    playerStatsScript.SpendCash(chosenTower.GetComponent<Towers.Tower>().towerCost);
                                     Build(tileInfo);
                                 }
                             }
@@ -86,12 +79,12 @@ public class WorldInteraction : MonoBehaviour
                                 Build(tileInfo);
                             }
                         }
-                        //ELSE...clear the chosenTower and hologramTower variables, and destroy the activeHologramTower gameobject.
+                        //ELSE...clear the chosenTower and hologramTower variables, and destroy the _activeHologramTower gameobject.
                         else
                         {
                             chosenTower = null;
                             hologramTower = null;
-                            Destroy(activeHologramTower);
+                            Destroy(_activeHologramTower);
                         }
                     }
                 }
@@ -104,22 +97,21 @@ public class WorldInteraction : MonoBehaviour
         //IF chosenTower is true...
         if (chosenTower)
         {
-            RaycastHit hitInfo;
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
             //If the raycast hits something on the specified layer mask...
-            if (Physics.Raycast(ray, out hitInfo, 10000, terrainLayerMask))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 10000, terrainLayerMask))
             {
                 //Get the TileInfo component from the tile's child, and store it.
                 var tileInfo = hitInfo.collider.GetComponentInChildren<TileInfo>();
 
-                if (!activeHologramTower)
+                if (!_activeHologramTower)
                 {
-                    activeHologramTower = Instantiate(hologramTower, tileInfo.transform.position, Quaternion.identity);
+                    _activeHologramTower = Instantiate(hologramTower, tileInfo.transform.position, Quaternion.identity);
                 }
 
                 //Show transparent tower.
-                activeHologramTower.transform.position = tileInfo.transform.position;
+                _activeHologramTower.transform.position = tileInfo.transform.position;
             }
         }
     }
@@ -130,7 +122,7 @@ public class WorldInteraction : MonoBehaviour
         Instantiate(chosenTower, tileInfo.transform.position, Quaternion.identity);
         chosenTower = null;
         hologramTower = null;
-        Destroy(activeHologramTower);
+        Destroy(_activeHologramTower);
         //
         tileInfo.isTileAvailable = false;
     }

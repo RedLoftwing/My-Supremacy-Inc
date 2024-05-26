@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IntelligenceCentre : Tower
+namespace Towers
 {
-
+    public class IntelligenceCentre : Tower
+    {
+        //USED IN PROXIMITYTOWER.CS
+    }
 }

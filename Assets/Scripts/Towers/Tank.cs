@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Tank : ProximityTower
+namespace Towers
 {
-    private void Start()
+    public class Tank : ProximityTower
     {
-        //Sets neccesary protected variables.
-        TowerSpawned();
+        private void Start()
+        {
+            //Sets necessary protected variables.
+            TowerSpawned();
+        }
     }
 }

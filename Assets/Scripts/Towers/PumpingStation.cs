@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PumpingStation : Tower
+namespace Towers
 {
-    private GameState gameStateScript;
-    private void Start()
+    public class PumpingStation : Tower
     {
-        //Finds the GameState component and stores it as gameStateScript.
-        gameStateScript = GameObject.Find("Manager").GetComponent<GameState>();
-        //Add 1 to the numberOfPumpingStations value.
-        gameStateScript.numberOfPumpingStations++;
+        private GameState _gameStateScript;
+
+        private void Start()
+        {
+            //Finds the GameState component and stores it as gameStateScript.
+            _gameStateScript = GameObject.Find("Manager").GetComponent<GameState>();
+            //Add 1 to the numberOfPumpingStations value.
+            _gameStateScript.numberOfPumpingStations++;
+        }
     }
 }

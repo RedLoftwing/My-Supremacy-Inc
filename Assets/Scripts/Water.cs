@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
@@ -13,15 +11,12 @@ public class Water : MonoBehaviour
     [SerializeField] private float maxMeshHeight;
     [SerializeField] private int cellCount;
 
-    //[SerializeField] private float perlinStepSizeX = 0.1f;
-    //[SerializeField] private float perlinStepSizeZ = 0.1f;
-
-    private MyVertices[] myVertices;
-    private Vector3[] verticesVectors;
+    private MyVertices[] _myVertices;
+    private Vector3[] _verticesVectors;
     //private Color[] colours;
-    private Vector2[] uvs;
+    private Vector2[] _uvs;
     //private Vector3[] normals;
-    private int[] triangles;
+    private int[] _triangles;
 
     private void Start()
     {
@@ -41,36 +36,35 @@ public class Water : MonoBehaviour
         int verticesCount = verticesRowCount * (cellCount + 1);
         int trianglesCount = 6 * cellCount * cellCount;
 
-        myVertices = new MyVertices[verticesCount];
-        verticesVectors = new Vector3[verticesCount];
-        uvs = new Vector2[verticesCount];
+        _myVertices = new MyVertices[verticesCount];
+        _verticesVectors = new Vector3[verticesCount];
+        _uvs = new Vector2[verticesCount];
         //colours = new Color[verticesCount];
         //normals = new Vector3[verticesCount];
-        triangles = new int[trianglesCount];
+        _triangles = new int[trianglesCount];
 
         // Set the vertices of the mesh
         int vertexIndex = 0;
         for (int z = 0; z <= cellCount; ++z)
         {
-            float percentageZ = (float)z / (float)cellCount;
+            float percentageZ = (float)z / cellCount;
             float startZ = percentageZ * meshDepth;
 
             for (int x = 0; x <= cellCount; ++x)
             {
-                float percentageX = (float)x / (float)cellCount;
+                float percentageX = (float)x / cellCount;
                 float startX = percentageX * meshWidth;
                 float height = maxMeshHeight;
 
-                myVertices[vertexIndex] = new MyVertices(vertexIndex, new Vector3(startX, height, startZ));
-                verticesVectors[vertexIndex] = new Vector3(startX, height, startZ);
-                uvs[vertexIndex] = new Vector2(percentageX, percentageZ);
+                _myVertices[vertexIndex] = new MyVertices(vertexIndex, new Vector3(startX, height, startZ));
+                _verticesVectors[vertexIndex] = new Vector3(startX, height, startZ);
+                _uvs[vertexIndex] = new Vector2(percentageX, percentageZ);
                 //normals[vertexIndex] = Vector3.up;
                 ++vertexIndex;
             }
         }
 
-        // Setup the indexes so they are in the correct order and will render correctly
-        vertexIndex = 0;
+        // Set up the indexes, so they are in the correct order and will render correctly
         int trianglesIndex = 0;
         for (int z = 0; z < cellCount; ++z)
         {
@@ -78,19 +72,19 @@ public class Water : MonoBehaviour
             {
                 vertexIndex = x + (verticesRowCount * z);
 
-                triangles[trianglesIndex++] = vertexIndex;
-                triangles[trianglesIndex++] = vertexIndex + verticesRowCount;
-                triangles[trianglesIndex++] = (vertexIndex + 1) + verticesRowCount;
-                triangles[trianglesIndex++] = (vertexIndex + 1) + verticesRowCount;
-                triangles[trianglesIndex++] = vertexIndex + 1;
-                triangles[trianglesIndex++] = vertexIndex;
+                _triangles[trianglesIndex++] = vertexIndex;
+                _triangles[trianglesIndex++] = vertexIndex + verticesRowCount;
+                _triangles[trianglesIndex++] = (vertexIndex + 1) + verticesRowCount;
+                _triangles[trianglesIndex++] = (vertexIndex + 1) + verticesRowCount;
+                _triangles[trianglesIndex++] = vertexIndex + 1;
+                _triangles[trianglesIndex++] = vertexIndex;
             }
         }
 
         mesh.Clear();
-        mesh.vertices = verticesVectors;
-        mesh.uv = uvs;
-        mesh.triangles = triangles;
+        mesh.vertices = _verticesVectors;
+        mesh.uv = _uvs;
+        mesh.triangles = _triangles;
         //mesh.colors = colours;
         //mesh.normals = normals;
         mesh.RecalculateNormals();

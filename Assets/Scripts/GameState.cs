@@ -1,12 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
     [SerializeField] private UserInterface userInterfaceScript;
-    [SerializeField] private PlayerStats playerStatsScript;
-    [SerializeField] private SuperVillain superVillainScript;
+    [SerializeField] private Player.PlayerStats playerStatsScript;
+    [SerializeField] private Player.SuperVillain superVillainScript;
 
     public int waveNumber;
     public bool isInterWave;
@@ -18,16 +18,16 @@ public class GameState : MonoBehaviour
 
     [SerializeField] private GameObject[] unitPrefabs;
     //Composition of enemies for each of the 10 waves. First number = Infantry. Second number = Rover. Third number = APC. Fourth number = Tank. Fifth number = Jet.
-    private int[] wave1Composition = new int[5] { 5, 0, 0, 0, 0 };
-    private int[] wave2Composition = new int[5] { 8, 3, 0, 0, 0 };
-    private int[] wave3Composition = new int[5] { 10, 3, 0, 0, 0 };
-    private int[] wave4Composition = new int[5] { 12, 5, 2, 0, 0 };
-    private int[] wave5Composition = new int[5] { 15, 5, 4, 0, 0 };
-    private int[] wave6Composition = new int[5] { 18, 10, 6, 1, 0 };
-    private int[] wave7Composition = new int[5] { 20, 14, 8, 3, 0 };
-    private int[] wave8Composition = new int[5] { 20, 14, 10, 4, 0 };
-    private int[] wave9Composition = new int[5] { 22, 16, 10, 6, 2 };
-    private int[] wave10Composition = new int[5] { 22, 16, 14, 8, 4 };
+    private readonly int[] _wave1Composition = new int[] { 5, 0, 0, 0, 0 };
+    private readonly int[] _wave2Composition = new int[] { 8, 3, 0, 0, 0 };
+    private readonly int[] _wave3Composition = new int[] { 10, 3, 0, 0, 0 };
+    private readonly int[] _wave4Composition = new int[] { 12, 5, 2, 0, 0 };
+    private readonly int[] _wave5Composition = new int[] { 15, 5, 4, 0, 0 };
+    private readonly int[] _wave6Composition = new int[] { 18, 10, 6, 1, 0 };
+    private readonly int[] _wave7Composition = new int[] { 20, 14, 8, 3, 0 };
+    private readonly int[] _wave8Composition = new int[] { 20, 14, 10, 4, 0 };
+    private readonly int[] _wave9Composition = new int[] { 22, 16, 10, 6, 2 };
+    private readonly int[] _wave10Composition = new int[] { 22, 16, 14, 8, 4 };
 
     // Start is called before the first frame update
     private void Start()
@@ -45,38 +45,38 @@ public class GameState : MonoBehaviour
         //IF a wave is ongoing AND spawning is not active...
         if(!isInterWave && !isSpawningActive)
         {
-            //Checks the value of waveNumber...THEN starts the coroutine with the array of the coresponding value.
+            //Checks the value of waveNumber...THEN starts the coroutine with the array of the corresponding value.
             switch (waveNumber)
             {
                 case 1:
-                    StartCoroutine(Wave(wave1Composition));
+                    StartCoroutine(Wave(_wave1Composition));
                     break;
                 case 2:
-                    StartCoroutine(Wave(wave2Composition));
+                    StartCoroutine(Wave(_wave2Composition));
                     break;
                 case 3:
-                    StartCoroutine(Wave(wave3Composition));
+                    StartCoroutine(Wave(_wave3Composition));
                     break;
                 case 4:
-                    StartCoroutine(Wave(wave4Composition));
+                    StartCoroutine(Wave(_wave4Composition));
                     break;
                 case 5:
-                    StartCoroutine(Wave(wave5Composition));
+                    StartCoroutine(Wave(_wave5Composition));
                     break;
                 case 6:
-                    StartCoroutine(Wave(wave6Composition));
+                    StartCoroutine(Wave(_wave6Composition));
                     break;
                 case 7:
-                    StartCoroutine(Wave(wave7Composition));
+                    StartCoroutine(Wave(_wave7Composition));
                     break;
                 case 8:
-                    StartCoroutine(Wave(wave8Composition));
+                    StartCoroutine(Wave(_wave8Composition));
                     break;
                 case 9:
-                    StartCoroutine(Wave(wave9Composition));
+                    StartCoroutine(Wave(_wave9Composition));
                     break;
                 case 10:
-                    StartCoroutine(Wave(wave10Composition));
+                    StartCoroutine(Wave(_wave10Composition));
                     break;
             }
         }
@@ -89,49 +89,46 @@ public class GameState : MonoBehaviour
         //Set to true to prevent calling coroutine again.
         isSpawningActive = true;
 
-        //Set a to 0. Allowing 
-        int a = 0;
+        thisWavesEnemies = thisWaveComposition[0] + thisWaveComposition[1] + thisWaveComposition[2] +
+                           thisWaveComposition[3] + thisWaveComposition[4];
 
-        thisWavesEnemies = thisWaveComposition[0] + thisWaveComposition[1] + thisWaveComposition[2] + thisWaveComposition[3] + thisWaveComposition[4];
-
-        //Go through each unit for the wave.
-        for (int i = 0; i < thisWaveComposition.Length; i++)
+        //Goes through each unit class within the requested wave composition.
+        for (int unitType = 0; unitType < thisWaveComposition.Length; unitType++)
         {
-            //If the coresponding unit value is greater than 0...Spawn said unit a number of times that coresponds with the value.
-            if(thisWaveComposition[a] > 0)
+            if (thisWaveComposition[unitType] > 0)
             {
-                for (int j = 0; j < thisWaveComposition[a]; j++)
+                for (int unitQuantity = 0; unitQuantity < thisWaveComposition[unitType]; unitQuantity++)
                 {
                     //Spawn is prevented until the spawn zone's collider is empty.
                     yield return new WaitUntil(() => !isSpawnZoneOccupied);
-                    //IF the unit value (a) is NOT 4/a plane, then spawn is performed at ground spawn point and the game will wait 0.25 seconds before proceeding.
-                    if (a != 4)
+        
+                    //IF the unitType value is NOT 4 (a plane), then spawn is performed at ground spawn point and the game will wait 0.25 seconds before proceeding.
+                    if (unitType != 4)
                     {
-                        var newUnit = Instantiate(unitPrefabs[a], spawnPoint.transform.position, Quaternion.identity);
+                        Instantiate(unitPrefabs[unitType], spawnPoint.transform.position, Quaternion.identity);
                     }
                     //ELSE if it does match...spawn the requested unit at the air spawn point. Air spawn point is calculated as the ground spawn point with a modified y value.
                     else
                     {
                         var airSpawnPoint = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y + 10, spawnPoint.transform.position.z);
-                        var newUnit = Instantiate(unitPrefabs[a], airSpawnPoint, Quaternion.identity);
+                        Instantiate(unitPrefabs[unitType], airSpawnPoint, Quaternion.identity);
                     }
+        
                     yield return new WaitForSeconds(0.25f);
                 }
             }
-            //Increase value to check the next unit value.
-            a++;
         }
 
         //Wait until the number of enemies this wave is equal to or less than 0...
         yield return new WaitUntil(() => thisWavesEnemies <= 0);
-        //Set isInterWave to true, isSpawningActive to false, turn off the Active Wave panel object, and call the cheering animation function for the Super Villain.
+        //Set isInterWave to true, isSpawningActive to false. Turn off the Active Wave panel object, and call the cheering animation function for the Super Villain.
         isInterWave = true;
         isSpawningActive = false;
         userInterfaceScript.activeWavePanel.SetActive(false);
-        superVillainScript.cheerState();
+        superVillainScript.CheerState();
 
         //IF waveNumber is 10 or greater...
-        if(waveNumber >= 10)
+        if (waveNumber >= 10)
         {
             DeclareEndGame();
         }
@@ -150,16 +147,8 @@ public class GameState : MonoBehaviour
         //IF health is less than or equal to 0...
         if(playerStatsScript.health <= 0)
         {
-            //IF water is greater than or equal to 50...call method with string.
-            if (playerStatsScript.water >= 50)
-            {
-                DeclareEndGameText("Close Defeat");
-            }
-            //ELSE...call method with string.
-            else
-            {
-                DeclareEndGameText("Decisive Defeat");
-            }
+            //IF water is greater than or equal to 50...Call the method with the string depending on value.
+            DeclareEndGameText((playerStatsScript.water >= 50) ? "Close Defeat" : "Decisive Defeat");
         }
         //ELSE IF health is less than or equal to 10 AND water is less than or equal to 10...call method with string.
         else if (playerStatsScript.health <= 10 && playerStatsScript.water <= 10)
@@ -174,22 +163,14 @@ public class GameState : MonoBehaviour
         //ELSE...
         else
         {
-            //IF water is less than or equal to 65...call method with string.
-            if (playerStatsScript.water <= 65)
-            {
-                DeclareEndGameText("Close Victory");
-            }
-            //ELSE...call method with string.
-            else
-            {
-                DeclareEndGameText("Decisive Victory");
-            }
+            //IF water is less than or equal to 65...Call the method with the string depending on value
+            DeclareEndGameText((playerStatsScript.water <= 65) ? "Close Victory" : "Decisive Victory");
         }
 
         //Set the final stat fields.
-        userInterfaceScript.finalWaterValue.SetText("Water - " + playerStatsScript.water.ToString() + "%");
+        userInterfaceScript.finalWaterValue.SetText("Water - " + playerStatsScript.water.ToString(CultureInfo.InvariantCulture) + "%");
         userInterfaceScript.finalCashValue.SetText("Cash - " + playerStatsScript.cash.ToString());
-        userInterfaceScript.finalHealthValue.SetText("Health - " + playerStatsScript.health.ToString());
+        userInterfaceScript.finalHealthValue.SetText("Health - " + playerStatsScript.health.ToString(CultureInfo.InvariantCulture));
     }
 
     private void DeclareEndGameText(string victoryDefeatType)
@@ -211,7 +192,7 @@ public class GameState : MonoBehaviour
         else
         {
             var airSpawnPoint = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y + 10, spawnPoint.transform.position.z);
-            var newUnit = Instantiate(unitPrefabs[requestedUnit], airSpawnPoint, Quaternion.identity);
+            Instantiate(unitPrefabs[requestedUnit], airSpawnPoint, Quaternion.identity);
         }
     }
 
@@ -233,13 +214,17 @@ public class GameState : MonoBehaviour
 
     public void AlterGameSpeed()
     {
-        //IF the timescale is anything BUT 3...set the timescale to 3.
-        if (Time.timeScale != 3)
+        const float difference = 0.001f;
+        
+        //IF the absolute value of the time below is greater than the difference...Speed up the timescale.
+        //E.g. timeScale (1f) - 3.0f = 2.0f. 2.0f is greater than the difference...Speed up the timescale
+        if (Mathf.Abs(Time.timeScale - 3.0f) > difference)
         {
             Time.timeScale = 3;
         }
-        //ELSE IF the timescale IS 3...set timescale to 1 and ensure the pause menu object is hidden.
-        else if (Time.timeScale == 3)
+        //ELSE IF the absolute value of the time below is less than or equal to the difference...Set timescale to 1.
+        //E.g. timeScale (3f) - 3.0f = 0.0f. 0.0f is less than the difference...Set timescale to 1.
+        else if (Mathf.Abs(Time.timeScale - 3.0f) <= difference)
         {
             Time.timeScale = 1;
             userInterfaceScript.pauseMenu.SetActive(false);

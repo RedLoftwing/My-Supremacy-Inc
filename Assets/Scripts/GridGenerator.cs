@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
@@ -9,12 +7,12 @@ public class GridGenerator : MonoBehaviour
 
     public Vector3 GetNearestPointOnGrid(Vector3 pos)
     {
-        //Divides the X, Y and Z values of the position by the grid freuqency value, and rounds it to the nearest int.
+        //Divides the X, Y and Z values of the position by the grid frequency value, and rounds it to the nearest int.
         int xCount = Mathf.RoundToInt(pos.x / gridFrequency);
         int yCount = Mathf.RoundToInt(pos.y / gridFrequency);
         int zCount = Mathf.RoundToInt(pos.z / gridFrequency);
         //Creates a new vector, result, using the rounded X, Y and Z values and multiplying them by the grid frequency. 
-        Vector3 result = new Vector3((float)xCount * gridFrequency, (float)yCount * gridFrequency, (float)zCount * gridFrequency);
+        Vector3 result = new Vector3(xCount * gridFrequency, yCount * gridFrequency, zCount * gridFrequency);
         //Returns the centered position to caller.
         return result;
     }
@@ -23,7 +21,7 @@ public class GridGenerator : MonoBehaviour
     {
         //[DEV] Sets colour of "gizmos" to yellow.
         Gizmos.color = Color.yellow;
-        //[DEV] Goes through each coordinate on the grid and draws a sphere on the centrered position of each coordinate.
+        //[DEV] Goes through each coordinate on the grid and draws a sphere on the centred position of each coordinate.
         for (float x = 0; x < gridSize; x += gridFrequency)
         {
             for (float z = 0; z < gridSize; z += gridFrequency)

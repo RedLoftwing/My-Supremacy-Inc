@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Events;
 
 public class InputReader : MonoBehaviour
 {
-    private PlayerInput playerInput;
-    private MySupremacyInc mySupremacyIncActions;
+    private PlayerInput _playerInput;
+    private MySupremacyInc _mySupremacyIncActions;
 
     //public static InputAction moveCam;
     //public static InputAction changeCamSpeed;
@@ -16,18 +13,18 @@ public class InputReader : MonoBehaviour
     //public static InputAction zoomCamScroll;
     //private InputAction lMBClick;
 
-    [SerializeField] private CameraController cameraController;
+    [SerializeField] private Player.Camera.CameraController cameraController;
     [SerializeField] private WorldInteraction worldInteraction;
-    [SerializeField] private FixedTargetTower fixedTargetTower;
+    [SerializeField] private Towers.FixedTargetTower fixedTargetTower;
 
     private void Awake()
     {
         //Initialise.
-        mySupremacyIncActions = new MySupremacyInc();
+        _mySupremacyIncActions = new MySupremacyInc();
 
         //Binding the actions to relevant functions.
-        mySupremacyIncActions.Camera.ChangeCameraSpeed.performed += ctx => cameraController.moveSpeed = cameraController.fastSpeed;
-        mySupremacyIncActions.Camera.ChangeCameraSpeed.canceled += ctx => cameraController.moveSpeed = cameraController.normalSpeed;
+        _mySupremacyIncActions.Camera.ChangeCameraSpeed.performed += ctx => cameraController.moveSpeed = cameraController.fastSpeed;
+        _mySupremacyIncActions.Camera.ChangeCameraSpeed.canceled += ctx => cameraController.moveSpeed = cameraController.normalSpeed;
         //mySupremacyIncActions.Camera.ZoomCameraScroll.performed += context => cameraController.zoomDirectionScroll = context.ReadValue<float>();
 
         //Binding the LMBClick action to the RayCastClick function.

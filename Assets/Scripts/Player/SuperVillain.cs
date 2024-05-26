@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SuperVillain : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private Animator superVillainAnimator;
-
-    public void angerState()
+    public class SuperVillain : MonoBehaviour
     {
-        superVillainAnimator.SetTrigger("trAnger");
-    }
+        [SerializeField] private Animator superVillainAnimator;
+        
+        public void AngerState()
+        {
+            superVillainAnimator.SetTrigger("trAnger");
+        }
 
-    public void cheerState()
-    {
-        superVillainAnimator.SetTrigger("trCheer");
+        public void CheerState()
+        {
+            superVillainAnimator.SetTrigger("trCheer");
+        }
     }
 }

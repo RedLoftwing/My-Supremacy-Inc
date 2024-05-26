@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ATEmplacement : ProximityTower
+namespace Towers
 {
-    private void Start()
+    public class ATEmplacement : ProximityTower
     {
-        //Sets neccesary protected variables.
-        TowerSpawned();
+        private void Start()
+        {
+            //Sets necessary protected variables.
+            TowerSpawned();
+        }
     }
 }

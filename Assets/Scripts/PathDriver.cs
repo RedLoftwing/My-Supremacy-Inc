@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class PathDriver : MonoBehaviour
 {
     [SerializeField] protected Transform[] nodeArray;
     [SerializeField] protected Transform targetNode;
-    protected int nodeValue = 1;
+    private int _nodeValue = 1;
 
     protected void Initialise()
     {
@@ -15,30 +12,16 @@ public class PathDriver : MonoBehaviour
         UpdateInfo();
     }
 
-    protected void AssignNodes()
+    private void AssignNodes()
     {
-        if (!this.gameObject.CompareTag("Aerial"))
-        {
-            //Find the Nodes gameobject and then store all it's children as a transform array.
-            nodeArray = GameObject.Find("GroundNodes").GetComponentsInChildren<Transform>();
-
-            if (this.gameObject.CompareTag("Wave"))
-            {
-                nodeArray.Reverse();
-                nodeValue = nodeArray.Length - 1;
-            }
-        }
-        else
-        {
-            //Find the Nodes gameobject and then store all it's children as a transform array.
-            nodeArray = GameObject.Find("AirNodes").GetComponentsInChildren<Transform>();
-        }
+        //Find the Nodes gameobject and then store all it's children as a transform array.
+        nodeArray = GameObject.Find(this.gameObject.CompareTag("Aerial") ? "AirNodes" : "GroundNodes").GetComponentsInChildren<Transform>();
     }
 
-    protected void UpdateInfo()
+    private void UpdateInfo()
     {
-        //Set the targetNode to the correct tranform in the array.
-        targetNode = nodeArray[nodeValue];
+        //Set the targetNode to the correct transform in the array.
+        targetNode = nodeArray[_nodeValue];
         //
         transform.LookAt(targetNode);
     }
@@ -47,15 +30,13 @@ public class PathDriver : MonoBehaviour
     {
         if (this.gameObject.CompareTag("Wave"))
         {
-            nodeValue--;
+            _nodeValue--;
         }
         else
         {
-            nodeValue++;
+            _nodeValue++;
         }
 
         UpdateInfo();
-        //Debug.Log("Node Value is: " + nodeValue + ". Target Node is: " + targetNode);
-        //Debug.Log("ANTI-Ding");
     }
 }

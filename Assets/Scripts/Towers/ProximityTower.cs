@@ -1,159 +1,167 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ProximityTower : Tower
+namespace Towers
 {
-    private Cheats cheatsScript;
-    [SerializeField] private GameObject currentTarget;
-
-    protected void TowerSpawned()
+    public class ProximityTower : Tower
     {
-        //Grab cheats component and store it as cheatsScript.
-        cheatsScript = GameObject.Find("Manager").GetComponent<Cheats>();
-        //Grabs the collider component to allow it to be adjusted in size. Uses the value of range to set the size. Collider used for detecting enemies within proximity.
-        capsuleCollider = GetComponent<CapsuleCollider>();
-        capsuleCollider.radius = range * cheatsScript.variableTowerRangeSlider.value;
+        private Cheats _cheatsScript;
+        [SerializeField] private GameObject currentTarget;
 
-        defaultDamage = damage;
-        defaultRange = range;
-        defaultRateOfFire = rateOfFire;
-
-        //Start Coroutine for updating stats.
-        StartCoroutine(UpdateStats());
-    }
-
-    protected IEnumerator UpdateStats()
-    {
-        //Updates the radius of the capsule collider when called. Multipling the set range by the variableTowerRangeSlider value.
-        capsuleCollider.radius = range * cheatsScript.variableTowerRangeSlider.value;
-        //Gathers all colliders within the radius of the tower.
-        int numColliders = Physics.OverlapSphereNonAlloc(transform.position, 15, colliders, towerLayerMask);
-        //IF the number of colliders is greater than 0...then go through each collider, and find the IntelligenceCentre component.
-        if (numColliders > 0)
+        protected void TowerSpawned()
         {
-            for (int i = 0; i < numColliders; i++)
+            //Grab cheats component and store it as cheatsScript.
+            _cheatsScript = GameObject.Find("Manager").GetComponent<Cheats>();
+            //Grabs the collider component to allow it to be adjusted in size. Uses the value of range to set the size. Collider used for detecting enemies within proximity.
+            CapsuleCollider = GetComponent<CapsuleCollider>();
+            CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
+
+            DefaultDamage = damage;
+            DefaultRange = range;
+            DefaultRateOfFire = rateOfFire;
+
+            //Start Coroutine for updating stats.
+            StartCoroutine(UpdateStats());
+        }
+
+        private IEnumerator UpdateStats()
+        {
+            //Updates the radius of the capsule collider when called. Multiplying the set range by the variableTowerRangeSlider value.
+            CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
+            //Gathers all colliders within the radius of the tower.
+            int numColliders = Physics.OverlapSphereNonAlloc(transform.position, 15, Colliders, towerLayerMask);
+            //IF the number of colliders is greater than 0...then go through each collider, and find the IntelligenceCentre component.
+            if (numColliders > 0)
             {
-                var nearbyIntelTower = colliders[i].GetComponentInParent<IntelligenceCentre>();
-                //IF the IntelligenceCentre component is true...check this tower's name and modify the coresponding stat IF it hasn't been modified previously. Update capsuleCollider radius if needed.
-                if (nearbyIntelTower != null)
+                for (int i = 0; i < numColliders; i++)
                 {
-                    if (towerName == "Encampment")
+                    var nearbyIntelTower = Colliders[i].GetComponentInParent<IntelligenceCentre>();
+                    //IF the IntelligenceCentre component is true...check this tower's name and modify the corresponding stat IF it hasn't been modified previously. Update capsuleCollider radius if needed.
+                    if (nearbyIntelTower != null)
                     {
-                        if (range == defaultRange)
+                        float difference = 0.001f;
+                        
+                        if (towerName == "Encampment")
                         {
-                            range = range * 1.4f;
-                            capsuleCollider.radius = range * cheatsScript.variableTowerRangeSlider.value;
+                            if (Math.Abs(range - DefaultRange) < difference)
+                            {
+                                range = range * 1.4f;
+                                CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
+                            }
                         }
-                    }
-                    else if (towerName == "ATEmplacement")
-                    {
-                        if (damage == defaultDamage)
+                        else if (towerName == "ATEmplacement")
                         {
-                            damage = damage * 1.4f;
+                            if (Math.Abs(damage - DefaultDamage) < difference)
+                            {
+                                damage = damage * 1.4f;
+                            }
+
                         }
-                    }
-                    else if (towerName == "AAA")
-                    {
-                        if (rateOfFire == defaultRateOfFire)
+                        else if (towerName == "AAA")
                         {
-                            rateOfFire = rateOfFire / 2;
+                            if (Math.Abs(rateOfFire - DefaultRateOfFire) < difference)
+                            {
+                                rateOfFire = rateOfFire / 2;
+                            }
                         }
-                    }
-                    else if (towerName == "Tank")
-                    {
-                        if (range == defaultRange)
+                        else if (towerName == "Tank")
                         {
-                            range = range * 1.4f;
-                            capsuleCollider.radius = range * cheatsScript.variableTowerRangeSlider.value;
+                            if (Math.Abs(range - DefaultRange) < difference)
+                            {
+                                range = range * 1.4f;
+                                CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
+                            }
                         }
                     }
                 }
             }
+
+            //Wait 5 seconds, and then start coroutine again.
+            yield return new WaitForSeconds(5);
+            StartCoroutine(UpdateStats());
         }
-        //Wait 5 seconds, and then start couroutine again.
-        yield return new WaitForSeconds(5);
-        StartCoroutine(UpdateStats());
-    }
 
-    protected IEnumerator FireTurret()
-    {
-        if (!isFireRunning)
+        private IEnumerator FireTurret()
         {
-            //Ensures that there is a currentTarget before proceeding.
-            if (currentTarget)
+            if (!isFireRunning)
             {
-                //Sets isFireRunning to true. Prevents constant execution of FireTurret.
-                isFireRunning = true;
-                //Grabs the Enemy component from the current target, and assigns it to enemy.
-                Enemy enemy = currentTarget.GetComponent<Enemy>();
-                //If enemy is true...Go through each string within the validTargets array, and check if the enemy tag matches any...
-                if (enemy)
+                //Ensures that there is a currentTarget before proceeding.
+                if (currentTarget)
                 {
-                    weaponFire.Play();
-                    enemy.DecreaseHealth(damage);
-
-                    //IF hasExplosiveAmmo is true...Instantiate the explosive effect at the current target.
-                    if (hasExplosiveAmmo)
+                    //Sets isFireRunning to true. Prevents constant execution of FireTurret.
+                    isFireRunning = true;
+                    //Grabs the Enemy component from the current target, and assigns it to enemy.
+                    Enemies.Enemy enemy = currentTarget.GetComponent<Enemies.Enemy>();
+                    //If enemy is true...Go through each string within the validTargets array, and check if the enemy tag matches any...
+                    if (enemy)
                     {
-                        Instantiate(explosiveEffect, currentTarget.transform.position, Quaternion.identity);
+                        weaponFire.Play();
+                        enemy.DecreaseHealth(damage);
+
+                        //IF hasExplosiveAmmo is true...Instantiate the explosive effect at the current target.
+                        if (hasExplosiveAmmo)
+                        {
+                            Instantiate(explosiveEffect, currentTarget.transform.position, Quaternion.identity);
+                        }
+                    }
+
+                    //Wait allocated number of seconds and then set isFireRunning to false, thus enabling the execution of FireTurret again.
+                    yield return new WaitForSeconds(rateOfFire);
+                    isFireRunning = false;
+                }
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            //IF there is no current target...Go through each string within the validTargets array, and check if the collision matches any...
+            if (currentTarget == null)
+            {
+                foreach (var validTarget in validTargets)
+                {
+                    //IF the collision matches a string from the validTargets array...set the current target to the collision.
+                    if (other.CompareTag(validTarget))
+                    {
+                        currentTarget = other.gameObject;
                     }
                 }
-
-                //Wait allocated number of seconds and then set isFireRunning to false, thus enabling the execution of FireTurret again.
-                yield return new WaitForSeconds(rateOfFire);
-                isFireRunning = false;
             }
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        //IF there is no current target...Go through each string within the validTargets array, and check if the collision matches any...
-        if (currentTarget == null)
-        {
-            for (int i = 0; i < validTargets.Length; i++)
+            else
             {
-                //IF the collision matches a string from the validTargets array...set the current target to the collision.
-                if (other.CompareTag(validTargets[i]))
+                //ELSE IF...there is a current target AND there is a turret...rotate the turret towards the target.
+                if (turret != null)
                 {
-                    currentTarget = other.gameObject;
+                    //Get the relative target direction and store it as targetDir.
+                    Vector3 targetDir = currentTarget.transform.position - turret.transform.position;
+                    //Set the rotation speed over time value, and assigns it to singleStep.
+                    float singleStep = rotationSpeed * Time.deltaTime;
+                    //Rotate the turret vector to targetDir over time using singleStep, and store the vector to newDir.
+                    Vector3 newDir = Vector3.RotateTowards(turret.transform.forward, targetDir, singleStep, 0f);
+                    //Rotate the turret to newDir.
+                    Quaternion lookAtRotation = Quaternion.LookRotation(newDir);
+                    Quaternion lookAtRotationLimitY = Quaternion.Euler(turret.transform.rotation.eulerAngles.x,
+                        lookAtRotation.eulerAngles.y, turret.transform.rotation.eulerAngles.z);
+                    //Set the turret's rotation to lookAtRotationLimitY.
+                    turret.transform.rotation = lookAtRotationLimitY;
                 }
             }
-        }
-        else
-        {
-            //ELSE IF...there is a current target AND there is a turret...rotate the turret towards the target.
-            if (turret != null)
+
+            //IF isFireRunning is false...start the FireTurret coroutine.
+            if (!isFireRunning)
             {
-                //Get the relative target direction and store it as targetDir.
-                Vector3 targetDir = currentTarget.transform.position - turret.transform.position;
-                //Set the rotation speed over time value, and assigns it to singleStep.
-                float singleStep = rotationSpeed * Time.deltaTime;
-                //Rotate the turret vector to targetDir over time using singleStep, and store the vector to newDir.
-                Vector3 newDir = Vector3.RotateTowards(turret.transform.forward, targetDir, singleStep, 0f);
-                //Rotate the turret to newDir.
-                Quaternion lookAtRotation = Quaternion.LookRotation(newDir);
-                Quaternion lookAtRotationLimitY = Quaternion.Euler(turret.transform.rotation.eulerAngles.x, lookAtRotation.eulerAngles.y, turret.transform.rotation.eulerAngles.z);
-                //Set the turret's rotation to lookAtRotationLimitY.
-                turret.transform.rotation = lookAtRotationLimitY;
+                StartCoroutine(FireTurret());
             }
         }
 
-        //IF isFireRunning is false...start the FireTurret coroutine.
-        if (!isFireRunning)
+        private void OnTriggerExit(Collider other)
         {
-            StartCoroutine(FireTurret());
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        //IF there is a current target...set the target value to null, stop the FireTurret coroutine.
-        if (currentTarget != null)
-        {
-            currentTarget = null;
-            StopCoroutine(FireTurret());
+            //IF there is a current target...set the target value to null, stop the FireTurret coroutine.
+            if (currentTarget != null)
+            {
+                currentTarget = null;
+                StopCoroutine(FireTurret());
+            }
         }
     }
 }

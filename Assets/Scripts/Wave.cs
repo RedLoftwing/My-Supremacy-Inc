@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -9,21 +8,21 @@ public class Wave : MonoBehaviour
     [SerializeField] private float waterLowerSpeed;
     [SerializeField] private float waterRiseSpeed;
     [SerializeField] private GameObject water;
-    private Mesh waterMesh;
-    private MeshFilter waterMeshFilter;
-    private Vector3[] waterMeshVertices;
-    private List<MyVertices> localVertices = new List<MyVertices>();
-    private List<int> localVertexIndices = new List<int>();
-    private SplineAnimate splineAnimate;
+    private Mesh _waterMesh;
+    private MeshFilter _waterMeshFilter;
+    private Vector3[] _waterMeshVertices;
+    private readonly List<MyVertices> _localVertices = new List<MyVertices>();
+    //private List<int> localVertexIndices = new List<int>();
+    private SplineAnimate _splineAnimate;
 
     void Awake()
     {
         water = FindAnyObjectByType<Water>().gameObject;
-        waterMeshFilter = water.GetComponent<MeshFilter>();
-        waterMesh = waterMeshFilter.mesh;
-        waterMeshVertices = waterMesh.vertices;
-        splineAnimate = this.GetComponent<SplineAnimate>();
-        splineAnimate.Container = GameObject.FindGameObjectWithTag("Spline3").GetComponent<SplineContainer>();
+        _waterMeshFilter = water.GetComponent<MeshFilter>();
+        _waterMesh = _waterMeshFilter.mesh;
+        _waterMeshVertices = _waterMesh.vertices;
+        _splineAnimate = this.GetComponent<SplineAnimate>();
+        _splineAnimate.Container = GameObject.FindGameObjectWithTag("Spline3").GetComponent<SplineContainer>();
     }
 
     private void Update()
@@ -36,41 +35,41 @@ public class Wave : MonoBehaviour
         //    Destroy(this.gameObject);
         //}
 
-        for (int i = 0; i < localVertices.Count; i++)
+        foreach (var myVertex in _localVertices)
         {
-            int index = localVertices[i].GetIndex();
-            waterMeshVertices[index] = (new Vector3(waterMeshVertices[index].x, waterMeshVertices[index].y + waterRiseSpeed, waterMeshVertices[index].z));
+            int index = myVertex.GetIndex();
+            _waterMeshVertices[index] = (new Vector3(_waterMeshVertices[index].x, _waterMeshVertices[index].y + waterRiseSpeed, _waterMeshVertices[index].z));
         }
 
-        for(int i = 0;i < waterMeshVertices.Length; i++)
+        for(int i = 0;i < _waterMeshVertices.Length; i++)
         {
-            if (waterMeshVertices[i].y > 2)
+            if (_waterMeshVertices[i].y > 2)
             {
-                waterMeshVertices[i] = (new Vector3(waterMeshVertices[i].x, waterMeshVertices[i].y - waterLowerSpeed, waterMeshVertices[i].z));
+                _waterMeshVertices[i] = (new Vector3(_waterMeshVertices[i].x, _waterMeshVertices[i].y - waterLowerSpeed, _waterMeshVertices[i].z));
             }
         }
 
-        waterMesh.vertices = waterMeshVertices;
-        waterMesh.RecalculateBounds();
+        _waterMesh.vertices = _waterMeshVertices;
+        _waterMesh.RecalculateBounds();
     }
 
     private void FindLocalVertices()
     {
-        localVertices.Clear();
-        localVertexIndices.Clear();
+        _localVertices.Clear();
+        //localVertexIndices.Clear();
         Vector3 halfSize = size * 0.5f;
         Vector3 minBounds = transform.position - halfSize;
         Vector3 maxBounds = transform.position + halfSize;
 
-        Vector3[] allVertices = waterMesh.vertices;
+        Vector3[] allVertices = _waterMesh.vertices;
 
         for (int i = 0; i < allVertices.Length; i++)
         {
-            Vector3 worldVertex = waterMeshFilter.transform.TransformPoint(allVertices[i]); // Convert to world space
+            Vector3 worldVertex = _waterMeshFilter.transform.TransformPoint(allVertices[i]); // Convert to world space
             if (IsWithinBounds(worldVertex, minBounds, maxBounds))
             {
-                localVertices.Add(new MyVertices(i, allVertices[i]));
-                localVertexIndices.Add(i);
+                _localVertices.Add(new MyVertices(i, allVertices[i]));
+                //localVertexIndices.Add(i);
             }
         }
     }

@@ -1,23 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
 public class UserInterface : MonoBehaviour
 {
-    private string[] potentialNames = {"Button", "Button (1)", "Button (2)", "Button (3)", "Button (4)", "Button (5)", "Button (6)"};
+    private readonly string[] _potentialNames = {"Button", "Button (1)", "Button (2)", "Button (3)", "Button (4)", "Button (5)", "Button (6)"};
     [SerializeField] private GameObject[] towerPrefabs;
     [SerializeField] private GameObject[] hologramPrefabs;
     [SerializeField] private WorldInteraction worldInteractionScript;
     [SerializeField] private GameState gameStateScript;
-    [SerializeField] private PlayerStats playerStatesScript;
-    private Scene currentScene;
+    [SerializeField] private Player.PlayerStats playerStatesScript;
+    private Scene _currentScene;
     [SerializeField] private LayerMask uiLayerMask;
-    private GameObject buttonObj;
+    private GameObject _buttonObj;
     [SerializeField] private GameObject buttonHighlightObj;
 
     public GameObject towerInfoPanel;
@@ -25,7 +23,7 @@ public class UserInterface : MonoBehaviour
     public TextMeshProUGUI towerInfoPanelCost;
     public TextMeshProUGUI towerInfoPanelAttackInfo;
 
-    private float gameTime;
+    private float _gameTime;
     [SerializeField] private TextMeshProUGUI gameTimerText;
 
     public GameObject activeWavePanel;
@@ -52,13 +50,13 @@ public class UserInterface : MonoBehaviour
     private void Start()
     {
         //Finds the active scene and stores it as currentScene.
-        currentScene = SceneManager.GetActiveScene();
+        _currentScene = SceneManager.GetActiveScene();
         //IF the active scene's name is NOT "MainMenu"...then proceed with setting gameplay variables.
-        if (currentScene.name != "MainMenu")
+        if (_currentScene.name != "MainMenu")
         {
             //Game Timer values set to default. Calls coroutine to start timer.
-            gameTime = 0;
-            gameTimerText.SetText(System.TimeSpan.FromSeconds(gameTime).ToString("mm':'ss"));
+            _gameTime = 0;
+            gameTimerText.SetText(System.TimeSpan.FromSeconds(_gameTime).ToString("mm':'ss"));
             StartCoroutine(GameTimer());
             //Set active state for the "Active Wave" UI object.
             activeWavePanel.SetActive(false);
@@ -66,15 +64,15 @@ public class UserInterface : MonoBehaviour
             waveText.SetText("Wave: " + gameStateScript.waveNumber + "/10");
         }
         //ELSE IF the active scene's name IS "MainMenu"...set anything that needs to be disabled as such.
-        else if (currentScene.name == "MainMenu")
+        else if (_currentScene.name == "MainMenu")
         {
             //Gets the Button components from each of the children objects, and stores them in the childrenComponents array.
             var childrenComponents = enemySpawnSection.GetComponentsInChildren<Button>();
             //For each button in the childrenComponents array... 
-            foreach (var Button in childrenComponents)
+            foreach (var button in childrenComponents)
             {
                 //Sets spawn buttons as not interactable.
-                Button.interactable = false;
+                button.interactable = false;
             }
         }
     }
@@ -83,34 +81,34 @@ public class UserInterface : MonoBehaviour
     public void TowerButtonUsed()
     {
         //Grabs the gameobject (button) that was selected by the player, and stores it as buttonObj.
-        buttonObj = EventSystem.current.currentSelectedGameObject;
+        _buttonObj = EventSystem.current.currentSelectedGameObject;
 
         //IF the name of the button matches with any of the values stored in the potentialNames array...proceed with the true path...
-        if(buttonObj.name == potentialNames[0])
+        if(_buttonObj.name == _potentialNames[0])
         {
             AssignTower(0);
         }
-        else if(buttonObj.name == potentialNames[1])
+        else if(_buttonObj.name == _potentialNames[1])
         {
             AssignTower(1);
         }
-        else if (buttonObj.name == potentialNames[2])
+        else if (_buttonObj.name == _potentialNames[2])
         {
             AssignTower(2);
         }
-        else if (buttonObj.name == potentialNames[3])
+        else if (_buttonObj.name == _potentialNames[3])
         {
             AssignTower(3);
         }
-        else if (buttonObj.name == potentialNames[4])
+        else if (_buttonObj.name == _potentialNames[4])
         {
             AssignTower(4);
         }
-        else if (buttonObj.name == potentialNames[5])
+        else if (_buttonObj.name == _potentialNames[5])
         {
             AssignTower(5);
         }
-        else if (buttonObj.name == potentialNames[6])
+        else if (_buttonObj.name == _potentialNames[6])
         {
             AssignTower(6);
         }
@@ -123,9 +121,9 @@ public class UserInterface : MonoBehaviour
 
     private void AssignTower(int towerValue)
     {
-        //Sets the object's activity to true, and then moves it's position to the selected tower.
+        //Sets the object's activity to true, and then moves its position to the selected tower.
         buttonHighlightObj.SetActive(true);
-        buttonHighlightObj.transform.position = buttonObj.transform.position;
+        buttonHighlightObj.transform.position = _buttonObj.transform.position;
         //Assign the appropriate tower prefab (defined by towerValue) to the chosenTower value.
         worldInteractionScript.chosenTower = towerPrefabs[towerValue];
         worldInteractionScript.hologramTower = hologramPrefabs[towerValue];
@@ -134,18 +132,18 @@ public class UserInterface : MonoBehaviour
     private IEnumerator GameTimer()
     {
         //While gameTime is greater than or equal to 0...
-        while (gameTime >= 0)
+        while (_gameTime >= 0)
         {
             //Wait 1 second...then set text to the value of gameTime (Converted from float value to minutes and seconds), then increase the value of gameTime by 1.
             yield return new WaitForSeconds(1);
-            gameTimerText.SetText(System.TimeSpan.FromSeconds(gameTime).ToString("mm':'ss"));
-            gameTime++;
+            gameTimerText.SetText(System.TimeSpan.FromSeconds(_gameTime).ToString("mm':'ss"));
+            _gameTime++;
         }
     }
 
     public void PlayButton()
     {
-        //IF the game is currently inbetween waves...
+        //IF the game is currently in between waves...
         if(gameStateScript.isInterWave)
         {
             //Advance to next wave and set isInterWave to false.
@@ -191,19 +189,12 @@ public class UserInterface : MonoBehaviour
     {
         //Used to switch between UI elements.
         //Called from a function that is called by a button (e.g. GoToNewGame is called by the NewGame button. Which then calls this function.)
+        
         //FOR each gameObject in the panel array...
-        for (int i = 0; i < panelArray.Length; i++)
+        foreach (GameObject panel in panelArray)
         {
             //IF the gameObject's name matches the inputted string...Set it to active.
-            if(panelArray[i].name == requestedPanel)
-            {
-                panelArray[i].SetActive(true);
-            }
-            //ELSE set it to inactive.
-            else
-            {
-                panelArray[i].SetActive(false);
-            }
+            panel.SetActive(panel.name == requestedPanel);
         }
     }
 
@@ -263,9 +254,9 @@ public class UserInterface : MonoBehaviour
     public void ReturnToMainMenu()
     {
         //Finds the active scene and stores it as currentScene.
-        currentScene = SceneManager.GetActiveScene();
+        _currentScene = SceneManager.GetActiveScene();
         //IF the active scene's name is NOT "MainMenu"...then proceed with setting gameplay variables.
-        if (currentScene.name != "MainMenu")
+        if (_currentScene.name != "MainMenu")
         {
             //Load the MainMenu scene.
             SceneManager.LoadScene("MainMenu");
