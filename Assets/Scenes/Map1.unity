@@ -31230,7 +31230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1417610450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31238,7 +31238,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417610449}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bedb9fe96c3ae44e90cebcd09eb047c, type: 3}
   m_Name: 
@@ -34169,7 +34169,7 @@ MonoBehaviour:
   mesh: {fileID: 163767005}
   meshWidth: 130
   meshDepth: 130
-  maxMeshHeight: 2
+  maxMeshHeight: 6
   cellCount: 104
 --- !u!1 &1558438793
 GameObject:

@@ -25,7 +25,7 @@ namespace Shaders
                 data[i] = new MyLocalVertices
                 {
                     VertexIndex = (uint)i,
-                    VertexVector = new Vector3(i, i, i) // Example initialization
+                    VertexVector = new Vector3(0, 0, 0) // Example initialization
                 };
             }
 
@@ -39,8 +39,12 @@ namespace Shaders
             // Set the compute buffer for the compute shader
             computeShader.SetBuffer(_kernelHandle, "localVerticesBuffer", _computeBuffer);
 
+            // Calculate thread group size based on numElements
+            int threadGroupsX = Mathf.CeilToInt(numElements / 8.0f);
+            int threadGroupsY = Mathf.CeilToInt(numElements / 8.0f);
+            
             // Dispatch the compute shader
-            computeShader.Dispatch(_kernelHandle, 1, 1, 1);
+            computeShader.Dispatch(_kernelHandle, threadGroupsX, threadGroupsY, 1);
 
             // Retrieve the data from the compute buffer
             _computeBuffer.GetData(data);

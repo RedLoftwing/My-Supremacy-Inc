@@ -12,8 +12,6 @@ RWStructuredBuffer<MyLocalVertices> localVerticesBuffer;
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // // TODO: insert actual code here!
-    // Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
-
-    localVerticesBuffer[id.x].myVertexVector = localVerticesBuffer[id.x].myVertexVector.y + 10.0f;
+    uint index = id.x + id.y * 8; // Calculate the linear index
+    localVerticesBuffer[index].myVertexVector.y += 5.0f;
 }

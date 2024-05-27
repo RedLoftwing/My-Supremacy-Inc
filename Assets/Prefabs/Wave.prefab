@@ -45,11 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0ba92cbc9157148867d7eec2bae31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 11, y: 5, z: 11}
+  size: {x: 11, y: 10, z: 11}
   waterLowerSpeed: 0.01
   waterRiseSpeed: 0.15
   water: {fileID: 0}
-  valueTest: 1
+  _localVertices: []
+  computeShader: {fileID: 7200000, guid: d8ec7c2053c7fbb458f1942dee0ab7f2, type: 3}
 --- !u!114 &6745633403282167095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +70,7 @@ MonoBehaviour:
   m_Duration: 52.5
   m_MaxSpeed: 10
   m_EasingMode: 0
-  m_AlignmentMode: 1
+  m_AlignmentMode: 0
   m_ObjectForwardAxis: 5
   m_ObjectUpAxis: 4
   m_StartOffset: 0
