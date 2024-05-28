@@ -5,6 +5,8 @@ struct MyLocalVertices
 {
     uint myVertexIndex;
     float3 myVertexVector;
+    float3 originalVector;
+    float3 worldVector;
 };
 
 RWStructuredBuffer<MyLocalVertices> localVerticesBuffer;
@@ -12,6 +14,10 @@ RWStructuredBuffer<MyLocalVertices> localVerticesBuffer;
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    uint index = id.x + id.y * 8; // Calculate the linear index
-    localVerticesBuffer[index].myVertexVector.y += 5.0f;
+    //uint index = id.x + id.y * 8; // Calculate the linear index
+    //localVerticesBuffer[index].myVertexVector.y += 5.0f;
+    
+    MyLocalVertices thisVertex = localVerticesBuffer[id.x];
+    thisVertex.myVertexVector.y = thisVertex.myVertexVector.y + 10.0f;
+    localVerticesBuffer[id.x] = thisVertex;
 }

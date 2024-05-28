@@ -20,4 +20,6 @@ public class MyVertices
     }
 
     public int GetIndex() { return vertexIndex; }
+
+    public Vector3 GetVector() { return vertexVector; }
 }
