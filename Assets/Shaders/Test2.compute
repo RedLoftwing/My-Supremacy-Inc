@@ -1,0 +1,72 @@
+// VertexAdjustComputeShader.compute
+
+#pragma kernel CSMain
+
+// Buffer of vertices to be processed
+StructuredBuffer<float3> vertices;
+// Buffer of original vertex positions
+StructuredBuffer<float3> originalVertexPos;
+// Output buffer for modified vertices
+RWStructuredBuffer<float3> outputVertices;
+
+// Parameters
+float3 intersectingObjectPosition;
+float intersectionRadius;
+float deltaTime;
+
+[numthreads(1, 1, 1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    // Read the vertex position
+    float3 vertex = vertices[id.x];
+    float3 originalVertex = originalVertexPos[id.x];
+
+
+    
+    //
+    float3 size = float3(11, 10, 11);
+    float3 halfSize = size * 0.5f;
+    float3 objectPositionCentre = intersectingObjectPosition + halfSize;
+    float3 minBounds = objectPositionCentre - halfSize;
+    float3 maxBounds = objectPositionCentre + halfSize;
+
+    //
+    bool isWithinBounds = vertex.x >= minBounds.x && vertex.x <= maxBounds.x &&
+            vertex.y >= minBounds.y && vertex.y <= maxBounds.y &&
+            vertex.z >= minBounds.z && vertex.z <= maxBounds.z;
+
+    if(isWithinBounds)
+    {
+        vertex.y += 1;
+    }
+    else
+    {
+        vertex.y = lerp(vertex.y, originalVertex.y, deltaTime);
+    }
+
+    outputVertices[id.x] = vertex;
+
+
+
+
+
+
+
+    
+    // // Calculate the distance from the intersecting object
+    // float distance = length(vertex - intersectingObjectPosition);
+    //
+    // if (distance < intersectionRadius)
+    // {
+    //     // Increase y position if within intersection radius
+    //     vertex.y += 1;
+    // }
+    // else
+    // {
+    //     // Gradually return to original y position if not intersecting
+    //     vertex.y = lerp(vertex.y, originalVertex.y, deltaTime);
+    // }
+    //
+    // // Write the modified vertex position to the output buffer
+    // outputVertices[id.x] = vertex;
+}

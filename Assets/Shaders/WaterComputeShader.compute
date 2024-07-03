@@ -9,6 +9,8 @@ struct MyLocalVertices
     // float3 worldVector;
 };
 
+RWStructuredBuffer<MyLocalVertices> allNonLocalVerticesBuffer;
+uint allNonLocalVerticesBufferLength;
 RWStructuredBuffer<MyLocalVertices> localVerticesBuffer;
 
 [numthreads(8,8,1)]
@@ -18,6 +20,28 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     //localVerticesBuffer[index].myVertexVector.y += 5.0f;
     
     MyLocalVertices thisVertex = localVerticesBuffer[id.x];
-    thisVertex.myVertexVector.y = thisVertex.myVertexVector.y + 0.10f;
+
+    bool found = false;
+    for (uint i = 0; i < allNonLocalVerticesBufferLength; i++)
+    {
+        if(allNonLocalVerticesBuffer[i].myVertexIndex == thisVertex.myVertexIndex)
+        {
+            found = true;
+            break;
+        }
+    }
+    if(found)
+    {
+        thisVertex.myVertexVector.x = thisVertex.myVertexVector.x + 0.0f;
+        thisVertex.myVertexVector.y = thisVertex.myVertexVector.y + 0.10f;
+        thisVertex.myVertexVector.z = thisVertex.myVertexVector.z + 0.0f;
+    }
+    else
+    {
+        thisVertex.myVertexVector.x = thisVertex.myVertexVector.x + 0.0f;
+        thisVertex.myVertexVector.y = thisVertex.myVertexVector.y + 0.0f;
+        thisVertex.myVertexVector.z = thisVertex.myVertexVector.z + 0.0f;
+    }
+    
     localVerticesBuffer[id.x] = thisVertex;
 }
