@@ -34170,7 +34170,7 @@ MonoBehaviour:
   mesh: {fileID: 163767005}
   meshWidth: 130
   meshDepth: 130
-  maxMeshHeight: 6
+  maxMeshHeight: 2.4
   cellCount: 104
 --- !u!114 &1553936154
 MonoBehaviour:
@@ -34186,7 +34186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   computeShader: {fileID: 7200000, guid: 1f9403d0443e0c64984e7ac24088d74f, type: 3}
   intersectingObject: {fileID: 0}
-  intersectionRadius: 12.94
+  intersectionRadius: 2
+  intersectionSpeed: 5
 --- !u!1 &1558438793
 GameObject:
   m_ObjectHideFlags: 0

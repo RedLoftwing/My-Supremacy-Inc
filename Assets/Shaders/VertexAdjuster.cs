@@ -5,11 +5,13 @@ public class VertexAdjuster : MonoBehaviour
     public ComputeShader computeShader;
     public GameObject intersectingObject;
     public float intersectionRadius = 1.0f;
+    public float intersectionSpeed = 0.1f;
 
     private Mesh mesh;
     private Vector3[] originalVertices;
     private ComputeBuffer vertexBuffer;
     private ComputeBuffer originalVertexBuffer;
+    private ComputeBuffer vertexYOffsetBuffer;
     private ComputeBuffer outputVertexBuffer;
 
     void Start()
@@ -21,17 +23,18 @@ public class VertexAdjuster : MonoBehaviour
         // Create buffers
         vertexBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float) * 3);
         originalVertexBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float) * 3);
+        vertexYOffsetBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float));
         outputVertexBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float) * 3);
 
         // Set initial data
         vertexBuffer.SetData(originalVertices);
         originalVertexBuffer.SetData(originalVertices);
+        vertexYOffsetBuffer.SetData(new float[originalVertices.Length]);
         outputVertexBuffer.SetData(originalVertices);
     }
 
     void Update()
     {
-        //J
         if (!intersectingObject)
         {
             intersectingObject = GameObject.FindWithTag("Wave");
@@ -41,13 +44,14 @@ public class VertexAdjuster : MonoBehaviour
         {
             // Update the compute shader with necessary data
             computeShader.SetFloat("deltaTime", Time.deltaTime);
-            computeShader.SetFloats("intersectingObjectPosition", intersectingObject.transform.position.x,
-                intersectingObject.transform.position.y, intersectingObject.transform.position.z);
-            computeShader.SetFloat("intersectionRadius", intersectionRadius);
+            computeShader.SetFloats("intersectingObjectPosition", intersectingObject.transform.position.x, intersectingObject.transform.position.y, intersectingObject.transform.position.z);
+            computeShader.SetFloat("intersectionSpeed", intersectionSpeed);
+            computeShader.SetFloats("objectSize", intersectionRadius * 2, 200.0f, intersectionRadius * 2); // Assuming a height of 10 for the intersecting object
 
             // Set buffers
             computeShader.SetBuffer(0, "vertices", vertexBuffer);
             computeShader.SetBuffer(0, "originalVertexPos", originalVertexBuffer);
+            computeShader.SetBuffer(0, "vertexYOffset", vertexYOffsetBuffer);
             computeShader.SetBuffer(0, "outputVertices", outputVertexBuffer);
 
             // Dispatch the compute shader
@@ -69,6 +73,7 @@ public class VertexAdjuster : MonoBehaviour
         // Release buffers
         vertexBuffer.Release();
         originalVertexBuffer.Release();
+        vertexYOffsetBuffer.Release();
         outputVertexBuffer.Release();
     }
 }
