@@ -1,11 +1,13 @@
+using System;
 using UnityEngine;
 
 public class VertexAdjuster : MonoBehaviour
 {
     public ComputeShader computeShader;
     public GameObject intersectingObject;
-    public float intersectionRadius = 1.0f;
-    public float intersectionSpeed = 0.1f;
+    public float intersectionRadius;
+    public float ascendSpeed = 0.1f;
+    public float descendSpeed = 0.1f;
 
     private Mesh mesh;
     private Vector3[] originalVertices;
@@ -13,6 +15,10 @@ public class VertexAdjuster : MonoBehaviour
     private ComputeBuffer originalVertexBuffer;
     private ComputeBuffer vertexYOffsetBuffer;
     private ComputeBuffer outputVertexBuffer;
+
+    private Vector3 thisIntersectingObjectPosition;
+    private Vector3 thisObjectSize;
+    public float thisMaxVertHeight;
 
     void Start()
     {
@@ -44,10 +50,17 @@ public class VertexAdjuster : MonoBehaviour
         {
             // Update the compute shader with necessary data
             computeShader.SetFloat("deltaTime", Time.deltaTime);
-            computeShader.SetFloats("intersectingObjectPosition", intersectingObject.transform.position.x, intersectingObject.transform.position.y, intersectingObject.transform.position.z);
-            computeShader.SetFloat("intersectionSpeed", intersectionSpeed);
-            computeShader.SetFloats("objectSize", intersectionRadius * 2, 200.0f, intersectionRadius * 2); // Assuming a height of 10 for the intersecting object
-
+            
+            thisIntersectingObjectPosition = new Vector3(intersectingObject.transform.position.x, intersectingObject.transform.position.y, intersectingObject.transform.position.z);
+            computeShader.SetFloats("intersectingObjectPosition", thisIntersectingObjectPosition.x, thisIntersectingObjectPosition.y, thisIntersectingObjectPosition.z);
+            
+            computeShader.SetFloat("ascendSpeed", ascendSpeed);
+            computeShader.SetFloat("descendSpeed", descendSpeed);
+            
+            thisObjectSize = new Vector3(intersectionRadius, 200.0f, intersectionRadius);
+            computeShader.SetFloats("objectSize", intersectionRadius, 200.0f, intersectionRadius); // Assuming a height of 10 for the intersecting object
+            computeShader.SetFloat("maxVertHeight", thisMaxVertHeight);
+            
             // Set buffers
             computeShader.SetBuffer(0, "vertices", vertexBuffer);
             computeShader.SetBuffer(0, "originalVertexPos", originalVertexBuffer);
@@ -75,5 +88,11 @@ public class VertexAdjuster : MonoBehaviour
         originalVertexBuffer.Release();
         vertexYOffsetBuffer.Release();
         outputVertexBuffer.Release();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(0.5f, 1, 1f, 0.75f);
+        Gizmos.DrawCube(thisIntersectingObjectPosition, thisObjectSize);
     }
 }
