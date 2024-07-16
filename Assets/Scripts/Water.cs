@@ -18,7 +18,7 @@ public class Water : MonoBehaviour
     //private Vector3[] normals;
     private int[] _triangles;
 
-    private void Start()
+    private void OnValidate()
     {
         CreateWaterMesh();
     }
