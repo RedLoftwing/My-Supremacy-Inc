@@ -16,7 +16,10 @@ public class FloodShaderData : MonoBehaviour
         if (!waveBox)
         {
             waveBox = GameObject.FindWithTag("Wave");
-            _waveBoxScript = waveBox.GetComponent<Wave>();
+            if (waveBox)
+            {
+                _waveBoxScript = waveBox.GetComponent<Wave>();
+            }
         }
         else
         {

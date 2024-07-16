@@ -13,7 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -37,20 +37,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _1: 0
-    - _2: 0
-    - _Maximum_Bounds: 0
-    - _Minimum_Bounds: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ascendSpeed: 57.33
-    - _descendSpeed: 0.84
-    - _maxVertexHeight: 10
+    - _ascendSpeed: 0.5
+    - _descendSpeed: 0.1
+    - _maxVertexHeight: 4.5
+    - _minVertexHeight: 0
     m_Colors:
     - _BaseColour: {r: 0, g: 0.3411899, b: 1, a: 0}
-    - _Base_Colour: {r: 0, g: 0.3411899, b: 1, a: 0}
-    - _WaveBox: {r: 0, g: 0, b: 0, a: 0}
-    - _WaveBoxPosition: {r: 12.163048, g: 0, b: 9.999992, a: 0}
+    - _WaveBoxPosition: {r: 25.858414, g: 0, b: 10.000008, a: 0}
     - _WaveBoxSize: {r: 11, g: 10, b: 11, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3314680244394612299
