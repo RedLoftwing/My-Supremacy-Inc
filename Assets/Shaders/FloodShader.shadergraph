@@ -228,7 +228,11 @@
             "m_Id": "b504db5cc4774311a96e474630d4ba7b"
         }
     ],
-    "m_StickyNoteDatas": [],
+    "m_StickyNoteDatas": [
+        {
+            "m_Id": "c29d660f42b84766a6fd334c91ffe898"
+        }
+    ],
     "m_Edges": [
         {
             "m_OutputSlot": {
@@ -387,20 +391,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "512b3d5e03454d70914f70f67273c822"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "86053e45e7524e3badf55a6a9e35af2b"
-                },
-                "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "548ad7daba4e4a3ab1264a36223ee2df"
                 },
                 "m_SlotId": 0
@@ -417,7 +407,7 @@
                 "m_Node": {
                     "m_Id": "56a27a72dd644c26b3416db71d572b9d"
                 },
-                "m_SlotId": 0
+                "m_SlotId": 1
             },
             "m_InputSlot": {
                 "m_Node": {
@@ -445,7 +435,7 @@
                 "m_Node": {
                     "m_Id": "6608e91e99664103b9e026c8379516c6"
                 },
-                "m_SlotId": 0
+                "m_SlotId": 1
             },
             "m_InputSlot": {
                 "m_Node": {
@@ -891,9 +881,23 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "dc676a40c2614ebf920685a46fdb1c3e"
+                },
+                "m_SlotId": 3
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "86053e45e7524e3badf55a6a9e35af2b"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "dd7c9d40872340b6a7f760e4a826f312"
                 },
-                "m_SlotId": 0
+                "m_SlotId": 1
             },
             "m_InputSlot": {
                 "m_Node": {
@@ -5405,8 +5409,8 @@
     "m_ObjectId": "b504db5cc4774311a96e474630d4ba7b",
     "m_Title": "Lerp from current to new y position value",
     "m_Position": {
-        "x": 10.0,
-        "y": 10.0
+        "x": -858.0,
+        "y": -570.0
     }
 }
 
@@ -5679,6 +5683,26 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "SurfaceDescription.Smoothness"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "c29d660f42b84766a6fd334c91ffe898",
+    "m_Title": "Time",
+    "m_Content": "Time is since the start...ofc",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": -2349.0,
+        "y": 21.0,
+        "width": 200.0,
+        "height": 160.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
 }
 
 {
@@ -6311,7 +6335,7 @@
     },
     "m_Conversion": {
         "from": 0,
-        "to": 2
+        "to": 4
     },
     "m_ConversionType": 0,
     "m_Normalize": true

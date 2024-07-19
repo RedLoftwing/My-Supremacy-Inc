@@ -41,11 +41,12 @@ Material:
     - _QueueOffset: 0
     - _ascendSpeed: 0.5
     - _descendSpeed: 0.1
-    - _maxVertexHeight: 4.5
+    - _maxVertexHeight: 5
     - _minVertexHeight: 0
+    - _testLerpSpeed: 0.5
     m_Colors:
     - _BaseColour: {r: 0, g: 0.3411899, b: 1, a: 0}
-    - _WaveBoxPosition: {r: 25.858414, g: 0, b: 10.000008, a: 0}
+    - _WaveBoxPosition: {r: 58.77541, g: 0, b: 30, a: 0}
     - _WaveBoxSize: {r: 11, g: 10, b: 11, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3314680244394612299
