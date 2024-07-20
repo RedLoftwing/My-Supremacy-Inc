@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FloodShaderData : MonoBehaviour
@@ -10,6 +7,25 @@ public class FloodShaderData : MonoBehaviour
     [SerializeField] private Material floodMaterial;
     [SerializeField] private GameObject waveBox;
     private Wave _waveBoxScript;
+
+    private MeshFilter _meshFilter;
+
+    private void Start()
+    {
+        _meshFilter = GetComponent<MeshFilter>();
+        if (_meshFilter)
+        {
+            Mesh mesh = _meshFilter.mesh;
+            if (mesh)
+            {
+                Vector3[] vertices = mesh.vertices;
+                for (int i = 0; i < vertices.Length; i++)
+                {
+                    Debug.Log("Vertex ID: " + i + ", Position: " + vertices[i]);
+                }
+            }
+        }
+    }
 
     private void Update()
     {
