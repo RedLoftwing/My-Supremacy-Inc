@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -20,6 +18,8 @@ public class MyVertices
     }
 
     public int GetIndex() { return vertexIndex; }
-
     public Vector3 GetVector() { return vertexVector; }
+    
+    public void SetIndex(int i) { vertexIndex = i; }
+    public void SetVector(Vector3 inVector) { vertexVector = inVector; }
 }

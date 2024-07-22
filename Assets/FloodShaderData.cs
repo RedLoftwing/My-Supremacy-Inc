@@ -10,6 +10,8 @@ public class FloodShaderData : MonoBehaviour
 
     private MeshFilter _meshFilter;
 
+    private MyVertices[] _myVerticesArray;
+
     private void Start()
     {
         _meshFilter = GetComponent<MeshFilter>();
@@ -19,9 +21,10 @@ public class FloodShaderData : MonoBehaviour
             if (mesh)
             {
                 Vector3[] vertices = mesh.vertices;
+                _myVerticesArray = new MyVertices[vertices.Length];
                 for (int i = 0; i < vertices.Length; i++)
                 {
-                    Debug.Log("Vertex ID: " + i + ", Position: " + vertices[i]);
+                    _myVerticesArray[i] = new MyVertices(i, vertices[i]);
                 }
             }
         }
