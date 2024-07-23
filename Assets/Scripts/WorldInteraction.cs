@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
@@ -17,8 +18,8 @@ public class WorldInteraction : MonoBehaviour
     [SerializeField] private LayerMask terrainLayerMask;
     [SerializeField] private LayerMask towerLayerMask;
 
-    //[SerializeField] private Material transparentMaterial;
-    //[SerializeField] private Transform[] childObjects;
+    private TileInfo _currentTileInfo;
+    private TileInfo _previousTileInfo;
 
     private void Update()
     {
@@ -98,20 +99,30 @@ public class WorldInteraction : MonoBehaviour
         if (chosenTower)
         {
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-            //If the raycast hits something on the specified layer mask...
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 10000, terrainLayerMask))
+            
+            //IF the cursor is over compatible terrain...
+            if (Physics.Raycast(ray, out RaycastHit hitInfo2, 10000, terrainLayerMask))
             {
                 //Get the TileInfo component from the tile's child, and store it.
-                var tileInfo = hitInfo.collider.GetComponentInChildren<TileInfo>();
-
-                if (!_activeHologramTower)
+                _currentTileInfo = hitInfo2.collider.GetComponentInChildren<TileInfo>();
+                    
+                //IF the current tile does not match the previous tile...
+                if (_currentTileInfo != _previousTileInfo)
                 {
-                    _activeHologramTower = Instantiate(hologramTower, tileInfo.transform.position, Quaternion.identity);
+                    //Destroy the previous tile's hologram.
+                    if (_activeHologramTower) { Destroy(_activeHologramTower); }
+                    SpawnHologramAndSetPreviousTile();
                 }
-
-                //Show transparent tower.
-                _activeHologramTower.transform.position = tileInfo.transform.position;
+                //ELSE IF the current tile is the same as the previous tile...AND there is no current hologram... 
+                else if (_currentTileInfo == _previousTileInfo && !_activeHologramTower)
+                {
+                    SpawnHologramAndSetPreviousTile();
+                }
+            }
+            else
+            {
+                //Remove the hologram if hovering over incompatible terrain/space.
+                Destroy(_activeHologramTower);
             }
         }
     }
@@ -125,5 +136,12 @@ public class WorldInteraction : MonoBehaviour
         Destroy(_activeHologramTower);
         //
         tileInfo.isTileAvailable = false;
+    }
+
+    private void SpawnHologramAndSetPreviousTile()
+    {
+        //Spawn the current tile's hologram, and mark the current tile as the new previous tile.
+        _activeHologramTower = Instantiate(hologramTower, _currentTileInfo.transform.position, Quaternion.identity);
+        _previousTileInfo = _currentTileInfo;
     }
 }

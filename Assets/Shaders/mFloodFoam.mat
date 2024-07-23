@@ -59,6 +59,7 @@ Material:
     - _Foam_Scale: 500
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Zoom_Level: 0
     m_Colors:
     - _Base_Colour: {r: 0, g: 0.438499, b: 1, a: 1}
     - _Foam_Colour: {r: 1, g: 1, b: 1, a: 1}

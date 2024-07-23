@@ -23,6 +23,9 @@
         },
         {
             "m_Id": "f0fa2e8524824a569d189c9ba184458a"
+        },
+        {
+            "m_Id": "62684dfe542e4b9d932d25f25fdaf59b"
         }
     ],
     "m_Keywords": [],
@@ -1080,8 +1083,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1671.999755859375,
-            "y": 504.99993896484377,
+            "x": -1671.9998779296875,
+            "y": 505.0,
             "width": 207.9998779296875,
             "height": 279.0
         }
@@ -1656,10 +1659,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1981.999755859375,
-            "y": 504.99993896484377,
+            "x": -2001.0,
+            "y": 546.0,
             "width": 184.0,
-            "height": 34.00006103515625
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -1890,6 +1893,34 @@
         "y": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "62684dfe542e4b9d932d25f25fdaf59b",
+    "m_Guid": {
+        "m_GuidSerialized": "4362ac3f-108d-4138-8697-70b7578af147"
+    },
+    "m_Name": "Zoom Level",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Zoom Level",
+    "m_DefaultReferenceName": "_Zoom_Level",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {
@@ -3362,6 +3393,9 @@
         },
         {
             "m_Id": "f0fa2e8524824a569d189c9ba184458a"
+        },
+        {
+            "m_Id": "62684dfe542e4b9d932d25f25fdaf59b"
         }
     ]
 }

@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -376,6 +380,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -449,6 +457,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -524,6 +536,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -597,6 +613,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1122,10 +1142,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1930997559}
     m_Modifications:
+    - target: {fileID: 2564346926040202693, guid: 6974d06729ad3584e8a937715306854d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 95aa07097847cec4f8a53f7bb31e8129, type: 2}
     - target: {fileID: 3574814974237891706, guid: 6974d06729ad3584e8a937715306854d, type: 3}
       propertyPath: m_Name
       value: MySupremacyIncModels
       objectReference: {fileID: 0}
+    - target: {fileID: 4674093630707940006, guid: 6974d06729ad3584e8a937715306854d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 95aa07097847cec4f8a53f7bb31e8129, type: 2}
+    - target: {fileID: 6648327623758004923, guid: 6974d06729ad3584e8a937715306854d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 95aa07097847cec4f8a53f7bb31e8129, type: 2}
+    - target: {fileID: 6845450732027267704, guid: 6974d06729ad3584e8a937715306854d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 95aa07097847cec4f8a53f7bb31e8129, type: 2}
     - target: {fileID: 7745284216968755453, guid: 6974d06729ad3584e8a937715306854d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30
@@ -1313,6 +1349,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (31)
@@ -1627,6 +1667,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1937,6 +1981,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (16)
@@ -2067,6 +2115,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2085,6 +2137,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (15)
@@ -2214,6 +2270,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2602,6 +2662,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (3)
@@ -2736,6 +2800,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2813,6 +2881,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3096,6 +3168,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3588,6 +3664,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3960,6 +4040,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4064,6 +4148,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4217,6 +4305,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (23)
@@ -4347,6 +4439,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4365,6 +4461,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (35)
@@ -4495,6 +4595,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4568,6 +4672,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4647,6 +4755,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4975,7 +5087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7019608, g: 0.20392157, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5274,6 +5386,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5292,6 +5408,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (20)
@@ -5554,6 +5674,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6053,6 +6177,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6250,6 +6378,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7566,6 +7698,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7800,6 +7936,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (9)
@@ -9005,6 +9145,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9427,6 +9571,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (44)
@@ -9561,6 +9709,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9770,6 +9922,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9788,6 +9944,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (50)
@@ -9992,6 +10152,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10266,6 +10430,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10562,6 +10730,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10635,6 +10807,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10844,6 +11020,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10918,6 +11098,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10936,6 +11120,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (41)
@@ -11142,6 +11330,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11294,6 +11486,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (24)
@@ -11404,6 +11600,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (14)
@@ -12342,6 +12542,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12410,6 +12614,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12484,6 +12692,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12613,6 +12825,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12744,6 +12960,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12884,6 +13104,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14308,6 +14532,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14517,6 +14745,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (5)
@@ -14591,6 +14823,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (7)
@@ -14790,6 +15026,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14864,6 +15104,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14882,6 +15126,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (38)
@@ -15024,124 +15272,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683743857}
   m_CullTransparentMesh: 1
---- !u!1 &685095851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 685095854}
-  - component: {fileID: 685095853}
-  - component: {fileID: 685095852}
-  m_Layer: 0
-  m_Name: Directional Light (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &685095852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 685095851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 3
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
---- !u!108 &685095853
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 685095851}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 0
-  m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 41.49
-  m_Range: 30.3
-  m_SpotAngle: 78.21227
-  m_InnerSpotAngle: 53.937336
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &685095854
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 685095851}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.11051496, y: 0, z: 0, w: 0.9938745}
-  m_LocalPosition: {x: 0, y: 7.5, z: -25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 12.69, y: 0, z: 0}
 --- !u!1001 &692903323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15206,6 +15336,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15224,6 +15358,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (26)
@@ -16713,7 +16851,7 @@ MonoBehaviour:
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 1
+  m_SoftShadowQuality: 3
 --- !u!1 &709663940
 GameObject:
   m_ObjectHideFlags: 0
@@ -17518,6 +17656,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17822,6 +17964,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (40)
@@ -17971,6 +18117,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (8)
@@ -18389,6 +18539,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (18)
@@ -18652,6 +18806,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18729,6 +18887,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18830,6 +18992,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (49)
@@ -19488,6 +19654,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (4)
@@ -19683,6 +19853,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19911,6 +20085,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (13)
@@ -20236,6 +20414,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20579,6 +20761,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20652,6 +20838,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20802,6 +20992,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21552,6 +21746,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21665,6 +21863,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21824,6 +22026,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (27)
@@ -23059,6 +23265,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23133,6 +23343,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23186,6 +23400,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (47)
@@ -23260,6 +23478,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (6)
@@ -23550,6 +23772,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (12)
@@ -23680,6 +23906,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23698,6 +23928,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (11)
@@ -24404,6 +24638,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24477,6 +24715,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24616,6 +24858,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24797,6 +25043,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25066,6 +25316,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25427,6 +25681,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (19)
@@ -26084,6 +26342,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26139,6 +26401,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (28)
@@ -26330,6 +26596,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26404,6 +26674,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26422,6 +26696,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (34)
@@ -26551,6 +26829,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26700,6 +26982,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26881,111 +27167,6 @@ RectTransform:
   m_AnchoredPosition: {x: 245, y: -65}
   m_SizeDelta: {x: 480, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1164348981
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1164348985}
-  - component: {fileID: 1164348984}
-  - component: {fileID: 1164348983}
-  - component: {fileID: 1164348982}
-  m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!135 &1164348982
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164348981}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1164348983
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164348981}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 8c22476255b8aa14b97996426fba41ad, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1164348984
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164348981}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1164348985
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164348981}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 12.5, z: 45}
-  m_LocalScale: {x: 10, y: 10, z: 10}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1168020232
 GameObject:
   m_ObjectHideFlags: 0
@@ -27125,6 +27306,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27221,6 +27406,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (36)
@@ -27350,6 +27539,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27499,6 +27692,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27738,6 +27935,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28190,6 +28391,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28597,6 +28802,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28824,6 +29033,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (39)
@@ -29178,6 +29391,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29523,6 +29740,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29541,6 +29762,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (29)
@@ -29671,6 +29896,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29689,6 +29918,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (21)
@@ -30273,6 +30506,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30346,6 +30583,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30495,6 +30736,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30714,6 +30959,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30732,6 +30981,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (30)
@@ -31149,6 +31402,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31433,6 +31690,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31451,6 +31712,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (43)
@@ -31668,6 +31933,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (32)
@@ -31937,6 +32206,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32178,6 +32451,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32481,6 +32758,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (42)
@@ -32610,6 +32891,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32819,6 +33104,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32968,6 +33257,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33177,6 +33470,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33328,6 +33625,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (33)
@@ -33457,6 +33758,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33608,6 +33913,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33682,6 +33991,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33700,6 +34013,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane
@@ -34116,6 +34433,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34782,6 +35103,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35140,6 +35465,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36084,6 +36413,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36168,6 +36501,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (37)
@@ -36462,6 +36799,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37215,6 +37556,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (25)
@@ -37400,6 +37745,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (10)
@@ -37512,6 +37861,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (1)
@@ -38230,6 +38583,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38343,6 +38700,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38963,6 +39324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Raised Plane
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39119,6 +39484,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (48)
@@ -39248,6 +39617,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39602,6 +39975,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39612,111 +39989,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 580550817037602924, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
   m_PrefabInstance: {fileID: 1755934419}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1761349824
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1761349828}
-  - component: {fileID: 1761349827}
-  - component: {fileID: 1761349826}
-  - component: {fileID: 1761349825}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1761349825
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761349824}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1761349826
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761349824}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 8c22476255b8aa14b97996426fba41ad, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1761349827
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761349824}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1761349828
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761349824}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40, y: 12.5, z: 55}
-  m_LocalScale: {x: 10, y: 10, z: 10}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1765157768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39725,6 +39997,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (22)
@@ -40288,6 +40564,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (17)
@@ -41385,6 +41665,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41458,6 +41742,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -41533,6 +41821,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41606,6 +41898,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -41833,6 +42129,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41901,6 +42201,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -42358,6 +42662,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (46)
@@ -42879,6 +43187,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -43157,6 +43469,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -43234,6 +43550,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43597,6 +43917,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (2)
@@ -43896,6 +44220,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44233,6 +44561,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44653,6 +44985,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44804,6 +45140,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45792,6 +46132,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45991,6 +46335,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_Name
       value: Raised Plane (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46353,6 +46701,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 350452035}
     m_Modifications:
+    - target: {fileID: 2652205626132540482, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207029730407749539, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
       propertyPath: m_Name
       value: Enemy Path Plane (45)
@@ -46482,6 +46834,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46661,6 +47017,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46734,6 +47094,10 @@ PrefabInstance:
     - target: {fileID: 5318501838637177998, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168329665530550277, guid: 5206beed0d0907a48a23f2be4a37d03f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -47281,7 +47645,4 @@ SceneRoots:
   - {fileID: 1553936149}
   - {fileID: 1588887435}
   - {fileID: 1417610451}
-  - {fileID: 1761349828}
-  - {fileID: 1164348985}
-  - {fileID: 685095854}
   - {fileID: 364740690}
