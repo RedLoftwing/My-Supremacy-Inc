@@ -74,6 +74,8 @@ public class WorldInteraction : MonoBehaviour
                                     playerStatsScript.SpendCash(chosenTower.GetComponent<Towers.Tower>().towerCost);
                                     Build(tileInfo);
                                 }
+
+                                var test = 0;
                             }
                             //ELSE...Instantiate a new tower on the build point, and set chosenTower to null.
                             else
