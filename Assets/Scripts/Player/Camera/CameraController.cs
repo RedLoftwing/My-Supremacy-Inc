@@ -105,12 +105,6 @@ namespace Player.Camera
             zoomValue = inValue.Get<float>();
         }
 
-        public void OnLeftMouseButton(InputValue inValue)
-        {
-            test = inValue.Get<float>();
-        }
-
-
         //private void OnCameraZoomKeys(Vector2 input)
         //{
         //    //Read the X and Y value of the input, and then set the newZoom vector accordingly.

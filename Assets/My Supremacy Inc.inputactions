@@ -251,6 +251,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "WorldInteraction",
+            "id": "2452f467-72eb-447e-a0b8-054dd3ceb0c1",
+            "actions": [
+                {
+                    "name": "LeftMouseButton",
+                    "type": "Button",
+                    "id": "88d40144-1426-4d42-98fb-828ba27ced73",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8c1dfcd5-caaf-4710-8edc-00b27298ba65",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "LeftMouseButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

@@ -25,23 +25,25 @@ public class WorldInteraction : MonoBehaviour
     {
         //IF the pointer is over UI...set _isClickDisabled to true...ELSE set to false. Prevents interaction of elements behind UI.
         
-        // if(EventSystem.current.IsPointerOverGameObject())
-        // {
-        //     _isClickDisabled = true;
-        // }
-        // else
-        // {
-        //     _isClickDisabled = false;
-        // }
+        if(EventSystem.current.IsPointerOverGameObject())
+        {
+            IsClickDisabled = true;
+        }
+        else
+        {
+            IsClickDisabled = false;
+        }
 
-        IsClickDisabled = EventSystem.current.IsPointerOverGameObject();
+        //IsClickDisabled = EventSystem.current.IsPointerOverGameObject();
     }
 
-    public void RayCastClick()
+    public void OnLeftMouseButton()
     {
+        Debug.Log("Clicked");
         //IF the pointer is not over UI...
         if (!IsClickDisabled)
         {
+            Debug.Log("Boop");
             //Conduct a raycast from the camera to where the player has clicked, and store it.
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 

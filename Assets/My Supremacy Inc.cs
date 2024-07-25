@@ -273,6 +273,34 @@ public partial class @MySupremacyInc: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""WorldInteraction"",
+            ""id"": ""2452f467-72eb-447e-a0b8-054dd3ceb0c1"",
+            ""actions"": [
+                {
+                    ""name"": ""LeftMouseButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""88d40144-1426-4d42-98fb-828ba27ced73"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8c1dfcd5-caaf-4710-8edc-00b27298ba65"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""LeftMouseButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -345,6 +373,9 @@ public partial class @MySupremacyInc: IInputActionCollection2, IDisposable
         m_Camera_CameraRotate = m_Camera.FindAction("CameraRotate", throwIfNotFound: true);
         m_Camera_CameraZoom = m_Camera.FindAction("CameraZoom", throwIfNotFound: true);
         m_Camera_LeftMouseButton = m_Camera.FindAction("LeftMouseButton", throwIfNotFound: true);
+        // WorldInteraction
+        m_WorldInteraction = asset.FindActionMap("WorldInteraction", throwIfNotFound: true);
+        m_WorldInteraction_LeftMouseButton = m_WorldInteraction.FindAction("LeftMouseButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -480,6 +511,52 @@ public partial class @MySupremacyInc: IInputActionCollection2, IDisposable
         }
     }
     public CameraActions @Camera => new CameraActions(this);
+
+    // WorldInteraction
+    private readonly InputActionMap m_WorldInteraction;
+    private List<IWorldInteractionActions> m_WorldInteractionActionsCallbackInterfaces = new List<IWorldInteractionActions>();
+    private readonly InputAction m_WorldInteraction_LeftMouseButton;
+    public struct WorldInteractionActions
+    {
+        private @MySupremacyInc m_Wrapper;
+        public WorldInteractionActions(@MySupremacyInc wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LeftMouseButton => m_Wrapper.m_WorldInteraction_LeftMouseButton;
+        public InputActionMap Get() { return m_Wrapper.m_WorldInteraction; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(WorldInteractionActions set) { return set.Get(); }
+        public void AddCallbacks(IWorldInteractionActions instance)
+        {
+            if (instance == null || m_Wrapper.m_WorldInteractionActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_WorldInteractionActionsCallbackInterfaces.Add(instance);
+            @LeftMouseButton.started += instance.OnLeftMouseButton;
+            @LeftMouseButton.performed += instance.OnLeftMouseButton;
+            @LeftMouseButton.canceled += instance.OnLeftMouseButton;
+        }
+
+        private void UnregisterCallbacks(IWorldInteractionActions instance)
+        {
+            @LeftMouseButton.started -= instance.OnLeftMouseButton;
+            @LeftMouseButton.performed -= instance.OnLeftMouseButton;
+            @LeftMouseButton.canceled -= instance.OnLeftMouseButton;
+        }
+
+        public void RemoveCallbacks(IWorldInteractionActions instance)
+        {
+            if (m_Wrapper.m_WorldInteractionActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IWorldInteractionActions instance)
+        {
+            foreach (var item in m_Wrapper.m_WorldInteractionActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_WorldInteractionActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public WorldInteractionActions @WorldInteraction => new WorldInteractionActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -531,6 +608,10 @@ public partial class @MySupremacyInc: IInputActionCollection2, IDisposable
         void OnChangeCameraSpeed(InputAction.CallbackContext context);
         void OnCameraRotate(InputAction.CallbackContext context);
         void OnCameraZoom(InputAction.CallbackContext context);
+        void OnLeftMouseButton(InputAction.CallbackContext context);
+    }
+    public interface IWorldInteractionActions
+    {
         void OnLeftMouseButton(InputAction.CallbackContext context);
     }
 }

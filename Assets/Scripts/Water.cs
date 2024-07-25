@@ -39,27 +39,30 @@ public class Water : MonoBehaviour
         _myVertices = new MyVertices[verticesCount];
         _verticesVectors = new Vector3[verticesCount];
         _uvs = new Vector2[verticesCount];
-        //colours = new Color[verticesCount];
-        //normals = new Vector3[verticesCount];
         _triangles = new int[trianglesCount];
 
+        //
+        //float halfWidth = meshWidth / 2;
+        //float halfDepth = meshDepth / 2;
+        float halfWidth = 0;
+        float halfDepth = 0;
+        
         // Set the vertices of the mesh
         int vertexIndex = 0;
         for (int z = 0; z <= cellCount; ++z)
         {
             float percentageZ = (float)z / cellCount;
-            float startZ = percentageZ * meshDepth;
+            float startZ = percentageZ * meshDepth - halfDepth;
 
             for (int x = 0; x <= cellCount; ++x)
             {
                 float percentageX = (float)x / cellCount;
-                float startX = percentageX * meshWidth;
+                float startX = percentageX * meshWidth - halfWidth;
                 float height = maxMeshHeight;
 
                 _myVertices[vertexIndex] = new MyVertices(vertexIndex, new Vector3(startX, height, startZ));
                 _verticesVectors[vertexIndex] = new Vector3(startX, height, startZ);
                 _uvs[vertexIndex] = new Vector2(percentageX, percentageZ);
-                //normals[vertexIndex] = Vector3.up;
                 ++vertexIndex;
             }
         }

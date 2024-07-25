@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class VertexAdjuster : MonoBehaviour
@@ -19,26 +18,14 @@ public class VertexAdjuster : MonoBehaviour
     private Vector3 thisIntersectingObjectPosition;
     private Vector3 thisObjectSize;
     public float thisMaxVertHeight;
-
+    
     void Start()
     {
-        // Get the mesh from the MeshFilter component
-        mesh = GetComponent<MeshFilter>().mesh;
-        originalVertices = mesh.vertices;
-
-        // Create buffers
-        vertexBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float) * 3);
-        originalVertexBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float) * 3);
-        vertexYOffsetBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float));
-        outputVertexBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float) * 3);
-
-        // Set initial data
-        vertexBuffer.SetData(originalVertices);
-        originalVertexBuffer.SetData(originalVertices);
-        vertexYOffsetBuffer.SetData(new float[originalVertices.Length]);
-        outputVertexBuffer.SetData(originalVertices);
+        SetVerticesArray();
+        CreateBuffers();
+        SetBufferData();
     }
-
+    
     void Update()
     {
         if (!intersectingObject)
@@ -51,7 +38,7 @@ public class VertexAdjuster : MonoBehaviour
             // Update the compute shader with necessary data
             computeShader.SetFloat("deltaTime", Time.deltaTime);
             
-            thisIntersectingObjectPosition = new Vector3(intersectingObject.transform.position.x, intersectingObject.transform.position.y, intersectingObject.transform.position.z);
+            thisIntersectingObjectPosition = intersectingObject.transform.position;
             computeShader.SetFloats("intersectingObjectPosition", thisIntersectingObjectPosition.x, thisIntersectingObjectPosition.y, thisIntersectingObjectPosition.z);
             
             computeShader.SetFloat("ascendSpeed", ascendSpeed);
@@ -81,6 +68,29 @@ public class VertexAdjuster : MonoBehaviour
         }
     }
 
+    private void SetVerticesArray()
+    {
+        // Get the mesh from the MeshFilter component
+        mesh = GetComponent<MeshFilter>().mesh;
+        originalVertices = mesh.vertices;
+    }
+    
+    private void CreateBuffers()
+    {
+        vertexBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float) * 3);
+        originalVertexBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float) * 3);
+        vertexYOffsetBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float));
+        outputVertexBuffer = new ComputeBuffer(originalVertices.Length, sizeof(float) * 3);
+    }
+
+    private void SetBufferData()
+    {
+        vertexBuffer.SetData(originalVertices);
+        originalVertexBuffer.SetData(originalVertices);
+        vertexYOffsetBuffer.SetData(new float[originalVertices.Length]);
+        outputVertexBuffer.SetData(originalVertices);
+    }
+
     void OnDestroy()
     {
         // Release buffers
@@ -94,5 +104,14 @@ public class VertexAdjuster : MonoBehaviour
     {
         Gizmos.color = new Color(0.5f, 1, 1f, 0.75f);
         Gizmos.DrawCube(thisIntersectingObjectPosition, thisObjectSize);
+
+        // for (int i = 0; i < originalVertices.Length; i++)
+        // {
+        //     if (i % 16 == 0)
+        //     {
+        //         Gizmos.color = Color.red;
+        //         Gizmos.DrawCube(originalVertices[i], new Vector3(1, 1000, 1));
+        //     }
+        // }
     }
 }
