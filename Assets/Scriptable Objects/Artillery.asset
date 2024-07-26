@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9ded37a9a9dae41ad6914e475580ef, type: 3}
+  m_Name: Artillery
+  m_EditorClassIdentifier: 
+  towerName: Artillery
+  towerCost: 600
+  attackTypeInfo: Anti-Infantry, Anti-Armour
+  targetMethodType: Manual target placement
+  maxNoOfTargets: 0
+  towerDescription: This tower launches a powerful shell that pierces armour and
+    deals strong damage to ground units within it's explosive radius.

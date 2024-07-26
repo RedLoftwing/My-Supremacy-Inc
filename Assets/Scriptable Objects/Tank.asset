@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9ded37a9a9dae41ad6914e475580ef, type: 3}
+  m_Name: Tank
+  m_EditorClassIdentifier: 
+  towerName: Tank
+  towerCost: 1000
+  attackTypeInfo: Anti-Infantry, Anti-Armour, Anti-Air.
+  targetMethodType: Automatic
+  maxNoOfTargets: 2
+  towerDescription: This tower can attack all unit types. A powerful cannon for armoured
+    targets, and a top-mounted machine gun that operates independently.

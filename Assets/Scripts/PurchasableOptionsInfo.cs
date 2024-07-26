@@ -6,5 +6,7 @@ public class PurchasableOptionsInfo : ScriptableObject
     public string towerName;
     public float towerCost;
     public string attackTypeInfo;
+    public string targetMethodType;
+    public int maxNoOfTargets;
     public string towerDescription;
 }
