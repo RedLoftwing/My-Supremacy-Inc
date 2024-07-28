@@ -21,6 +21,8 @@ public class WorldInteraction : MonoBehaviour
     private TileInfo _currentTileInfo;
     private TileInfo _previousTileInfo;
 
+    [SerializeField] private PurchasableOptionsInfo[] towerAndAbilitiesInfo; 
+
     private void Update()
     {
         //IF the pointer is over UI...set _isClickDisabled to true...ELSE set to false. Prevents interaction of elements behind UI.
@@ -68,12 +70,18 @@ public class WorldInteraction : MonoBehaviour
                             //IF isInfiniteCash is false...and then IF the cost of the tower is less than or equal to the amount of cash available...
                             if (!cheatsScript.isInfiniteCash)
                             {
-                                if (chosenTower.GetComponent<Towers.Tower>().towerCost <= playerStatsScript.cash)
-                                {
-                                    //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
-                                    playerStatsScript.SpendCash(chosenTower.GetComponent<Towers.Tower>().towerCost);
-                                    Build(tileInfo);
-                                }
+                                // if (chosenTower.GetComponent<Towers.Tower>().towerCost <= playerStatsScript.cash)
+                                // {
+                                //     //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
+                                //     playerStatsScript.SpendCash(chosenTower.GetComponent<Towers.Tower>().towerCost);
+                                //     Build(tileInfo);
+                                // }
+                                
+                                //TODO: This
+                                // if (towerAndAbilitiesInfo[chosenTower].towerCost <= playerStatsScript.cash)
+                                // {
+                                //     
+                                // }
                             }
                             //ELSE...Instantiate a new tower on the build point, and set chosenTower to null.
                             else

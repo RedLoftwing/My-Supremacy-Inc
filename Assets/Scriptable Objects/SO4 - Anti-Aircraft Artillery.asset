@@ -10,12 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab9ded37a9a9dae41ad6914e475580ef, type: 3}
-  m_Name: Anti-Aircraft Artillery
+  m_Name: SO4 - Anti-Aircraft Artillery
   m_EditorClassIdentifier: 
   towerName: Anti-Aircraft Artillery
-  towerCost: 300
-  attackTypeInfo: Anti-Air
-  targetMethodType: Automatic
-  maxNoOfTargets: 1
   towerDescription: This tower attacks a single airborne target with a powerful homing
     missile.
+  towerCost: 300
+  attackTypeInfo: Anti-Air
+  infantry: 0
+  unarmoured: 0
+  armoured: 0
+  air: 0
+  validTargetTypes: 0
+  defaultRange: 0
+  defaultDamage: 0
+  defaultRateOfFire: 0
+  rotationSpeed: 4
+  weaponFire: {fileID: 0}
+  maxNoOfTargets: 1
+  towerPrefab: {fileID: 2023657263617589092, guid: b915a004ea284a9499b7dec2f9b2001f, type: 3}

@@ -10,11 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab9ded37a9a9dae41ad6914e475580ef, type: 3}
-  m_Name: Anti-Tank Emplacement
+  m_Name: SO2 - Anti-Tank Emplacement
   m_EditorClassIdentifier: 
   towerName: Anti-Tank Emplacement
+  towerDescription: This tower attacks a single armoured target with a powerful warhead.
   towerCost: 275
   attackTypeInfo: Anti-Armour
-  targetMethodType: Automatic
+  infantry: 0
+  unarmoured: 0
+  armoured: 0
+  air: 0
+  validTargetTypes: 0
+  defaultRange: 0
+  defaultDamage: 0
+  defaultRateOfFire: 0
+  rotationSpeed: 4
+  weaponFire: {fileID: 0}
   maxNoOfTargets: 1
-  towerDescription: This tower attacks a single armoured target with a powerful warhead.
+  towerPrefab: {fileID: 3322403184538453651, guid: a9fcbee51f123fe4bbf2dd6ef01344d9, type: 3}

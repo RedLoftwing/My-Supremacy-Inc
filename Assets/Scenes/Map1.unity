@@ -7173,6 +7173,14 @@ MonoBehaviour:
   towerLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  towerAndAbilitiesInfo:
+  - {fileID: 11400000, guid: ef9cff6c56f54ac4690bfb5f7cba46e0, type: 2}
+  - {fileID: 11400000, guid: 41fb4cb685845694a8ba302066d0752a, type: 2}
+  - {fileID: 11400000, guid: fb5e77b5c9557c94687146d8712bd4f5, type: 2}
+  - {fileID: 11400000, guid: 4e15fd7b872013341b8b01013b35889c, type: 2}
+  - {fileID: 11400000, guid: f0c84f02cd9eba1499146b6f2150a1c6, type: 2}
+  - {fileID: 11400000, guid: c5e136fbac23aaf478325bf79248eabc, type: 2}
+  - {fileID: 11400000, guid: 9225a6a1210072b4ea0a0a7b18e2afda, type: 2}
 --- !u!114 &326924681
 MonoBehaviour:
   m_ObjectHideFlags: 0

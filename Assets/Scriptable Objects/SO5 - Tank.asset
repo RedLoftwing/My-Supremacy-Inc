@@ -10,12 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab9ded37a9a9dae41ad6914e475580ef, type: 3}
-  m_Name: Tank
+  m_Name: SO5 - Tank
   m_EditorClassIdentifier: 
   towerName: Tank
-  towerCost: 1000
-  attackTypeInfo: Anti-Infantry, Anti-Armour, Anti-Air.
-  targetMethodType: Automatic
-  maxNoOfTargets: 2
   towerDescription: This tower can attack all unit types. A powerful cannon for armoured
     targets, and a top-mounted machine gun that operates independently.
+  towerCost: 1000
+  attackTypeInfo: Anti-Infantry, Anti-Armour, Anti-Air.
+  infantry: 0
+  unarmoured: 0
+  armoured: 0
+  air: 0
+  validTargetTypes: 0
+  defaultRange: 0
+  defaultDamage: 0
+  defaultRateOfFire: 0
+  rotationSpeed: 2
+  weaponFire: {fileID: 0}
+  maxNoOfTargets: 2
+  towerPrefab: {fileID: 643236661869407075, guid: 5e3aef6cca225ab45acd33c2662fb9d0, type: 3}

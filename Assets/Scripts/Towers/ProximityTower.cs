@@ -16,10 +16,10 @@ namespace Towers
             //Grabs the collider component to allow it to be adjusted in size. Uses the value of range to set the size. Collider used for detecting enemies within proximity.
             CapsuleCollider = GetComponent<CapsuleCollider>();
             CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
-
-            DefaultDamage = damage;
-            DefaultRange = range;
-            DefaultRateOfFire = rateOfFire;
+            
+            damage = scriptableObject.defaultDamage;
+            range = scriptableObject.defaultRange;
+            rateOfFire = scriptableObject.defaultRateOfFire;
 
             //Start Coroutine for updating stats.
             StartCoroutine(UpdateStats());
@@ -42,36 +42,37 @@ namespace Towers
                     {
                         float difference = 0.001f;
                         
-                        if (towerName == "Encampment")
+                        switch (scriptableObject.towerName)
                         {
-                            if (Math.Abs(range - DefaultRange) < difference)
-                            {
-                                range = range * 1.4f;
-                                CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
-                            }
-                        }
-                        else if (towerName == "ATEmplacement")
-                        {
-                            if (Math.Abs(damage - DefaultDamage) < difference)
-                            {
-                                damage = damage * 1.4f;
-                            }
-
-                        }
-                        else if (towerName == "AAA")
-                        {
-                            if (Math.Abs(rateOfFire - DefaultRateOfFire) < difference)
-                            {
-                                rateOfFire = rateOfFire / 2;
-                            }
-                        }
-                        else if (towerName == "Tank")
-                        {
-                            if (Math.Abs(range - DefaultRange) < difference)
-                            {
-                                range = range * 1.4f;
-                                CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
-                            }
+                            case "Encampment":
+                                if (Math.Abs(range - scriptableObject.defaultRange) < difference)
+                                {
+                                    range = range * 1.4f;
+                                    CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
+                                }
+                                break;
+                            case "ATEmplacement":
+                                if (Math.Abs(damage - scriptableObject.defaultDamage) < difference)
+                                {
+                                    damage = damage * 1.4f;
+                                }
+                                break;
+                            case "AAA":
+                                if (Math.Abs(rateOfFire - scriptableObject.defaultRateOfFire) < difference)
+                                {
+                                    rateOfFire = rateOfFire / 2;
+                                }
+                                break;
+                            case "Tank":
+                                if (Math.Abs(range - scriptableObject.defaultRange) < difference)
+                                {
+                                    range = range * 1.4f;
+                                    CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
+                                }
+                                break;
+                            default:
+                                Debug.LogError("Is there meant to be another entry?");
+                                break;
                         }
                     }
                 }
@@ -135,13 +136,12 @@ namespace Towers
                     //Get the relative target direction and store it as targetDir.
                     Vector3 targetDir = currentTarget.transform.position - turret.transform.position;
                     //Set the rotation speed over time value, and assigns it to singleStep.
-                    float singleStep = rotationSpeed * Time.deltaTime;
+                    float singleStep = scriptableObject.rotationSpeed * Time.deltaTime;
                     //Rotate the turret vector to targetDir over time using singleStep, and store the vector to newDir.
                     Vector3 newDir = Vector3.RotateTowards(turret.transform.forward, targetDir, singleStep, 0f);
                     //Rotate the turret to newDir.
                     Quaternion lookAtRotation = Quaternion.LookRotation(newDir);
-                    Quaternion lookAtRotationLimitY = Quaternion.Euler(turret.transform.rotation.eulerAngles.x,
-                        lookAtRotation.eulerAngles.y, turret.transform.rotation.eulerAngles.z);
+                    Quaternion lookAtRotationLimitY = Quaternion.Euler(turret.transform.rotation.eulerAngles.x, lookAtRotation.eulerAngles.y, turret.transform.rotation.eulerAngles.z);
                     //Set the turret's rotation to lookAtRotationLimitY.
                     turret.transform.rotation = lookAtRotationLimitY;
                 }

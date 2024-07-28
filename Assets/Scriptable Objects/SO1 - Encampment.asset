@@ -10,11 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab9ded37a9a9dae41ad6914e475580ef, type: 3}
-  m_Name: Encampment
+  m_Name: SO1 - Encampment
   m_EditorClassIdentifier: 
   towerName: Encampment
+  towerDescription: This tower attacks multiple unarmoured ground targets at once.
   towerCost: 150
   attackTypeInfo: Anti-Infantry
-  targetMethodType: Automatic
+  infantry: 0
+  unarmoured: 0
+  armoured: 0
+  air: 0
+  validTargetTypes: 0
+  defaultRange: 15
+  defaultDamage: 3
+  defaultRateOfFire: 1.5
+  rotationSpeed: 0
+  weaponFire: {fileID: 0}
   maxNoOfTargets: 3
-  towerDescription: This tower attacks multiple unarmoured ground targets at once.
+  towerPrefab: {fileID: 4805426909201429512, guid: 3dee2167696b9e742ba223c3de8d5be3, type: 3}

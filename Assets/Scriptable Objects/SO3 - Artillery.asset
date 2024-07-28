@@ -10,12 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab9ded37a9a9dae41ad6914e475580ef, type: 3}
-  m_Name: Artillery
+  m_Name: SO3 - Artillery
   m_EditorClassIdentifier: 
   towerName: Artillery
-  towerCost: 600
-  attackTypeInfo: Anti-Infantry, Anti-Armour
-  targetMethodType: Manual target placement
-  maxNoOfTargets: 0
   towerDescription: This tower launches a powerful shell that pierces armour and
     deals strong damage to ground units within it's explosive radius.
+  towerCost: 600
+  attackTypeInfo: Anti-Infantry, Anti-Armour
+  infantry: 0
+  unarmoured: 0
+  armoured: 0
+  air: 0
+  validTargetTypes: 1
+  defaultRange: 0
+  defaultDamage: 0
+  defaultRateOfFire: 0
+  rotationSpeed: 4
+  weaponFire: {fileID: 0}
+  maxNoOfTargets: 0
+  towerPrefab: {fileID: 1847204858117029625, guid: 47857847e759d81419de5d4d9df9d8b8, type: 3}
