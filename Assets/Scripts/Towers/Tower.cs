@@ -4,8 +4,7 @@ namespace Towers
 {
     public class Tower : MonoBehaviour
     {
-        [SerializeField] protected TowerInfo scriptableObject;
-        
+        [SerializeField] protected SO_Scripts.TowerInfo scriptableObject;
         [SerializeField] protected GameObject turret;
         
         //TODO: Change this from a string to a int perhaps.

@@ -11,7 +11,7 @@ public class WorldInteraction : MonoBehaviour
 
     public static bool IsClickDisabled;
     [SerializeField] private Transform gridHighlight;
-    public TowerInfo heldTower;
+    public SO_Scripts.TowerInfo heldTower;
     
     private GameObject _activeHologramTower;
 
@@ -21,7 +21,7 @@ public class WorldInteraction : MonoBehaviour
     private TileInfo _currentTileInfo;
     private TileInfo _previousTileInfo;
 
-    public TowerInfo[] towerInfo; 
+    public SO_Scripts.TowerInfo[] towerInfo; 
 
     private void Update()
     {

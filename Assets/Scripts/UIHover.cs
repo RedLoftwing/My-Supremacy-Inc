@@ -5,8 +5,8 @@ using System.Globalization;
 public class UIHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private UserInterface userInterfaceScript;
-    public TowerInfo towerInfo;
-    //public AbilityInfo abilityInfo;
+    public SO_Scripts.TowerInfo towerInfo;
+    //public SO_Scripts.AbilityInfo abilityInfo;
     public GameObject buttonGreyOutFilter;
 
     public enum PurchasableType
