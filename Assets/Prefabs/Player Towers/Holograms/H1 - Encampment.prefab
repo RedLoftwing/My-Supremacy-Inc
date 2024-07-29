@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5331029392711593650}
   m_Layer: 0
-  m_Name: T1 (Hologram)
+  m_Name: H1 - Encampment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

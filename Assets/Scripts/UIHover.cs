@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Globalization;
@@ -6,8 +5,17 @@ using System.Globalization;
 public class UIHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private UserInterface userInterfaceScript;
-    [SerializeField] private PurchasableOptionsInfo towerInfo;
+    public TowerInfo towerInfo;
+    //public AbilityInfo abilityInfo;
+    public GameObject buttonGreyOutFilter;
 
+    public enum PurchasableType
+    {
+        Tower,
+        Ability
+    }
+    public PurchasableType purchasableType;
+    
     private void Start()
     {
         userInterfaceScript = FindObjectOfType<UserInterface>();

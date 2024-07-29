@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 263158189343355353}
   m_Layer: 0
-  m_Name: T5 (Hologram)
+  m_Name: H5 - Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

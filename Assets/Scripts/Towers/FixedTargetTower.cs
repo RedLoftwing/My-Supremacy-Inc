@@ -109,27 +109,27 @@ namespace Towers
                         switch (scriptableObject.towerName)
                         {
                             case "Encampment":
-                                if (Math.Abs(range - scriptableObject.defaultRange) > difference)
+                                if (Math.Abs(Range - scriptableObject.defaultRange) > difference)
                                 {
-                                    range = range * 1.4f;
+                                    Range = Range * 1.4f;
                                 }
                                 break;
                             case "ATEmplacement":
-                                if (Math.Abs(damage - scriptableObject.defaultDamage) > difference)
+                                if (Math.Abs(Damage - scriptableObject.defaultDamage) > difference)
                                 {
-                                    damage = damage * 1.4f;
+                                    Damage = Damage * 1.4f;
                                 }
                                 break;
                             case "AAA":
-                                if (Math.Abs(rateOfFire - scriptableObject.defaultRateOfFire) > difference)
+                                if (Math.Abs(RateOfFire - scriptableObject.defaultRateOfFire) > difference)
                                 {
-                                    rateOfFire = rateOfFire / 2;
+                                    RateOfFire = RateOfFire / 2;
                                 }
                                 break;
                             case "Tank":
-                                if (Math.Abs(range - scriptableObject.defaultRange) > difference)
+                                if (Math.Abs(Range - scriptableObject.defaultRange) > difference)
                                 {
-                                    range = range * 1.4f;
+                                    Range = Range * 1.4f;
                                 }
                                 break;
                             default:

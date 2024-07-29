@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 
 namespace Towers
 {
     public class Tower : MonoBehaviour
     {
-        [SerializeField] protected PurchasableOptionsInfo scriptableObject;
+        [SerializeField] protected TowerInfo scriptableObject;
         
         [SerializeField] protected GameObject turret;
         
@@ -21,11 +20,11 @@ namespace Towers
         [SerializeField] protected LayerMask towerLayerMask;
 
         [Header("Range Values")]
-        protected float range;
+        protected float Range;
         [Header("Damage Values")]
-        protected float damage;
+        protected float Damage;
         [Header("Rate of Fire Values")]
-        protected float rateOfFire;
+        protected float RateOfFire;
         
         //Used to allow/block attacks.
         [SerializeField] protected bool isFireRunning;

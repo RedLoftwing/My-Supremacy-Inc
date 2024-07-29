@@ -15,11 +15,11 @@ namespace Towers
             _cheatsScript = GameObject.Find("Manager").GetComponent<Cheats>();
             //Grabs the collider component to allow it to be adjusted in size. Uses the value of range to set the size. Collider used for detecting enemies within proximity.
             CapsuleCollider = GetComponent<CapsuleCollider>();
-            CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
+            CapsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
             
-            damage = scriptableObject.defaultDamage;
-            range = scriptableObject.defaultRange;
-            rateOfFire = scriptableObject.defaultRateOfFire;
+            Damage = scriptableObject.defaultDamage;
+            Range = scriptableObject.defaultRange;
+            RateOfFire = scriptableObject.defaultRateOfFire;
 
             //Start Coroutine for updating stats.
             StartCoroutine(UpdateStats());
@@ -28,7 +28,7 @@ namespace Towers
         private IEnumerator UpdateStats()
         {
             //Updates the radius of the capsule collider when called. Multiplying the set range by the variableTowerRangeSlider value.
-            CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
+            CapsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
             //Gathers all colliders within the radius of the tower.
             int numColliders = Physics.OverlapSphereNonAlloc(transform.position, 15, Colliders, towerLayerMask);
             //IF the number of colliders is greater than 0...then go through each collider, and find the IntelligenceCentre component.
@@ -45,29 +45,29 @@ namespace Towers
                         switch (scriptableObject.towerName)
                         {
                             case "Encampment":
-                                if (Math.Abs(range - scriptableObject.defaultRange) < difference)
+                                if (Math.Abs(Range - scriptableObject.defaultRange) < difference)
                                 {
-                                    range = range * 1.4f;
-                                    CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
+                                    Range = Range * 1.4f;
+                                    CapsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
                                 }
                                 break;
                             case "ATEmplacement":
-                                if (Math.Abs(damage - scriptableObject.defaultDamage) < difference)
+                                if (Math.Abs(Damage - scriptableObject.defaultDamage) < difference)
                                 {
-                                    damage = damage * 1.4f;
+                                    Damage = Damage * 1.4f;
                                 }
                                 break;
                             case "AAA":
-                                if (Math.Abs(rateOfFire - scriptableObject.defaultRateOfFire) < difference)
+                                if (Math.Abs(RateOfFire - scriptableObject.defaultRateOfFire) < difference)
                                 {
-                                    rateOfFire = rateOfFire / 2;
+                                    RateOfFire = RateOfFire / 2;
                                 }
                                 break;
                             case "Tank":
-                                if (Math.Abs(range - scriptableObject.defaultRange) < difference)
+                                if (Math.Abs(Range - scriptableObject.defaultRange) < difference)
                                 {
-                                    range = range * 1.4f;
-                                    CapsuleCollider.radius = range * _cheatsScript.variableTowerRangeSlider.value;
+                                    Range = Range * 1.4f;
+                                    CapsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
                                 }
                                 break;
                             default:
@@ -98,7 +98,7 @@ namespace Towers
                     if (enemy)
                     {
                         weaponFire.Play();
-                        enemy.DecreaseHealth(damage);
+                        enemy.DecreaseHealth(Damage);
 
                         //IF hasExplosiveAmmo is true...Instantiate the explosive effect at the current target.
                         if (hasExplosiveAmmo)
@@ -108,7 +108,7 @@ namespace Towers
                     }
 
                     //Wait allocated number of seconds and then set isFireRunning to false, thus enabling the execution of FireTurret again.
-                    yield return new WaitForSeconds(rateOfFire);
+                    yield return new WaitForSeconds(RateOfFire);
                     isFireRunning = false;
                 }
             }

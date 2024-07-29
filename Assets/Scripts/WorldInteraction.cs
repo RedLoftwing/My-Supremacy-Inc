@@ -11,8 +11,8 @@ public class WorldInteraction : MonoBehaviour
 
     public static bool IsClickDisabled;
     [SerializeField] private Transform gridHighlight;
-    [SerializeField] public GameObject chosenTower;
-    [SerializeField] public GameObject hologramTower;
+    public TowerInfo heldTower;
+    
     private GameObject _activeHologramTower;
 
     [SerializeField] private LayerMask terrainLayerMask;
@@ -21,7 +21,7 @@ public class WorldInteraction : MonoBehaviour
     private TileInfo _currentTileInfo;
     private TileInfo _previousTileInfo;
 
-    [SerializeField] private PurchasableOptionsInfo[] towerAndAbilitiesInfo; 
+    public TowerInfo[] towerInfo; 
 
     private void Update()
     {
@@ -61,8 +61,8 @@ public class WorldInteraction : MonoBehaviour
                     gridHighlight.gameObject.SetActive(true);
                     gridHighlight.position = tileInfo.transform.position;
 
-                    //IF chosenTower is true...
-                    if (chosenTower)
+                    //IF a tower in the tower menu has been selected...
+                    if (heldTower)
                     {
                         //IF the tile is unoccupied...
                         if (tileInfo.isTileAvailable)
@@ -82,6 +82,12 @@ public class WorldInteraction : MonoBehaviour
                                 // {
                                 //     
                                 // }
+                                if (heldTower.towerCost <= playerStatsScript.cash)
+                                {
+                                    //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
+                                    playerStatsScript.SpendCash(heldTower.towerCost);
+                                    Build(tileInfo);
+                                }
                             }
                             //ELSE...Instantiate a new tower on the build point, and set chosenTower to null.
                             else
@@ -93,8 +99,7 @@ public class WorldInteraction : MonoBehaviour
                         //ELSE...clear the chosenTower and hologramTower variables, and destroy the _activeHologramTower gameobject.
                         else
                         {
-                            chosenTower = null;
-                            hologramTower = null;
+                            heldTower = null;
                             Destroy(_activeHologramTower);
                         }
                     }
@@ -105,8 +110,8 @@ public class WorldInteraction : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //IF chosenTower is true...
-        if (chosenTower)
+        //IF a tower in the tower menu has been selected...
+        if (heldTower)
         {
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             
@@ -139,10 +144,9 @@ public class WorldInteraction : MonoBehaviour
 
     private void Build(TileInfo tileInfo)
     {
-        //Instantiate a new tower on the build point, and set chosenTower to null.
-        Instantiate(chosenTower, tileInfo.transform.position, Quaternion.identity);
-        chosenTower = null;
-        hologramTower = null;
+        //Instantiate a new tower on the build point, and set heldTower to null.
+        Instantiate(heldTower.towerPrefab, tileInfo.transform.position, Quaternion.identity);
+        heldTower = null;
         Destroy(_activeHologramTower);
         //
         tileInfo.isTileAvailable = false;
@@ -151,7 +155,7 @@ public class WorldInteraction : MonoBehaviour
     private void SpawnHologramAndSetPreviousTile()
     {
         //Spawn the current tile's hologram, and mark the current tile as the new previous tile.
-        _activeHologramTower = Instantiate(hologramTower, _currentTileInfo.transform.position, Quaternion.identity);
+        _activeHologramTower = Instantiate(heldTower.hologramPrefab, _currentTileInfo.transform.position, Quaternion.identity);
         _previousTileInfo = _currentTileInfo;
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PurchasableOptionsInfo", menuName = "ScriptableObjects/PurchasableOptionsInfo", order = 1)]
-public class PurchasableOptionsInfo : ScriptableObject
+[CreateAssetMenu(fileName = "TowerInfo", menuName = "ScriptableObjects/TowerInfo", order = 1)]
+public class TowerInfo : ScriptableObject
 {
     public string towerName;
     public string towerDescription;
@@ -33,5 +33,7 @@ public class PurchasableOptionsInfo : ScriptableObject
     
     public int maxNoOfTargets;
     
+    [Header("Prefabs")]
     public GameObject towerPrefab;
+    public GameObject hologramPrefab;
 }

@@ -29,3 +29,4 @@ MonoBehaviour:
   weaponFire: {fileID: 0}
   maxNoOfTargets: 1
   towerPrefab: {fileID: 2023657263617589092, guid: b915a004ea284a9499b7dec2f9b2001f, type: 3}
+  hologramPrefab: {fileID: 2023657263617589092, guid: 870390cb2f0d1c0408f560e7fe458e60, type: 3}

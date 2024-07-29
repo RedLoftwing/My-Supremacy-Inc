@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class UserInterface : MonoBehaviour
 {
     private readonly string[] _potentialNames = {"Button", "Button (1)", "Button (2)", "Button (3)", "Button (4)", "Button (5)", "Button (6)"};
-    [SerializeField] private GameObject[] towerPrefabs;
-    [SerializeField] private GameObject[] hologramPrefabs;
+    [SerializeField] private GameObject[] purchasableOptions;
+    private UIHover[] _buttonUIHoverComp = new UIHover[10];
     [SerializeField] private WorldInteraction worldInteractionScript;
     [SerializeField] private GameState gameStateScript;
-    [SerializeField] private Player.PlayerStats playerStatesScript;
+    [SerializeField] private Player.PlayerStats playerStatsScript;
     private Scene _currentScene;
     [SerializeField] private LayerMask uiLayerMask;
     private GameObject _buttonObj;
@@ -51,6 +53,12 @@ public class UserInterface : MonoBehaviour
     {
         //Finds the active scene and stores it as currentScene.
         _currentScene = SceneManager.GetActiveScene();
+        //
+        for (int i = 0; i < purchasableOptions.Length; i++)
+        {
+            _buttonUIHoverComp[i] = purchasableOptions[i].GetComponent<UIHover>();
+        }
+        
         //IF the active scene's name is NOT "MainMenu"...then proceed with setting gameplay variables.
         if (_currentScene.name != "MainMenu")
         {
@@ -75,6 +83,9 @@ public class UserInterface : MonoBehaviour
                 button.interactable = false;
             }
         }
+        
+        //
+        AllowPurchasableSelection();
     }
 
     //Called whenever one of the Tower Menu buttons are pressed.
@@ -124,9 +135,8 @@ public class UserInterface : MonoBehaviour
         //Sets the object's activity to true, and then moves its position to the selected tower.
         buttonHighlightObj.SetActive(true);
         buttonHighlightObj.transform.position = _buttonObj.transform.position;
-        //Assign the appropriate tower prefab (defined by towerValue) to the chosenTower value.
-        worldInteractionScript.chosenTower = towerPrefabs[towerValue];
-        worldInteractionScript.hologramTower = hologramPrefabs[towerValue];
+        //Assign the appropriate tower scriptable object (defined by towerValue) to the heldTower value.
+        worldInteractionScript.heldTower = worldInteractionScript.towerInfo[towerValue];
     }
 
     private IEnumerator GameTimer()
@@ -156,32 +166,32 @@ public class UserInterface : MonoBehaviour
     {
         //Sell water for cash.
         //IF water supply is greater than or equal to 5...call DecreaseWaterSupply and AwardCash.
-        if(playerStatesScript.water >= 5)
+        if(playerStatsScript.water >= 5)
         {
-            playerStatesScript.DecreaseWaterSupply(5);
-            playerStatesScript.AwardCash(250);
+            playerStatsScript.DecreaseWaterSupply(5);
+            playerStatsScript.AwardCash(250);
         }
     }
 
     public void WaterAbility2()
     {
         //IF cash is greater than or equal to 70...Instantiate waveObj at spawn point AND call SpendCash.
-        if(playerStatesScript.cash >= 70)
+        if(playerStatsScript.cash >= 70)
         {
             Instantiate(waveObj, waveSpawnPoint.transform.position, Quaternion.identity);
-            playerStatesScript.SpendCash(70);
+            playerStatsScript.SpendCash(70);
         }
     }
 
     public void WaterAbility3()
     {
         //IF cash is greater than or equal to 70...Instantiate waterCellObj at a random location on the path AND call SpendCash.
-        if (playerStatesScript.cash >= 70)
+        if (playerStatsScript.cash >= 70)
         {
             var paths = GameObject.Find("Enemy Path Group").GetComponentsInChildren<Transform>();
             var randomNum = Random.Range(10, paths.Length - 10);
             Instantiate(waterCellObj, paths[randomNum].position, Quaternion.identity);
-            playerStatesScript.SpendCash(70);
+            playerStatsScript.SpendCash(70);
         }
     }
 
@@ -198,6 +208,23 @@ public class UserInterface : MonoBehaviour
         }
     }
 
+    public void AllowPurchasableSelection()
+    {
+        for (int i = 0; i < purchasableOptions.Length; i++)
+        {
+            if (_buttonUIHoverComp[i].purchasableType == UIHover.PurchasableType.Tower)
+            {
+                Debug.Log("towerCost: " + _buttonUIHoverComp[i].towerInfo.towerCost + ". cash: " + playerStatsScript.cash + ". True or false? " + (_buttonUIHoverComp[i].towerInfo.towerCost < playerStatsScript.cash));
+                _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].towerInfo.towerCost > playerStatsScript.cash);
+            }
+            else
+            {
+                // Debug.Log("towerCost: " + _buttonUIHoverComp[i].towerInfo.towerCost + ". cash: " + playerStatsScript.cash + ". True or false? " + (_buttonUIHoverComp[i].towerInfo.towerCost < playerStatsScript.cash));
+                // _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].towerInfo.towerCost < playerStatsScript.cash);
+            }
+        }
+    }
+    
     public void GoToNewGame()
     {
         //Called by a NewGame button. Calls SwitchPanel with the appropriate string.

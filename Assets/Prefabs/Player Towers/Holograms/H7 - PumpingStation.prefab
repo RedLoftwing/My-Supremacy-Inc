@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2135517067393046902}
   m_Layer: 0
-  m_Name: T7 (Hologram)
+  m_Name: H7 - PumpingStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

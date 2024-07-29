@@ -8,6 +8,7 @@ namespace Player
     {
         [SerializeField] private SuperVillain superVillainScript;
         [SerializeField] private GameState gameStateScript;
+        [SerializeField] private UserInterface userInterface;
         [SerializeField] private Cheats cheatsScript;
 
         public float health;
@@ -59,6 +60,7 @@ namespace Player
         {
             cash += rewardAmount;
             cashText.SetText(cash.ToString());
+            userInterface.AllowPurchasableSelection();
         }
 
         //Called when the player's cash value needs to be decreased. Uses the value of cost.

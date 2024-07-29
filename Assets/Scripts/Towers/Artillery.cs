@@ -74,7 +74,7 @@ namespace Towers
                                 //IF an enemy tag matches a validTarget string...Deal damage to each enemy.
                                 if (enemyToDamage.CompareTag(validTarget))
                                 {
-                                    enemyToDamage.DecreaseHealth(damage);
+                                    enemyToDamage.DecreaseHealth(Damage);
                                 }
                             }
                         }
@@ -82,7 +82,7 @@ namespace Towers
                 }
 
                 //Wait set amount of seconds after spawning...then set isFireRunning to false.
-                yield return new WaitForSeconds(rateOfFire);
+                yield return new WaitForSeconds(RateOfFire);
                 isFireRunning = false;
             }
         }

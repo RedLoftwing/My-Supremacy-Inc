@@ -620,7 +620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2688750937744006185}
   m_Layer: 0
-  m_Name: T2 (Hologram)
+  m_Name: H2 - ATEmplacement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

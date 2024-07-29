@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1362699134267597891}
   m_Layer: 0
-  m_Name: T3 (Hologram)
+  m_Name: H3 - Artillery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
