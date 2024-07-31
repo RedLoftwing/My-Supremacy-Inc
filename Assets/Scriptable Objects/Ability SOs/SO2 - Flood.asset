@@ -15,8 +15,8 @@ MonoBehaviour:
   abilityName: Flood
   abilityDescription: Spawn a flood originating from the base down the path of enemy
     troops. Stopping them in their tracks momentarily.
-  expenditureCurrencyType: 1
+  abilityExpenditureCurrencyType: 1
   abilityExpenditureAmount: 70
-  incomeCurrencyType: 2
+  abilityIncomeCurrencyType: 0
   abilityIncomeAmount: 0
-  abilityPrefab: {fileID: 0}
+  abilityPrefab: {fileID: 4124865214692001840, guid: 5562a700dde43e54c949b04c2d223355, type: 3}

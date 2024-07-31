@@ -72,6 +72,7 @@ namespace Player
                 cash -= cost;
                 cashText.SetText(cash.ToString());
             }
+            userInterface.AllowPurchasableSelection();
         }
 
         //Called when the player's cash value needs to be decreased. Uses the value of cost. This version avoids 

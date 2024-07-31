@@ -15,8 +15,8 @@ MonoBehaviour:
   abilityName: Water Cell
   abilityDescription: Spawn a container of water to trap enemies and damage them
     over time.
-  expenditureCurrencyType: 1
+  abilityExpenditureCurrencyType: 1
   abilityExpenditureAmount: 70
-  incomeCurrencyType: 2
+  abilityIncomeCurrencyType: 0
   abilityIncomeAmount: 0
-  abilityPrefab: {fileID: 0}
+  abilityPrefab: {fileID: 6201828849858293123, guid: 6cc76efcbf0fefb42bae37890d2e9b49, type: 3}

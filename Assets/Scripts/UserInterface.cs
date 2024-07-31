@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using SO_Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -9,9 +10,10 @@ using Random = UnityEngine.Random;
 
 public class UserInterface : MonoBehaviour
 {
-    private readonly string[] _potentialNames = {"Button", "Button (1)", "Button (2)", "Button (3)", "Button (4)", "Button (5)", "Button (6)"};
+    private readonly string[] _potentialNames = {"Tower Button", "Tower Button (1)", "Tower Button (2)", "Tower Button (3)", "Tower Button (4)", "Tower Button (5)", "Tower Button (6)"};
     [SerializeField] private GameObject[] purchasableOptions;
     private UIHover[] _buttonUIHoverComp = new UIHover[10];
+    [Header("Script Instance References")]
     [SerializeField] private WorldInteraction worldInteractionScript;
     [SerializeField] private GameState gameStateScript;
     [SerializeField] private Player.PlayerStats playerStatsScript;
@@ -20,11 +22,23 @@ public class UserInterface : MonoBehaviour
     private GameObject _buttonObj;
     [SerializeField] private GameObject buttonHighlightObj;
 
+    [Header("Information Panels")]
     public GameObject towerInfoPanel;
     public TextMeshProUGUI towerInfoPanelTitle;
     public TextMeshProUGUI towerInfoPanelCost;
     public TextMeshProUGUI towerInfoPanelAttackInfo;
-
+    private Vector3[] _towerPanelPoint = new Vector3[2];
+    [HideInInspector] public bool isCursorOverTowerButton;
+    private float _towerCursorHoverTimer;
+    public GameObject abilityInfoPanel;
+    public TextMeshProUGUI abilityInfoPanelTitle;
+    public TextMeshProUGUI abilityInfoPanelCost;
+    public TextMeshProUGUI abilityInfoPanelDescription;
+    private Vector3[] _abilityPanelPoint = new Vector3[2];
+    [HideInInspector] public bool isCursorOverAbilityButton;
+    private float _abilityCursorHoverTimer;
+    [SerializeField] private AnimationCurve informationPanelPopUpCurve;
+    
     private float _gameTime;
     [SerializeField] private TextMeshProUGUI gameTimerText;
 
@@ -45,9 +59,10 @@ public class UserInterface : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject enemySpawnSection;
 
-    [SerializeField] private GameObject waveObj;
-    [SerializeField] private GameObject waveSpawnPoint;
+    [SerializeField] private GameObject reversedSpline;
     [SerializeField] private GameObject waterCellObj;
+
+    [SerializeField] private AbilityInfo[] abilitySO;
 
     private void Start()
     {
@@ -84,8 +99,35 @@ public class UserInterface : MonoBehaviour
             }
         }
         
+        //Set panel position points.
+        _towerPanelPoint[0] = towerInfoPanel.transform.position;
+        _towerPanelPoint[1] = new Vector3(_towerPanelPoint[0].x - 213, _towerPanelPoint[0].y, _towerPanelPoint[0].z);
+        _abilityPanelPoint[0] = abilityInfoPanel.transform.position;
+        _abilityPanelPoint[1] = new Vector3(_abilityPanelPoint[0].x, _abilityPanelPoint[0].y + 165, _abilityPanelPoint[0].z);
+        
         //
         AllowPurchasableSelection();
+    }
+
+    private void Update()
+    {
+        PanelSlide(isCursorOverTowerButton, ref _towerCursorHoverTimer, towerInfoPanel, _towerPanelPoint);
+        PanelSlide(isCursorOverAbilityButton, ref _abilityCursorHoverTimer, abilityInfoPanel, _abilityPanelPoint);
+    }
+
+    private void PanelSlide(bool isCursorOverButton, ref float timer, GameObject panel, Vector3[] panelPoints)
+    {
+        timer += isCursorOverButton ? Time.deltaTime : -Time.deltaTime;
+        timer = Mathf.Clamp(timer, 0f, 1f);
+        float tValue = timer / 1f;
+        float curveValue = informationPanelPopUpCurve.Evaluate(tValue);
+        panel.transform.position = Vector3.Lerp(panelPoints[0], panelPoints[1], curveValue);
+
+        if (Vector3.Distance(panel.transform.position, panelPoints[0]) < 0.01f && !isCursorOverButton)
+        {
+            panel.SetActive(false);
+            panel.transform.position = panelPoints[0];
+        }
     }
 
     //Called whenever one of the Tower Menu buttons are pressed.
@@ -93,7 +135,9 @@ public class UserInterface : MonoBehaviour
     {
         //Grabs the gameobject (button) that was selected by the player, and stores it as buttonObj.
         _buttonObj = EventSystem.current.currentSelectedGameObject;
-
+        Debug.Log(_buttonObj);
+        
+        
         //IF the name of the button matches with any of the values stored in the potentialNames array...proceed with the true path...
         if(_buttonObj.name == _potentialNames[0])
         {
@@ -126,7 +170,7 @@ public class UserInterface : MonoBehaviour
         //ELSE IF...do nothing.
         else
         {
-            Debug.Log("No name match for TowerButtonUsed...");
+            Debug.Log("No name match for TowerButtonUsed..." + _buttonObj);
         }
     }
 
@@ -166,32 +210,33 @@ public class UserInterface : MonoBehaviour
     {
         //Sell water for cash.
         //IF water supply is greater than or equal to 5...call DecreaseWaterSupply and AwardCash.
-        if(playerStatsScript.water >= 5)
+        if(playerStatsScript.water >= abilitySO[0].abilityExpenditureAmount)
         {
-            playerStatsScript.DecreaseWaterSupply(5);
-            playerStatsScript.AwardCash(250);
+            playerStatsScript.DecreaseWaterSupply(abilitySO[0].abilityExpenditureAmount);
+            playerStatsScript.AwardCash(abilitySO[0].abilityIncomeAmount);
+            //AllowPurchasableSelection();
         }
     }
 
     public void WaterAbility2()
     {
         //IF cash is greater than or equal to 70...Instantiate waveObj at spawn point AND call SpendCash.
-        if(playerStatsScript.cash >= 70)
+        if(playerStatsScript.cash >= abilitySO[1].abilityExpenditureAmount)
         {
-            Instantiate(waveObj, waveSpawnPoint.transform.position, Quaternion.identity);
-            playerStatsScript.SpendCash(70);
+            Instantiate(abilitySO[1].abilityPrefab, reversedSpline.transform.position, Quaternion.identity);
+            playerStatsScript.SpendCash(abilitySO[1].abilityExpenditureAmount);
         }
     }
 
     public void WaterAbility3()
     {
         //IF cash is greater than or equal to 70...Instantiate waterCellObj at a random location on the path AND call SpendCash.
-        if (playerStatsScript.cash >= 70)
+        if (playerStatsScript.cash >= abilitySO[2].abilityExpenditureAmount)
         {
             var paths = GameObject.Find("Enemy Path Group").GetComponentsInChildren<Transform>();
             var randomNum = Random.Range(10, paths.Length - 10);
-            Instantiate(waterCellObj, paths[randomNum].position, Quaternion.identity);
-            playerStatsScript.SpendCash(70);
+            Instantiate(abilitySO[2].abilityPrefab, paths[randomNum].position, Quaternion.identity);
+            playerStatsScript.SpendCash(abilitySO[2].abilityExpenditureAmount);
         }
     }
 
@@ -207,20 +252,25 @@ public class UserInterface : MonoBehaviour
             panel.SetActive(panel.name == requestedPanel);
         }
     }
-
+    
     public void AllowPurchasableSelection()
     {
         for (int i = 0; i < purchasableOptions.Length; i++)
         {
             if (_buttonUIHoverComp[i].purchasableType == UIHover.PurchasableType.Tower)
             {
-                Debug.Log("towerCost: " + _buttonUIHoverComp[i].towerInfo.towerCost + ". cash: " + playerStatsScript.cash + ". True or false? " + (_buttonUIHoverComp[i].towerInfo.towerCost < playerStatsScript.cash));
                 _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].towerInfo.towerCost > playerStatsScript.cash);
             }
             else
             {
-                // Debug.Log("towerCost: " + _buttonUIHoverComp[i].towerInfo.towerCost + ". cash: " + playerStatsScript.cash + ". True or false? " + (_buttonUIHoverComp[i].towerInfo.towerCost < playerStatsScript.cash));
-                // _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].towerInfo.towerCost < playerStatsScript.cash);
+                if (_buttonUIHoverComp[i].abilityInfo.abilityExpenditureCurrencyType == AbilityInfo.CurrencyTypes.Water)
+                {
+                    _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].abilityInfo.abilityExpenditureAmount > playerStatsScript.water);
+                }
+                else
+                {
+                    _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].abilityInfo.abilityExpenditureAmount > playerStatsScript.cash);
+                }
             }
         }
     }
