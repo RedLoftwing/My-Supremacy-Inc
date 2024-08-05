@@ -4,7 +4,7 @@ using UnityEngine.Splines;
 
 namespace Enemies
 {
-    public class Enemy : PathDriver
+    public class Enemy : MonoBehaviour
     {
         [SerializeField] private GameState gameStateScript;
         [SerializeField] private Cheats cheatsScript;
@@ -29,9 +29,10 @@ namespace Enemies
             //Sets _defaultHealth value.
             _defaultHealth = health;
 
-            Initialise();
+            //Set up the spline to use and follow along.
             _splineAnimate = this.GetComponent<SplineAnimate>();
-            _splineAnimate.Container = GameObject.FindGameObjectWithTag("Spline1").GetComponent<SplineContainer>();
+            var splineTag = !this.CompareTag("Aerial") ? "Spline1" : "Spline3";
+            _splineAnimate.Container = GameObject.FindGameObjectWithTag(splineTag).GetComponent<SplineContainer>();
             _splineAnimate.Play();
         }
 
