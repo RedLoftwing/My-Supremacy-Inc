@@ -5,11 +5,13 @@ public class PathDriver : MonoBehaviour
     [SerializeField] protected Transform[] nodeArray;
     [SerializeField] protected Transform targetNode;
     private int _nodeValue = 1;
-
+    
+    
     protected void Initialise()
     {
-        AssignNodes();
-        UpdateInfo();
+        //AssignNodes();
+        //UpdateInfo();
+
     }
 
     private void AssignNodes()

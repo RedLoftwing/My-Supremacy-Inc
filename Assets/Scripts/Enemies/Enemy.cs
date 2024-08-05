@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Splines;
 
 namespace Enemies
 {
@@ -16,6 +17,8 @@ namespace Enemies
 
         private float _distanceToBase;
         private float _distanceToNextPoint;
+        
+        private SplineAnimate _splineAnimate;
 
         private void Start()
         {
@@ -27,6 +30,9 @@ namespace Enemies
             _defaultHealth = health;
 
             Initialise();
+            _splineAnimate = this.GetComponent<SplineAnimate>();
+            _splineAnimate.Container = GameObject.FindGameObjectWithTag("Spline1").GetComponent<SplineContainer>();
+            _splineAnimate.Play();
         }
 
         //Called when health needs to be decreased.
