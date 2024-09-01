@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.77219063, g: 0.3915094, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -185,7 +185,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: -1218573913, guid: fe5568b7e464af9489672ce8b2a3d99e, type: 3}
     m_PressedSprite: {fileID: 942955865, guid: fe5568b7e464af9489672ce8b2a3d99e, type: 3}
     m_SelectedSprite: {fileID: -1218573913, guid: fe5568b7e464af9489672ce8b2a3d99e, type: 3}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: -270214644, guid: fe5568b7e464af9489672ce8b2a3d99e, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -223,5 +223,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userInterfaceScript: {fileID: 0}
   towerInfo: {fileID: 0}
+  abilityInfo: {fileID: 0}
   buttonGreyOutFilter: {fileID: 3099882368704727860}
-  _purchasableType: 0
+  purchasableType: 0
