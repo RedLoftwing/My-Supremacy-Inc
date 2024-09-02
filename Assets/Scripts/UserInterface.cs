@@ -13,6 +13,7 @@ public class UserInterface : MonoBehaviour
     private readonly string[] _potentialNames = {"Tower Button", "Tower Button (1)", "Tower Button (2)", "Tower Button (3)", "Tower Button (4)", "Tower Button (5)", "Tower Button (6)"};
     [SerializeField] private GameObject[] purchasableOptions;
     private UIHover[] _buttonUIHoverComp = new UIHover[10];
+    private Button[] _buttonComp = new Button[10];
     [Header("Script Instance References")]
     [SerializeField] private WorldInteraction worldInteractionScript;
     [SerializeField] private GameState gameStateScript;
@@ -27,6 +28,7 @@ public class UserInterface : MonoBehaviour
     public TextMeshProUGUI towerInfoPanelTitle;
     public TextMeshProUGUI towerInfoPanelCost;
     public TextMeshProUGUI towerInfoPanelAttackInfo;
+    public TextMeshProUGUI towerInfoPanelDescription;
     private Vector3[] _towerPanelPoint = new Vector3[2];
     [HideInInspector] public bool isCursorOverTowerButton;
     private float _towerCursorHoverTimer;
@@ -71,6 +73,7 @@ public class UserInterface : MonoBehaviour
         //
         for (int i = 0; i < purchasableOptions.Length; i++)
         {
+            _buttonComp[i] = purchasableOptions[i].GetComponent<Button>();
             _buttonUIHoverComp[i] = purchasableOptions[i].GetComponent<UIHover>();
         }
         
@@ -101,7 +104,7 @@ public class UserInterface : MonoBehaviour
         
         //Set panel position points.
         _towerPanelPoint[0] = towerInfoPanel.transform.position;
-        _towerPanelPoint[1] = new Vector3(_towerPanelPoint[0].x - 213, _towerPanelPoint[0].y, _towerPanelPoint[0].z);
+        _towerPanelPoint[1] = new Vector3(_towerPanelPoint[0].x - 214.5f, _towerPanelPoint[0].y, _towerPanelPoint[0].z);
         _abilityPanelPoint[0] = abilityInfoPanel.transform.position;
         _abilityPanelPoint[1] = new Vector3(_abilityPanelPoint[0].x, _abilityPanelPoint[0].y + 165, _abilityPanelPoint[0].z);
         
@@ -135,8 +138,7 @@ public class UserInterface : MonoBehaviour
     {
         //Grabs the gameobject (button) that was selected by the player, and stores it as buttonObj.
         _buttonObj = EventSystem.current.currentSelectedGameObject;
-        Debug.Log(_buttonObj);
-        
+        //Debug.Log(_buttonObj);
         
         //IF the name of the button matches with any of the values stored in the potentialNames array...proceed with the true path...
         if(_buttonObj.name == _potentialNames[0])
@@ -259,7 +261,9 @@ public class UserInterface : MonoBehaviour
         {
             if (_buttonUIHoverComp[i].purchasableType == UIHover.PurchasableType.Tower)
             {
-                _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].towerInfo.towerCost > playerStatsScript.cash);
+                var activeState = _buttonUIHoverComp[i].towerInfo.towerCost > playerStatsScript.cash;
+                _buttonComp[i].interactable = !activeState;
+                _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(activeState);
             }
             else
             {

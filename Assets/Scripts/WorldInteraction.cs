@@ -41,67 +41,64 @@ public class WorldInteraction : MonoBehaviour
 
     public void OnLeftMouseButton()
     {
-        Debug.Log("Clicked");
-        //IF the pointer is not over UI...
-        if (!IsClickDisabled)
+        //IF the pointer is not over UI...then exit function, otherwise continue. 
+        if (IsClickDisabled) return;
+        
+        //Conduct a raycast from the camera to where the player has clicked, and store it.
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        //If the raycast hits something on the specified layer mask...
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 10000, terrainLayerMask))
         {
-            Debug.Log("Boop");
-            //Conduct a raycast from the camera to where the player has clicked, and store it.
-            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-            //If the raycast hits something on the specified layer mask...
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 10000, terrainLayerMask))
+            //Get the TileInfo component from the tile's child, and store it.
+            var tileInfo = hitInfo.collider.GetComponentInChildren<TileInfo>();
+            //IF tileInfo is true...
+            if(tileInfo)
             {
-                //Get the TileInfo component from the tile's child, and store it.
-                var tileInfo = hitInfo.collider.GetComponentInChildren<TileInfo>();
-                //IF tileInfo is true...
-                if(tileInfo)
-                {
-                    //Ensures the grid highlight object is set to active, and moves it to the build point of the tile.
-                    gridHighlight.gameObject.SetActive(true);
-                    gridHighlight.position = tileInfo.transform.position;
+                //Ensures the grid highlight object is set to active, and moves it to the build point of the tile.
+                gridHighlight.gameObject.SetActive(true);
+                gridHighlight.position = tileInfo.transform.position;
 
-                    //IF a tower in the tower menu has been selected...
-                    if (heldTower)
+                //IF a tower in the tower menu has been selected...
+                if (heldTower)
+                {
+                    //IF the tile is unoccupied...
+                    if (tileInfo.isTileAvailable)
                     {
-                        //IF the tile is unoccupied...
-                        if (tileInfo.isTileAvailable)
+                        //IF isInfiniteCash is false...and then IF the cost of the tower is less than or equal to the amount of cash available...
+                        if (!cheatsScript.isInfiniteCash)
                         {
-                            //IF isInfiniteCash is false...and then IF the cost of the tower is less than or equal to the amount of cash available...
-                            if (!cheatsScript.isInfiniteCash)
-                            {
-                                // if (chosenTower.GetComponent<Towers.Tower>().towerCost <= playerStatsScript.cash)
-                                // {
-                                //     //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
-                                //     playerStatsScript.SpendCash(chosenTower.GetComponent<Towers.Tower>().towerCost);
-                                //     Build(tileInfo);
-                                // }
+                            // if (chosenTower.GetComponent<Towers.Tower>().towerCost <= playerStatsScript.cash)
+                            // {
+                            //     //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
+                            //     playerStatsScript.SpendCash(chosenTower.GetComponent<Towers.Tower>().towerCost);
+                            //     Build(tileInfo);
+                            // }
                                 
-                                //TODO: This
-                                // if (towerAndAbilitiesInfo[chosenTower].towerCost <= playerStatsScript.cash)
-                                // {
-                                //     
-                                // }
-                                if (heldTower.towerCost <= playerStatsScript.cash)
-                                {
-                                    //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
-                                    playerStatsScript.SpendCash(heldTower.towerCost);
-                                    Build(tileInfo);
-                                }
-                            }
-                            //ELSE...Instantiate a new tower on the build point, and set chosenTower to null.
-                            else
+                            //TODO: This
+                            // if (towerAndAbilitiesInfo[chosenTower].towerCost <= playerStatsScript.cash)
+                            // {
+                            //     
+                            // }
+                            if (heldTower.towerCost <= playerStatsScript.cash)
                             {
-                                //Call Build with the tileInfo component.
+                                //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
+                                playerStatsScript.SpendCash(heldTower.towerCost);
                                 Build(tileInfo);
                             }
                         }
-                        //ELSE...clear the chosenTower and hologramTower variables, and destroy the _activeHologramTower gameobject.
+                        //ELSE...Instantiate a new tower on the build point, and set chosenTower to null.
                         else
                         {
-                            heldTower = null;
-                            Destroy(_activeHologramTower);
+                            //Call Build with the tileInfo component.
+                            Build(tileInfo);
                         }
+                    }
+                    //ELSE...clear the chosenTower and hologramTower variables, and destroy the _activeHologramTower gameobject.
+                    else
+                    {
+                        heldTower = null;
+                        Destroy(_activeHologramTower);
                     }
                 }
             }

@@ -31,6 +31,13 @@ public class UIHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             userInterfaceScript.towerInfoPanelTitle.SetText(towerInfo.towerName);
             userInterfaceScript.towerInfoPanelCost.SetText(towerInfo.towerCost.ToString(CultureInfo.InvariantCulture));
             userInterfaceScript.towerInfoPanelAttackInfo.SetText(towerInfo.attackTypeInfo);
+            userInterfaceScript.towerInfoPanelDescription.SetText(towerInfo.towerDescription);
+
+            userInterfaceScript.towerInfoPanelDescription.text = userInterfaceScript.towerInfoPanelDescription.text.Replace("\n", "\\n");
+            // if (userInterfaceScript.towerInfoPanelDescription.isTextOverflowing)
+            // {
+            //     
+            // }
         }
         else
         {
