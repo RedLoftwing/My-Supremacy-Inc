@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SO1 - WaterExchange
   m_EditorClassIdentifier: 
   abilityName: Water Exchange
-  abilityDescription: Sell Water for Cash
-  expenditureCurrencyType: 0
+  abilityDescription: Sell 5 Water for 250 Cash
+  abilityExpenditureCurrencyType: 0
   abilityExpenditureAmount: 5
-  incomeCurrencyType: 1
+  abilityIncomeCurrencyType: 0
   abilityIncomeAmount: 250
   abilityPrefab: {fileID: 0}
