@@ -16,6 +16,7 @@ MonoBehaviour:
   abilityDescription: Spawn a flood originating from the base down the path of enemy
     troops. Stopping them in their tracks momentarily.
   abilityExpenditureCurrencyType: 1
+  abilityExpenditureCurrencyTypeIcon: {fileID: 21300000, guid: 7b5bd7e1a1999f148bb3f35c6d7ce118, type: 3}
   abilityExpenditureAmount: 70
   abilityIncomeCurrencyType: 0
   abilityIncomeAmount: 0

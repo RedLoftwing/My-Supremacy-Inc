@@ -16,6 +16,7 @@ namespace SO_Scripts
         }
         [Header("Expenditure")]
         public CurrencyTypes abilityExpenditureCurrencyType;
+        public Sprite abilityExpenditureCurrencyTypeIcon;
         public int abilityExpenditureAmount;
         [Header("Income - If applicable")]
         public CurrencyTypes abilityIncomeCurrencyType;

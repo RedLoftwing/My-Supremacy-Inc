@@ -7,6 +7,7 @@ public class UIHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private UserInterface userInterfaceScript;
     public SO_Scripts.TowerInfo towerInfo;
     public SO_Scripts.AbilityInfo abilityInfo;
+    [SerializeField] private Sprite costTypeIcon;
     public GameObject buttonGreyOutFilter;
 
     public enum PurchasableType
@@ -32,12 +33,6 @@ public class UIHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             userInterfaceScript.towerInfoPanelCost.SetText(towerInfo.towerCost.ToString(CultureInfo.InvariantCulture));
             userInterfaceScript.towerInfoPanelAttackInfo.SetText(towerInfo.attackTypeInfo);
             userInterfaceScript.towerInfoPanelDescription.SetText(towerInfo.towerDescription);
-
-            userInterfaceScript.towerInfoPanelDescription.text = userInterfaceScript.towerInfoPanelDescription.text.Replace("\n", "\\n");
-            // if (userInterfaceScript.towerInfoPanelDescription.isTextOverflowing)
-            // {
-            //     
-            // }
         }
         else
         {
@@ -45,6 +40,7 @@ public class UIHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             userInterfaceScript.isCursorOverAbilityButton = true;
             userInterfaceScript.abilityInfoPanelTitle.SetText(abilityInfo.abilityName);
             userInterfaceScript.abilityInfoPanelCost.SetText(abilityInfo.abilityExpenditureAmount.ToString(CultureInfo.InvariantCulture) + " " + abilityInfo.abilityExpenditureCurrencyType.ToString());
+            userInterfaceScript.abilityInfoPanelCostIcon.sprite = abilityInfo.abilityExpenditureCurrencyTypeIcon;
             userInterfaceScript.abilityInfoPanelDescription.SetText(abilityInfo.abilityDescription);
         }
     }

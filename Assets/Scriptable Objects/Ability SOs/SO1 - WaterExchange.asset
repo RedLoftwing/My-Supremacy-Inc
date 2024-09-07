@@ -15,6 +15,7 @@ MonoBehaviour:
   abilityName: Water Exchange
   abilityDescription: Sell 5 Water for 250 Cash
   abilityExpenditureCurrencyType: 0
+  abilityExpenditureCurrencyTypeIcon: {fileID: 21300000, guid: 343936b09c11a554fa6c8bc416e958f2, type: 3}
   abilityExpenditureAmount: 5
   abilityIncomeCurrencyType: 0
   abilityIncomeAmount: 250

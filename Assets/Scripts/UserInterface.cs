@@ -23,7 +23,8 @@ public class UserInterface : MonoBehaviour
     private GameObject _buttonObj;
     [SerializeField] private GameObject buttonHighlightObj;
 
-    [Header("Information Panels")]
+    [Header("-Information Panels-")]
+    [Header("Tower Info Panel")]
     public GameObject towerInfoPanel;
     public TextMeshProUGUI towerInfoPanelTitle;
     public TextMeshProUGUI towerInfoPanelCost;
@@ -32,17 +33,20 @@ public class UserInterface : MonoBehaviour
     private Vector3[] _towerPanelPoint = new Vector3[2];
     [HideInInspector] public bool isCursorOverTowerButton;
     private float _towerCursorHoverTimer;
+    [Header("Ability Info Panel")]
     public GameObject abilityInfoPanel;
     public TextMeshProUGUI abilityInfoPanelTitle;
     public TextMeshProUGUI abilityInfoPanelCost;
+    public UnityEngine.UI.Image abilityInfoPanelCostIcon;
     public TextMeshProUGUI abilityInfoPanelDescription;
     private Vector3[] _abilityPanelPoint = new Vector3[2];
     [HideInInspector] public bool isCursorOverAbilityButton;
     private float _abilityCursorHoverTimer;
     [SerializeField] private AnimationCurve informationPanelPopUpCurve;
     
-    private float _gameTime;
+    [Header("Other UI Stuff")]
     [SerializeField] private TextMeshProUGUI gameTimerText;
+    private float _gameTime;
 
     public GameObject activeWavePanel;
     public TextMeshProUGUI waveText;
