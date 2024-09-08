@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 9168266325033295475}
   - component: {fileID: 565280679156270206}
   - component: {fileID: 4751208796283997170}
+  - component: {fileID: 1828176184168990495}
   m_Layer: 0
   m_Name: MSI-Rover
   m_TagString: Untagged
@@ -149,14 +150,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385ffab2eeb081a4999b15bccbc3f2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeArray: []
-  targetNode: {fileID: 0}
   gameStateScript: {fileID: 0}
   cheatsScript: {fileID: 0}
   health: 9
   strength: 3
   isExplosive: 0
   explosionVFX: {fileID: 8158747274008320101, guid: bd936cfade491834fb654e3e19e7a72c, type: 3}
+--- !u!114 &1828176184168990495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937639560545490584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_LoopMode: 1
+  m_Method: 1
+  m_Duration: 52.5
+  m_MaxSpeed: 7.6
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
 --- !u!1 &1587572708242338778
 GameObject:
   m_ObjectHideFlags: 0
