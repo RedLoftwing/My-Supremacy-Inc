@@ -74,7 +74,8 @@ namespace Towers
                                 //IF an enemy tag matches a validTarget string...Deal damage to each enemy.
                                 if (enemyToDamage.CompareTag(validTarget))
                                 {
-                                    enemyToDamage.DecreaseHealth(Damage);
+                                    //TODO: Alert so defaultDamage influences the damage value used (Could be affected by nearby Intel Centres). Maybe look at this script's parent class (FixedTargetTower) function ManualUpdate.
+                                    enemyToDamage.DecreaseHealth(scriptableObject.defaultDamage);
                                 }
                             }
                         }

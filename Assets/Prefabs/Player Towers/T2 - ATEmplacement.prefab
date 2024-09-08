@@ -684,18 +684,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableObject: {fileID: 11400000, guid: 41fb4cb685845694a8ba302066d0752a, type: 2}
-  towerName: ATEmplacement
   turret: {fileID: 2077808233847159934}
-  towerCost: 275
-  damage: 20
   validTargets:
   - Armoured
-  rateOfFire: 4
-  range: 23
   towerLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  rotationSpeed: 4
   isFireRunning: 0
   weaponFire: {fileID: 3398664685434233386}
   hasExplosiveAmmo: 1

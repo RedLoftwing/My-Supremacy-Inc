@@ -12,7 +12,7 @@ namespace Towers
         private GridGenerator _levelGrid;
         [SerializeField] protected Vector3 currentTarget;
         [SerializeField] private LayerMask terrainLayerMask;
-        [SerializeField] private bool isSelectingTarget = true;
+        public bool isSelectingTarget = true;
         [SerializeField] protected Transform targetHighlight;
 
         private float _terrainOffset;
@@ -35,11 +35,11 @@ namespace Towers
             //lMBClick.Enable();
         }
 
-        private void OnDisable()
-        {
-            //Disable this action.
-            _lMBClick.Disable();
-        }
+        // private void OnDisable()
+        // {
+        //     //Disable this action.
+        //     _lMBClick.Disable();
+        // }
 
         //Called every frame by a child script. 
         protected IEnumerator ManualUpdate()

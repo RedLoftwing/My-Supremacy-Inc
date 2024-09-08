@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4481805043346409208}
   - component: {fileID: 5198482673466372628}
   - component: {fileID: -9115098091313477079}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MSI-ICRFTank
-  m_TagString: Untagged
+  m_TagString: Armoured
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 6927736783556440356}
   - component: {fileID: 8620330818820021261}
   - component: {fileID: 5505603657955659042}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MSI-ICRFTank 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

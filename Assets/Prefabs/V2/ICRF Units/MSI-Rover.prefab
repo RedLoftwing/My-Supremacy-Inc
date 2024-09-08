@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7104660820356614443}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Chassis Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 565280679156270206}
   - component: {fileID: 4751208796283997170}
   - component: {fileID: 1828176184168990495}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MSI-Rover
-  m_TagString: Untagged
+  m_TagString: Unarmoured
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4569093494878109464}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Parent Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3796904529738087221}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RoverArmature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2610741041049888302}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wheel Bone Front Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790645215490951592}
   - component: {fileID: 4203906019192914263}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Chassis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4915299714414206361}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wheel Bone Back Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6088755268303091871}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wheel Bone Front Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1035584425598584573}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wheel Bone Back Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

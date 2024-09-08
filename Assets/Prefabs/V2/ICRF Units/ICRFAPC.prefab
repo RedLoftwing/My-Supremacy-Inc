@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6844265807486235465}
   - component: {fileID: 6157205639275624867}
   - component: {fileID: 6574493025320462849}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tracks Mesh Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3476224300812215476}
   - component: {fileID: 6052138620936076533}
   - component: {fileID: 8842745984287940739}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Right Track Curve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3930798262332421506}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,9 +214,9 @@ GameObject:
   - component: {fileID: 4349340125672113238}
   - component: {fileID: 7142773124956616792}
   - component: {fileID: 3147085942156003931}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ICRFAPC
-  m_TagString: Untagged
+  m_TagString: Armoured
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,7 +356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2559051610315020738}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 3 Bone Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6884890851079487641}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 3 Bone Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7471952933541156644}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Front Sprocket Bone Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6486182117152704059}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 2 Bone Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8963964388318605667}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 478298702472822764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 4 Bone Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2493963156923185547}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 6 Bone Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8061622278031657386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Front Sprocket Bone Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3326871217504519114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 5 Bone Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8043721075720003062}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8504778811350104462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Parent Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7682542560924978762}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 2 Bone Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5713626045294416368}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 1 Bone Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 6860028615588826783}
   - component: {fileID: 1620914372924644545}
   - component: {fileID: 2521081277679946470}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tracks Mesh Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3184508529729012703}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 5 Bone Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -890,7 +890,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7545800315350525444}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 1 Bone Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +921,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8360966809873780556}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Back Idler Bone Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -952,7 +952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6558311787481430705}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7141328487583404594}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 6 Bone Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,7 +1015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8741320578195136719}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Back Idler Bone Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1046,7 +1046,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7736752028828918120}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Chassis Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 1534770224608249382}
   - component: {fileID: 7544987816609479387}
   - component: {fileID: 6948800774623089407}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left Track Curve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1162,7 +1162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8550588417006028393}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: APCArmature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1194,7 +1194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7178716247978759064}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1227,7 +1227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6011691721109912866}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Wheel 4 Bone Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1259,7 +1259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5146759208059589597}
   - component: {fileID: 793835545611558191}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: APC Chassis
   m_TagString: Untagged
   m_Icon: {fileID: 0}

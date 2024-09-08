@@ -241,19 +241,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableObject: {fileID: 11400000, guid: fb5e77b5c9557c94687146d8712bd4f5, type: 2}
-  towerName: Artillery
   turret: {fileID: 1753900066927239662}
-  towerCost: 600
-  damage: 50
   validTargets:
   - Unarmoured
   - Armoured
-  rateOfFire: 5
-  range: 0
   towerLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  rotationSpeed: 4
   isFireRunning: 0
   weaponFire: {fileID: 7230235272716745539}
   hasExplosiveAmmo: 1
@@ -512,7 +506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3971974243828973563}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.107646294, y: -0.54258, z: -0.070360936, w: 0.8301016}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

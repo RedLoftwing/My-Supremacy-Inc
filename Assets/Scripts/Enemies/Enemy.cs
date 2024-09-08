@@ -31,7 +31,7 @@ namespace Enemies
 
             //Set up the spline to use and follow along.
             _splineAnimate = this.GetComponent<SplineAnimate>();
-            var splineTag = !this.CompareTag("Aerial") ? "Spline1" : "Spline3";
+            var splineTag = !this.CompareTag("Aerial") ? "Spline1" : "Spline2";
             _splineAnimate.Container = GameObject.FindGameObjectWithTag(splineTag).GetComponent<SplineContainer>();
             _splineAnimate.Play();
         }

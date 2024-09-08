@@ -1,4 +1,6 @@
+using Towers;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
@@ -12,6 +14,7 @@ public class WorldInteraction : MonoBehaviour
     public static bool IsClickDisabled;
     [SerializeField] private Transform gridHighlight;
     public SO_Scripts.TowerInfo heldTower;
+    private GameObject _lastPlacedTower;
     
     private GameObject _activeHologramTower;
 
@@ -41,6 +44,14 @@ public class WorldInteraction : MonoBehaviour
 
     public void OnLeftMouseButton()
     {
+        if (_lastPlacedTower)
+        {
+            var fixedTargetTower = _lastPlacedTower.GetComponent<FixedTargetTower>();
+            if (fixedTargetTower.isSelectingTarget)
+            {
+                fixedTargetTower.ConfirmTarget();
+            }
+        }
         //IF the pointer is not over UI...then exit function, otherwise continue. 
         if (IsClickDisabled) return;
         
@@ -142,7 +153,7 @@ public class WorldInteraction : MonoBehaviour
     private void Build(TileInfo tileInfo)
     {
         //Instantiate a new tower on the build point, and set heldTower to null.
-        Instantiate(heldTower.towerPrefab, tileInfo.transform.position, Quaternion.identity);
+        _lastPlacedTower = Instantiate(heldTower.towerPrefab, tileInfo.transform.position, Quaternion.identity);
         heldTower = null;
         Destroy(_activeHologramTower);
         //
