@@ -454,7 +454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableObject: {fileID: 11400000, guid: 41fb4cb685845694a8ba302066d0752a, type: 2}
-  turret: {fileID: 8461237496327610558}
+  horizontalTurret: {fileID: 8461237496327610558}
+  verticalTurret: {fileID: 0}
   validTargets:
   - Armoured
   towerLayerMask:

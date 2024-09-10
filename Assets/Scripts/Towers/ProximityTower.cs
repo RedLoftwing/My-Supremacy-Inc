@@ -131,19 +131,16 @@ namespace Towers
             else
             {
                 //ELSE IF...there is a current target AND there is a turret...rotate the turret towards the target.
-                if (turret != null)
+                if (horizontalTurret != null)
                 {
-                    //Get the relative target direction and store it as targetDir.
-                    Vector3 targetDir = currentTarget.transform.position - turret.transform.position;
                     //Set the rotation speed over time value, and assigns it to singleStep.
                     float singleStep = scriptableObject.rotationSpeed * Time.deltaTime;
-                    //Rotate the turret vector to targetDir over time using singleStep, and store the vector to newDir.
-                    Vector3 newDir = Vector3.RotateTowards(turret.transform.forward, targetDir, singleStep, 0f);
-                    //Rotate the turret to newDir.
-                    Quaternion lookAtRotation = Quaternion.LookRotation(newDir);
-                    Quaternion lookAtRotationLimitY = Quaternion.Euler(turret.transform.rotation.eulerAngles.x, lookAtRotation.eulerAngles.y, turret.transform.rotation.eulerAngles.z);
-                    //Set the turret's rotation to lookAtRotationLimitY.
-                    turret.transform.rotation = lookAtRotationLimitY;
+                    RotateTurret(horizontalTurret, singleStep, 'y');
+                    
+                    if (verticalTurret != null)
+                    {
+                        RotateTurret(verticalTurret, singleStep, 'x');
+                    }
                 }
             }
 
@@ -154,6 +151,33 @@ namespace Towers
             }
         }
 
+        private void RotateTurret(GameObject turret, float singleStepValue, char axisToRotate)
+        {
+            //Get the relative target direction and store it as targetDir.
+            Vector3 targetDir = currentTarget.transform.position - turret.transform.position;
+            //Rotate the turret vector to targetDir over time using singleStep, and store the vector to newDir.
+            Vector3 newDir = Vector3.RotateTowards(turret.transform.forward, targetDir, singleStepValue, 0f);
+            //Rotate the turret to newDir.
+            Quaternion lookAtRotation = Quaternion.LookRotation(newDir);
+
+            switch (axisToRotate)
+            {
+                case 'y':
+                {
+                    Quaternion lookAtRotationLimitY = Quaternion.Euler(horizontalTurret.transform.rotation.eulerAngles.x, lookAtRotation.eulerAngles.y, horizontalTurret.transform.rotation.eulerAngles.z);
+                    //Set the turret's rotation to lookAtRotationLimitY.
+                    turret.transform.rotation = lookAtRotationLimitY;
+                    break;
+                }
+                case 'x':
+                {
+                    Quaternion lookAtRotationLimitX = Quaternion.Euler(lookAtRotation.eulerAngles.x, horizontalTurret.transform.rotation.y, horizontalTurret.transform.rotation.z);
+                    turret.transform.localRotation = lookAtRotationLimitX;
+                    break;
+                }
+            }
+        }
+        
         private void OnTriggerExit(Collider other)
         {
             //IF there is a current target...set the target value to null, stop the FireTurret coroutine.

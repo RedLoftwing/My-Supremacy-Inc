@@ -77,18 +77,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableObject: {fileID: 11400000, guid: 4e15fd7b872013341b8b01013b35889c, type: 2}
-  towerName: AAA
   turret: {fileID: 7631990838552977759}
-  towerCost: 300
-  damage: 20
   validTargets:
   - Aerial
-  rateOfFire: 5
-  range: 50
   towerLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  rotationSpeed: 4
   isFireRunning: 0
   weaponFire: {fileID: 5150117433754236685}
   hasExplosiveAmmo: 1

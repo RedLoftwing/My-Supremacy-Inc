@@ -47,7 +47,7 @@ public class WorldInteraction : MonoBehaviour
         if (_lastPlacedTower)
         {
             var fixedTargetTower = _lastPlacedTower.GetComponent<FixedTargetTower>();
-            if (fixedTargetTower.isSelectingTarget)
+            if (fixedTargetTower && fixedTargetTower.isSelectingTarget)
             {
                 fixedTargetTower.ConfirmTarget();
             }

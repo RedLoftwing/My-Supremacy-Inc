@@ -129,7 +129,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   isFireRunning: 0
-  weaponFire: {fileID: 1687753501722531584, guid: 3dee2167696b9e742ba223c3de8d5be3, type: 3}
+  weaponFire: {fileID: 304513114679110387}
   hasExplosiveAmmo: 0
   explosiveEffect: {fileID: 0}
   currentTarget: {fileID: 0}
