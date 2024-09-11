@@ -12,7 +12,7 @@ namespace Towers
         [SerializeField] protected string[] validTargets;
         
         protected float RateOfFireTimer;
-        protected CapsuleCollider CapsuleCollider;
+        public CapsuleCollider capsuleCollider;
         
         //
         protected readonly Collider[] Colliders = new Collider[10];

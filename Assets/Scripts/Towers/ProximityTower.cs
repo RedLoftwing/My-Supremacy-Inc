@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Towers
@@ -8,14 +9,15 @@ namespace Towers
     {
         private Cheats _cheatsScript;
         [SerializeField] private GameObject currentTarget;
-
+        public List<GameObject> availableTargets = new List<GameObject>();
+        
         protected void TowerSpawned()
         {
             //Grab cheats component and store it as cheatsScript.
             _cheatsScript = GameObject.Find("Manager").GetComponent<Cheats>();
             //Grabs the collider component to allow it to be adjusted in size. Uses the value of range to set the size. Collider used for detecting enemies within proximity.
-            CapsuleCollider = GetComponent<CapsuleCollider>();
-            CapsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
+            capsuleCollider = GetComponent<CapsuleCollider>();
+            capsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
             
             Damage = scriptableObject.defaultDamage;
             Range = scriptableObject.defaultRange;
@@ -28,7 +30,7 @@ namespace Towers
         private IEnumerator UpdateStats()
         {
             //Updates the radius of the capsule collider when called. Multiplying the set range by the variableTowerRangeSlider value.
-            CapsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
+            capsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
             //Gathers all colliders within the radius of the tower.
             int numColliders = Physics.OverlapSphereNonAlloc(transform.position, 15, Colliders, towerLayerMask);
             //IF the number of colliders is greater than 0...then go through each collider, and find the IntelligenceCentre component.
@@ -48,7 +50,7 @@ namespace Towers
                                 if (Math.Abs(Range - scriptableObject.defaultRange) < difference)
                                 {
                                     Range = Range * 1.4f;
-                                    CapsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
+                                    capsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
                                 }
                                 break;
                             case "ATEmplacement":
@@ -67,7 +69,7 @@ namespace Towers
                                 if (Math.Abs(Range - scriptableObject.defaultRange) < difference)
                                 {
                                     Range = Range * 1.4f;
-                                    CapsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
+                                    capsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
                                 }
                                 break;
                             default:
@@ -81,6 +83,11 @@ namespace Towers
             //Wait 5 seconds, and then start coroutine again.
             yield return new WaitForSeconds(5);
             StartCoroutine(UpdateStats());
+        }
+
+        public void UpdateList()
+        {
+            availableTargets.RemoveAll(target => target == null || !target.activeInHierarchy);
         }
 
         private IEnumerator FireTurret()
@@ -116,6 +123,18 @@ namespace Towers
 
         private void OnTriggerStay(Collider other)
         {
+            if (!availableTargets.Contains(other.gameObject))
+            {
+                foreach (var validTargetType in validTargets)
+                {
+                    if (other.gameObject.CompareTag(validTargetType))
+                    {
+                        availableTargets.Add(other.gameObject);
+                    }
+                }
+            }
+            
+            
             //IF there is no current target...Go through each string within the validTargets array, and check if the collision matches any...
             if (currentTarget == null)
             {
@@ -185,6 +204,12 @@ namespace Towers
             {
                 currentTarget = null;
                 StopCoroutine(FireTurret());
+            }
+
+
+            if (availableTargets.Contains(other.gameObject))
+            {
+                availableTargets.Remove(other.gameObject);
             }
         }
     }
