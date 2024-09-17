@@ -1,6 +1,6 @@
 namespace Towers
 {
-    public class Tank : ProximityTower
+    public class Tank : ProximityTowerMultiTarget
     {
         private void Start()
         {

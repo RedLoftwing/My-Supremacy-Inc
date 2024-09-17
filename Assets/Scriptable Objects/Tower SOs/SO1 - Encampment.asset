@@ -23,7 +23,7 @@ MonoBehaviour:
   targetingType: 0
   maxNoOfTargets: 3
   defaultRange: 15
-  defaultDamage: 3
+  defaultDamage: 1
   defaultRateOfFire: 1.5
   rotationSpeed: 0
   weaponFire: {fileID: 0}

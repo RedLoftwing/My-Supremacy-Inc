@@ -1,6 +1,6 @@
 namespace Towers
 {
-    public class AAA : ProximityTower
+    public class AAA : ProximityTowerSingleTarget
     {
         private void Start()
         {

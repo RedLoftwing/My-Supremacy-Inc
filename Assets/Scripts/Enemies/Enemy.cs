@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -20,6 +21,8 @@ namespace Enemies
         
         private SplineAnimate _splineAnimate;
 
+        private float _timeSinceDamageReceived;
+
         private void Start()
         {
             //Grab components and stores them as their own variables.
@@ -36,6 +39,11 @@ namespace Enemies
             _splineAnimate.Play();
         }
 
+        private void Update()
+        {
+            _timeSinceDamageReceived += Time.deltaTime;
+        }
+
         //Called when health needs to be decreased.
         public void DecreaseHealth(float receivedDamage)
         {
@@ -45,19 +53,24 @@ namespace Enemies
                 //IF isOneHitKill is false...proceed.
                 if (!cheatsScript.isOneHitKill)
                 {
-                    //Reduce the value of health by the value of receivedDamage.
-                    health -= receivedDamage;
-
-                    //IF health is less than or equal to 0...destroy this enemy unit.
-                    if (health <= 0)
+                    //IF the time since the last dose of damage is greater than the value...allow new dose of damage.
+                    if (_timeSinceDamageReceived > 3f)
                     {
-                        //IF isExplosive is true AND application is still playing...spawn an explosion on this position.
-                        if (isExplosive)
-                        {
-                            Instantiate(explosionVFX, transform.position, Quaternion.identity);
-                        }
+                        //Reduce the value of health by the value of receivedDamage.
+                        health -= receivedDamage;
+                        _timeSinceDamageReceived = 0;
 
-                        Destroy(this.gameObject);
+                        //IF health is less than or equal to 0...destroy this enemy unit.
+                        if (health <= 0)
+                        {
+                            //IF isExplosive is true AND application is still playing...spawn an explosion on this position.
+                            if (isExplosive)
+                            {
+                                Instantiate(explosionVFX, transform.position, Quaternion.identity);
+                            }
+
+                            Destroy(this.gameObject);
+                        }
                     }
                 }
                 //ELSE

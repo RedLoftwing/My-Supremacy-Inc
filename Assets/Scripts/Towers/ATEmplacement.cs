@@ -1,6 +1,6 @@
 namespace Towers
 {
-    public class ATEmplacement : ProximityTower
+    public class ATEmplacement : ProximityTowerSingleTarget
     {
         private void Start()
         {
