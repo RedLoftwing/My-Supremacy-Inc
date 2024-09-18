@@ -9,25 +9,17 @@ namespace Towers
     {
         public float maxAngle;
         public Transform[] firePoints;
+        private float[] _firePointCooldowns;
         [SerializeField] private ParticleSystem[] particleSystems;
-        
-        private float cosMaxAngle;
-
-        private int test;
+        private float _cosMaxAngle;
         
         private void Start()
         {
-            // foreach (var pS in particleSystems)
-            // {
-            //     pS.Clear();
-            //     pS.Stop();
-            // }
-            
-            
+            _firePointCooldowns = new float[firePoints.Length];
             //Sets necessary protected variables.
             TowerSpawned();
 
-            cosMaxAngle = Mathf.Cos(maxAngle * Mathf.Deg2Rad);
+            _cosMaxAngle = Mathf.Cos(maxAngle * Mathf.Deg2Rad);
             
             StartCoroutine(Attack());
         }
@@ -36,57 +28,44 @@ namespace Towers
         {
             availableTargets.RemoveAll(target => target == null || !target.activeInHierarchy);
 
-            foreach (var target in availableTargets)
+            for (int i = 0; i < _firePointCooldowns.Length; i++)
             {
-                // Vector3 dirToTarget = target.transform.position - transform.position;
-                //
-                // dirToTarget.Normalize();
-                // float angle = Vector3.Angle(transform.forward, dirToTarget);
-                // if (angle <= 45f)
-                // {
-                //     Debug.DrawLine(transform.position, target.transform.position, Color.red);
-                // }
-                
-                
-                
+                _firePointCooldowns[i] -= Time.deltaTime;
             }
-
-
-            foreach (var firePoint in firePoints)
-            {
-                DetectTargetsInRange(firePoint);
-            }
-            
-            //Debug.Log(particleSystems[11].particleCount);
         }
 
         private IEnumerator Attack()
         {
-            for (int i = 0; i < firePoints.Length; i++)
+            while (true)
             {
-                var target = DetectSingleTarget(firePoints[i]);
-                
-                if (target != null)
+                for (int i = 0; i < firePoints.Length; i++)
                 {
-                    if (!particleSystems[i].isPlaying)
+                    var target = DetectSingleTarget(firePoints[i]);
+
+                    if (target != null)
+                    {
+                        if (!(_firePointCooldowns[i] < 0)) continue;
+                        if (!particleSystems[i].isPlaying)
+                        {
+                            // var emission = particleSystems[i].emission;
+                            // emission.enabled = true;
+                            particleSystems[i].Play();
+                        }
+
+                        target.GetComponent<Enemies.Enemy>().DecreaseHealth(2);
+                        _firePointCooldowns[i] += scriptableObject.defaultRateOfFire;
+                    }
+                    else
                     {
                         // var emission = particleSystems[i].emission;
-                        // emission.enabled = true;
-                        particleSystems[i].Play();
+                        // emission.enabled = false;
+                        particleSystems[i].Stop();
                     }
-                    target.GetComponent<Enemies.Enemy>().DecreaseHealth(2);
                 }
-                else
-                {
-                    // var emission = particleSystems[i].emission;
-                    // emission.enabled = false;
-                    particleSystems[i].Stop();
-                }
-            }
 
-            //Debug.Log(test++);
-            yield return null;
-            StartCoroutine(Attack());
+                //Debug.Log(test++);
+                yield return null;
+            }
         }
 
         private Transform DetectSingleTarget(Transform firePoint)
@@ -100,22 +79,6 @@ namespace Towers
             }
 
             return null;
-        }
-        
-        private void DetectTargetsInRange(Transform firePoint)
-        {
-            // Iterate through all potential targets
-            foreach (var target in availableTargets)
-            {
-                // Check if the target is within range and angle of the fire point
-                if (IsTargetInRange(firePoint, target.transform) && IsTargetInAngle(firePoint, target.transform))
-                {
-                    //Debug.Log($"Target {target.name} is within range and angle of fire point {firePoint.name}");
-                    // Add your logic here for what happens when a target is detected (e.g., attack the target)
-                    //Debug.DrawLine(firePoint.position, target.transform.position, Color.yellow);
-                    
-                }
-            }
         }
 
         private bool IsTargetInRange(Transform firePoint, Transform target)
@@ -143,7 +106,7 @@ namespace Towers
             float dotProduct = Vector3.Dot(firePointForward, directionToTarget);
 
             // Compare the dot product with the precomputed cosine of the max angle
-            return dotProduct >= cosMaxAngle;
+            return dotProduct >= _cosMaxAngle;
         }
     }
 }

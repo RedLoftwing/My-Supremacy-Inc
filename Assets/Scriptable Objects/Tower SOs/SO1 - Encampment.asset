@@ -27,5 +27,5 @@ MonoBehaviour:
   defaultRateOfFire: 1.5
   rotationSpeed: 0
   weaponFire: {fileID: 0}
-  towerPrefab: {fileID: 1743714349078158181, guid: c3ed166e928134e429bcb1ae15a6bd65, type: 3}
+  towerPrefab: {fileID: 15016957066617091, guid: 80914be8843d0564eb85986aa4998581, type: 3}
   hologramPrefab: {fileID: 4805426909201429512, guid: 63dbe3a3029aef34e952eea19650df61, type: 3}

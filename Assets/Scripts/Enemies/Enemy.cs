@@ -54,7 +54,7 @@ namespace Enemies
                 if (!cheatsScript.isOneHitKill)
                 {
                     //IF the time since the last dose of damage is greater than the value...allow new dose of damage.
-                    if (_timeSinceDamageReceived > 3f)
+                    if (_timeSinceDamageReceived > 1.35f)
                     {
                         //Reduce the value of health by the value of receivedDamage.
                         health -= receivedDamage;
