@@ -152,7 +152,8 @@ public class WorldInteraction : MonoBehaviour
 
     private void Build(TileInfo tileInfo)
     {
-        //Instantiate a new tower on the build point, and set heldTower to null.
+        // Instantiate a new tower on the build point, and set heldTower to null.
+        Audio2DManager.Instance.PlayBuildSfx();
         _lastPlacedTower = Instantiate(heldTower.towerPrefab, tileInfo.transform.position, Quaternion.identity);
         heldTower = null;
         Destroy(_activeHologramTower);

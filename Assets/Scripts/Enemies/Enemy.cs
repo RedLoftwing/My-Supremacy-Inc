@@ -45,41 +45,43 @@ namespace Enemies
         }
 
         //Called when health needs to be decreased.
-        public void DecreaseHealth(float receivedDamage)
+        public void DecreaseHealth(float inReceivedDamage)
         {
-            //IF isInvincibleEnemies is false...proceed.
-            if (!cheatsScript.isInvincibleEnemies)
+            // IF enemies are set to invincible in the cheats menu...return.
+            if (cheatsScript.isInvincibleEnemies) return;
+            // IF enemies are NOT set to be instantly killed when hit...proceed.
+            if (!cheatsScript.isOneHitKill)
             {
-                //IF isOneHitKill is false...proceed.
-                if (!cheatsScript.isOneHitKill)
-                {
-                    //IF the time since the last dose of damage is greater than the value...allow new dose of damage.
-                    if (_timeSinceDamageReceived > 1.35f)
-                    {
-                        //Reduce the value of health by the value of receivedDamage.
-                        health -= receivedDamage;
-                        _timeSinceDamageReceived = 0;
+                // Only proceed to apply a new dose of damage to the unit when sufficient time has passed (1.35f currently).
+                if (!(_timeSinceDamageReceived > 1.35f)) return;
+                
+                //Reduce the value of health by the value of receivedDamage.
+                health -= inReceivedDamage;
+                _timeSinceDamageReceived = 0;
 
-                        //IF health is less than or equal to 0...destroy this enemy unit.
-                        if (health <= 0)
-                        {
-                            //IF isExplosive is true AND application is still playing...spawn an explosion on this position.
-                            if (isExplosive)
-                            {
-                                Instantiate(explosionVFX, transform.position, Quaternion.identity);
-                            }
+                // Only proceed to destroy the unit IF health is below 1.
+                if (health > 0) return;
 
-                            Destroy(this.gameObject);
-                        }
-                    }
-                }
-                //ELSE
-                else
-                {
-                    //Destroy this enemy unit.
-                    Destroy(this.gameObject);
-                }
+                StartCoroutine(DestroyThisUnit());
             }
+            else
+            {
+                StartCoroutine(DestroyThisUnit());
+            }
+        }
+
+        private IEnumerator DestroyThisUnit()
+        {
+            // IF this unit is set to be explosive (i.e. fueled vehicles)...create an explosion at this unit's position.
+            if (isExplosive)
+            {
+                Instantiate(explosionVFX, transform.position, Quaternion.identity);
+            }
+
+            yield return new WaitForSeconds(1f);
+            
+            //Destroy this enemy unit.
+            Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)
