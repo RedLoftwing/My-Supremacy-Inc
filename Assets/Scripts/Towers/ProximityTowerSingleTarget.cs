@@ -6,6 +6,9 @@ namespace Towers
 {
     public class ProximityTowerSingleTarget : ProximityTower
     {
+        [SerializeField] private ParticleSystem muzzlePlume;
+        [SerializeField] private ParticleSystem backBlast;
+        
         private IEnumerator FireTurret()
         {
             if (!isFireRunning)
@@ -20,8 +23,11 @@ namespace Towers
                     //If enemy is true...Go through each string within the validTargets array, and check if the enemy tag matches any...
                     if (enemy)
                     {
+                        Debug.Log("BACKBLAST!");
                         weaponFire.Play();
                         enemy.DecreaseHealth(Damage);
+                        muzzlePlume.Play();
+                        backBlast.Play();
 
                         //IF hasExplosiveAmmo is true...Instantiate the explosive effect at the current target.
                         if (hasExplosiveAmmo)

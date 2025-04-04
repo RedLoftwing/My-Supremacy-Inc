@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Towers
@@ -10,8 +8,13 @@ namespace Towers
         public float maxAngle;
         public Transform[] firePoints;
         private float[] _firePointCooldowns;
-        [SerializeField] private ParticleSystem[] particleSystems;
+        public ParticleSystem[] particleSystems;
         private float _cosMaxAngle;
+        private Coroutine _attackCoroutine;
+        
+        [Header("DebuggingGUI")]
+        public bool showFireAngles;
+        public bool showParticleSystems;
         
         private void Start()
         {
@@ -20,8 +23,6 @@ namespace Towers
             TowerSpawned();
 
             _cosMaxAngle = Mathf.Cos(maxAngle * Mathf.Deg2Rad);
-            
-            StartCoroutine(Attack());
         }
 
         private void Update()
@@ -32,40 +33,45 @@ namespace Towers
             {
                 _firePointCooldowns[i] -= Time.deltaTime;
             }
+
+            switch (availableTargets.Count)
+            {
+                case > 0:
+                    _attackCoroutine = StartCoroutine(Attack());
+                    break;
+                case <= 0 when _attackCoroutine != null:
+                    StopCoroutine(_attackCoroutine);
+                    _attackCoroutine = null;
+                    foreach (var pS in particleSystems) { pS.Stop(); }
+                    break;
+            }
         }
 
         private IEnumerator Attack()
         {
-            while (true)
+            for (int i = 0; i < firePoints.Length; i++)
             {
-                for (int i = 0; i < firePoints.Length; i++)
+                var target = DetectSingleTarget(firePoints[i]);
+
+                if (target != null)
                 {
-                    var target = DetectSingleTarget(firePoints[i]);
-
-                    if (target != null)
-                    {
-                        if (!(_firePointCooldowns[i] < 0)) continue;
-                        if (!particleSystems[i].isPlaying)
-                        {
-                            // var emission = particleSystems[i].emission;
-                            // emission.enabled = true;
-                            particleSystems[i].Play();
-                        }
-
-                        target.GetComponent<Enemies.Enemy>().DecreaseHealth(2);
-                        _firePointCooldowns[i] += scriptableObject.defaultRateOfFire;
-                    }
-                    else
+                    if (!(_firePointCooldowns[i] < 0)) continue;
+                    if (!particleSystems[i].isPlaying)
                     {
                         // var emission = particleSystems[i].emission;
-                        // emission.enabled = false;
-                        particleSystems[i].Stop();
+                        // emission.enabled = true;
+                        particleSystems[i].Play();
                     }
-                }
 
-                //Debug.Log(test++);
-                yield return null;
+                    target.GetComponent<Enemies.Enemy>().DecreaseHealth(2);
+                    _firePointCooldowns[i] = scriptableObject.defaultRateOfFire;
+                }
+                else
+                {
+                    particleSystems[i].Stop();
+                }
             }
+            yield return null;
         }
 
         private Transform DetectSingleTarget(Transform firePoint)
