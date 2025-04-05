@@ -6,41 +6,38 @@ namespace Towers
 {
     public class ProximityTowerSingleTarget : ProximityTower
     {
-        [SerializeField] private ParticleSystem muzzlePlume;
-        [SerializeField] private ParticleSystem backBlast;
+        [SerializeField] private ParticleSystem[] smokePlumes;
         
         private IEnumerator FireTurret()
         {
-            if (!isFireRunning)
+            //Ensures that it is not already firing...AND that there is a currentTarget before proceeding.
+            if (isFireRunning) yield break;
+            if (!currentTarget) yield break;
+
+            //Sets isFireRunning to true. Prevents constant execution of FireTurret.
+            isFireRunning = true;
+            //Grabs the Enemy component from the current target, and assigns it to enemy.
+            var enemy = currentTarget.GetComponent<Enemies.Enemy>();
+            //If enemy is true...Go through each string within the validTargets array, and check if the enemy tag matches any...
+            if (enemy)
             {
-                //Ensures that there is a currentTarget before proceeding.
-                if (currentTarget)
+                weaponFire.Play();
+                enemy.DecreaseHealth(Damage);
+                foreach (var smokePlume in smokePlumes)
                 {
-                    //Sets isFireRunning to true. Prevents constant execution of FireTurret.
-                    isFireRunning = true;
-                    //Grabs the Enemy component from the current target, and assigns it to enemy.
-                    Enemies.Enemy enemy = currentTarget.GetComponent<Enemies.Enemy>();
-                    //If enemy is true...Go through each string within the validTargets array, and check if the enemy tag matches any...
-                    if (enemy)
-                    {
-                        Debug.Log("BACKBLAST!");
-                        weaponFire.Play();
-                        enemy.DecreaseHealth(Damage);
-                        muzzlePlume.Play();
-                        backBlast.Play();
-
-                        //IF hasExplosiveAmmo is true...Instantiate the explosive effect at the current target.
-                        if (hasExplosiveAmmo)
-                        {
-                            Instantiate(explosiveEffect, currentTarget.transform.position, Quaternion.identity);
-                        }
-                    }
-
-                    //Wait allocated number of seconds and then set isFireRunning to false, thus enabling the execution of FireTurret again.
-                    yield return new WaitForSeconds(RateOfFire);
-                    isFireRunning = false;
+                    smokePlume.Play();
+                }
+                
+                //IF hasExplosiveAmmo is true...Instantiate the explosive effect at the current target.
+                if (hasExplosiveAmmo)
+                {
+                    Instantiate(explosiveEffect, currentTarget.transform.position, Quaternion.identity);
                 }
             }
+
+            //Wait allocated number of seconds and then set isFireRunning to false, thus enabling the execution of FireTurret again.
+            yield return new WaitForSeconds(RateOfFire);
+            isFireRunning = false;
         }
         
         private void OnTriggerStay(Collider other)

@@ -56,13 +56,7 @@ namespace Towers
                 if (target != null)
                 {
                     if (!(_firePointCooldowns[i] < 0)) continue;
-                    if (!particleSystems[i].isPlaying)
-                    {
-                        // var emission = particleSystems[i].emission;
-                        // emission.enabled = true;
-                        particleSystems[i].Play();
-                    }
-
+                    if (!particleSystems[i].isPlaying) { particleSystems[i].Play(); }
                     target.GetComponent<Enemies.Enemy>().DecreaseHealth(2);
                     _firePointCooldowns[i] = scriptableObject.defaultRateOfFire;
                 }

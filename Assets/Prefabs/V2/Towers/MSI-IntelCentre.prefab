@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1014001823812296981}
   - component: {fileID: 6267649670192642470}
   - component: {fileID: 8451182681144869098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MSI-IntelCentre
   m_TagString: Untagged
   m_Icon: {fileID: 0}

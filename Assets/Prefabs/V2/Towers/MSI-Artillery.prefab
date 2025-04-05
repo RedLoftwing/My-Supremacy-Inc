@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 371047768148591189}
   - component: {fileID: -9038415335660670661}
   - component: {fileID: 8303421182184130753}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MSI-Artillery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
