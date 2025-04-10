@@ -83,12 +83,12 @@ namespace Towers
                     //Set currentTarget to the impact point of the raycast.
                     currentTarget = targetHighlight.position;
                     //Get the relative target direction and store it as targetDir.
-                    Vector3 targetDir = (currentTarget - horizontalTurret.transform.position);
+                    Vector3 targetDir = (currentTarget - horizontalTurret[0].transform.position);
                     //Create the rotation for targetDir, then limit the rotation to 1 axis (y) and store it as lookAtRotationLimitY.
                     Quaternion lookAtRotation = Quaternion.LookRotation(targetDir);
-                    Quaternion lookAtRotationLimitY = Quaternion.Euler(horizontalTurret.transform.rotation.eulerAngles.x, lookAtRotation.eulerAngles.y, horizontalTurret.transform.rotation.eulerAngles.z);
+                    Quaternion lookAtRotationLimitY = Quaternion.Euler(horizontalTurret[0].transform.rotation.eulerAngles.x, lookAtRotation.eulerAngles.y, horizontalTurret[0].transform.rotation.eulerAngles.z);
                     //Set the turret's rotation to lookAtRotationLimitY.
-                    horizontalTurret.transform.rotation = lookAtRotationLimitY;
+                    horizontalTurret[0].transform.rotation = lookAtRotationLimitY;
                 }
             }
 

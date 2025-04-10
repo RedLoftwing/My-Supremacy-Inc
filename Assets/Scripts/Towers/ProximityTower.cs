@@ -7,7 +7,7 @@ namespace Towers
     public class ProximityTower : Tower
     {
         private Cheats _cheatsScript;
-        [SerializeField] protected GameObject currentTarget;
+        protected GameObject currentTarget;
         
         protected void TowerSpawned()
         {
@@ -83,37 +83,33 @@ namespace Towers
             StartCoroutine(UpdateStats());
         }
 
-
-
-        
-
-        protected void RotateTurret(GameObject turret, float singleStepValue, char axisToRotate)
+        protected void RotateTurret(GameObject inTurret, float inSingleStepValue, char inAxisToRotate, GameObject inCurrentTarget)
         {
             //Get the relative target direction and store it as targetDir.
-            Vector3 targetDir = currentTarget.transform.position - turret.transform.position;
+            Vector3 targetDir = inCurrentTarget.transform.position - inTurret.transform.position;
             //Rotate the turret vector to targetDir over time using singleStep, and store the vector to newDir.
-            Vector3 newDir = Vector3.RotateTowards(turret.transform.forward, targetDir, singleStepValue, 0f);
+            Vector3 newDir = Vector3.RotateTowards(inTurret.transform.forward, targetDir, inSingleStepValue, 0f);
             //Rotate the turret to newDir.
             Quaternion lookAtRotation = Quaternion.LookRotation(newDir);
 
-            switch (axisToRotate)
+            switch (inAxisToRotate)
             {
                 case 'y':
                 {
-                    Quaternion lookAtRotationLimitY = Quaternion.Euler(horizontalTurret.transform.rotation.eulerAngles.x, lookAtRotation.eulerAngles.y, horizontalTurret.transform.rotation.eulerAngles.z);
+                    Quaternion lookAtRotationLimitY = Quaternion.Euler(horizontalTurret[0].transform.rotation.eulerAngles.x, lookAtRotation.eulerAngles.y, horizontalTurret[0].transform.rotation.eulerAngles.z);
                     //Set the turret's rotation to lookAtRotationLimitY.
-                    turret.transform.rotation = lookAtRotationLimitY;
+                    inTurret.transform.rotation = lookAtRotationLimitY;
                     break;
                 }
                 case 'x':
                 {
-                    Quaternion lookAtRotationLimitX = Quaternion.Euler(lookAtRotation.eulerAngles.x, horizontalTurret.transform.rotation.y, horizontalTurret.transform.rotation.z);
-                    turret.transform.localRotation = lookAtRotationLimitX;
+                    Quaternion lookAtRotationLimitX = Quaternion.Euler(lookAtRotation.eulerAngles.x, horizontalTurret[0].transform.rotation.y, horizontalTurret[0].transform.rotation.z);
+                    inTurret.transform.localRotation = lookAtRotationLimitX;
                     break;
                 }
             }
         }
-        
+
 
     }
 }

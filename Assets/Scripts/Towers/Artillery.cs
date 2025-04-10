@@ -32,7 +32,7 @@ namespace Towers
             StartCoroutine(ManualUpdate());
 
             //Calculate the mid-point between the turret and the target, and store as midPoint.
-            midPoint = Vector3.Lerp(horizontalTurret.transform.position, currentTarget, 0.5f);
+            midPoint = Vector3.Lerp(horizontalTurret[0].transform.position, currentTarget, 0.5f);
             //Raise midPoint up to Y: 25.
             midPoint = new Vector3(midPoint.x, 25, midPoint.z);
             //Rotate the barrel to look at the midpoint.

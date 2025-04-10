@@ -10,7 +10,7 @@ namespace Towers
     {
         public List<GameObject> availableTargets = new List<GameObject>();
         private float _timer;
-
+        
         private void OnTriggerStay(Collider other)
         {
             if (!availableTargets.Contains(other.gameObject))

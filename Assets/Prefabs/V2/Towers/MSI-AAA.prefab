@@ -374,8 +374,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableObject: {fileID: 11400000, guid: 4e15fd7b872013341b8b01013b35889c, type: 2}
-  horizontalTurret: {fileID: 2317127148071857022}
-  verticalTurret: {fileID: 6005652897211026075}
+  horizontalTurret:
+  - {fileID: 0}
+  verticalTurret:
+  - {fileID: 0}
   validTargets:
   - Aerial
   capsuleCollider: {fileID: 0}

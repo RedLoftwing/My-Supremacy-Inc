@@ -24,10 +24,10 @@ MonoBehaviour:
   air: 0
   targetingType: 0
   maxNoOfTargets: 2
-  defaultRange: 0
-  defaultDamage: 0
-  defaultRateOfFire: 0
+  defaultRange: 25
+  defaultDamage: 25
+  defaultRateOfFire: 4
   rotationSpeed: 2
   weaponFire: {fileID: 0}
-  towerPrefab: {fileID: 1798150291044738166, guid: 99c89509ea6dc7a45928472a417f31b0, type: 3}
+  towerPrefab: {fileID: 3274802431849024240, guid: 961f875307e42074486e9ea72142e80e, type: 3}
   hologramPrefab: {fileID: 643236661869407075, guid: 4dd9170ccd602334da398348ce36db32, type: 3}

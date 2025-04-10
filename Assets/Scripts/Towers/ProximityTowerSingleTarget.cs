@@ -61,11 +61,11 @@ namespace Towers
                 {
                     //Set the rotation speed over time value, and assigns it to singleStep.
                     float singleStep = scriptableObject.rotationSpeed * Time.deltaTime;
-                    RotateTurret(horizontalTurret, singleStep, 'y');
+                    RotateTurret(horizontalTurret[0], singleStep, 'y', currentTarget);
                     
                     if (verticalTurret != null)
                     {
-                        RotateTurret(verticalTurret, singleStep, 'x');
+                        RotateTurret(verticalTurret[0], singleStep, 'x', currentTarget);
                     }
                 }
             }
