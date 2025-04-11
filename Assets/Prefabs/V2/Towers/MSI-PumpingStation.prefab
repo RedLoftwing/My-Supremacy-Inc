@@ -126,6 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1478093872744814899}
+  - component: {fileID: 7176543382879188980}
   m_Layer: 8
   m_Name: MSI-PumpingStation
   m_TagString: Untagged
@@ -151,6 +152,30 @@ Transform:
   - {fileID: 2295121252673036249}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7176543382879188980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5620397365187129963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c736896cc6ea444a474a8fe9837591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableObject: {fileID: 11400000, guid: 9225a6a1210072b4ea0a0a7b18e2afda, type: 2}
+  horizontalTurret: []
+  verticalTurret: []
+  validTargets: []
+  capsuleCollider: {fileID: 0}
+  towerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  isFireRunning: 0
+  weaponFire: {fileID: 0}
+  hasExplosiveAmmo: 0
+  explosiveEffect: {fileID: 0}
 --- !u!1 &8476014804224419899
 GameObject:
   m_ObjectHideFlags: 0

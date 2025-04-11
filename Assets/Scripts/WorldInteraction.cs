@@ -167,4 +167,10 @@ public class WorldInteraction : MonoBehaviour
         _activeHologramTower = Instantiate(heldTower.hologramPrefab, _currentTileInfo.transform.position, Quaternion.identity);
         _previousTileInfo = _currentTileInfo;
     }
+
+    public void OnRightMouseButton()
+    {
+        // Clear grid highlight.
+        gridHighlight.gameObject.SetActive(false);
+    }
 }
