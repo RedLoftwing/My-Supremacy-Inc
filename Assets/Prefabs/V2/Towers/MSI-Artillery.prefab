@@ -407,8 +407,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableObject: {fileID: 11400000, guid: fb5e77b5c9557c94687146d8712bd4f5, type: 2}
-  horizontalTurret: {fileID: 1778048663965888478}
-  verticalTurret: {fileID: 0}
+  horizontalTurret:
+  - {fileID: 1778048663965888478}
+  verticalTurret:
+  - {fileID: 8300400660155663947}
   validTargets:
   - Unarmoured
   - Armoured

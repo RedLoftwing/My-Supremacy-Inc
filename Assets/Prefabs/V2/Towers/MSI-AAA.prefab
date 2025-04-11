@@ -375,9 +375,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptableObject: {fileID: 11400000, guid: 4e15fd7b872013341b8b01013b35889c, type: 2}
   horizontalTurret:
-  - {fileID: 0}
+  - {fileID: 2317127148071857022}
   verticalTurret:
-  - {fileID: 0}
+  - {fileID: 6005652897211026075}
   validTargets:
   - Aerial
   capsuleCollider: {fileID: 0}
@@ -388,7 +388,6 @@ MonoBehaviour:
   weaponFire: {fileID: 7044439784558714902}
   hasExplosiveAmmo: 1
   explosiveEffect: {fileID: 8158747274008320101, guid: 407c5728110a5914f8e977473a52b157, type: 3}
-  currentTarget: {fileID: 0}
   smokePlumes:
   - {fileID: 8547251009386865544}
   - {fileID: 9087640065819373075}

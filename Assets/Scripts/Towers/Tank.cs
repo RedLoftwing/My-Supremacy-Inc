@@ -13,6 +13,13 @@ namespace Towers
         private float _cannonCooldown;
         private float _machineGunCooldown;
         
+        private enum Particles
+        {
+            CannonFire = 0,
+            CannonSmoke = 1,
+            MgFire = 2
+        }
+        
         private void Start()
         {
             //Sets necessary protected variables.
@@ -30,7 +37,16 @@ namespace Towers
             {
                 case > 0:
                     float singleStep = scriptableObject.rotationSpeed * Time.deltaTime;
-                    if(_machineGunTarget) RotateTurret(horizontalTurret[1], singleStep, 'y', _machineGunTarget.gameObject);
+                    if(_cannonTarget) RotateTurret(horizontalTurret[0], singleStep, 'y', _cannonTarget.gameObject);
+                    if (_machineGunTarget && _machineGunTarget.gameObject.CompareTag("Aerial"))
+                    {
+                        RotateTurret(horizontalTurret[1], singleStep, 'y', _machineGunTarget.gameObject);
+                        RotateTurret(verticalTurret[1], singleStep, 'x', _machineGunTarget.gameObject);
+                    }
+                    else if (_machineGunTarget)
+                    {
+                        RotateTurret(horizontalTurret[1], singleStep, 'y', _machineGunTarget.gameObject);
+                    }
                     _attackCannonCoroutine = StartCoroutine(AttackCannon());
                     _attackMachineGunCoroutine = StartCoroutine(AttackMachineGun());
                     break;
@@ -47,23 +63,21 @@ namespace Towers
         private IEnumerator AttackCannon()
         {
             _cannonTarget = FindNewCannonTarget();
-            if (_cannonTarget && _cannonCooldown < 0)
+            if (_cannonTarget)
             {
-                foreach (var pS in particleSystems) 
+                if(!(_cannonCooldown < 0)) yield break;
+                if (!particleSystems[(int)Particles.CannonFire].isPlaying)
                 {
-                    if (!pS.isPlaying)
-                    {
-                        pS.Play();
-                    }
+                    particleSystems[(int)Particles.CannonFire].Stop();
+                    particleSystems[(int)Particles.CannonFire].Play();
                 }
-                // NOTE: Replace "2" with scriptableObject damage value.
-                _cannonTarget.GetComponent<Enemies.Enemy>().DecreaseHealth(2);
-                Debug.Log($"Dealing CANNON damage to: {_cannonTarget.gameObject.name}");
+                if (!(particleSystems[(int)Particles.CannonSmoke].isPlaying))
+                {
+                    particleSystems[(int)Particles.CannonSmoke].Stop();
+                    particleSystems[(int)Particles.CannonSmoke].Play();
+                }
+                _cannonTarget.GetComponent<Enemies.Enemy>().DecreaseHealth(scriptableObject.defaultDamage);
                 _cannonCooldown = scriptableObject.defaultRateOfFire;
-            }
-            else
-            {
-                foreach (var pS in particleSystems) { pS.Stop(); }
             }
             yield return null;
         }
@@ -71,24 +85,16 @@ namespace Towers
         private IEnumerator AttackMachineGun()
         {
             _machineGunTarget = FindNewMachineGunTarget();
-            Debug.Log(_machineGunTarget);
-            if (_machineGunTarget && _machineGunCooldown < 0)
+            if (_machineGunTarget)
             {
-                foreach (var pS in particleSystems) 
+                if(!(_machineGunCooldown < 0))
+                if (!particleSystems[(int)Particles.MgFire].isPlaying)
                 {
-                    if (!pS.isPlaying)
-                    {
-                        pS.Play();
-                    }
+                    particleSystems[(int)Particles.MgFire].Stop();
+                    particleSystems[(int)Particles.MgFire].Play();
                 }
-                // NOTE: Replace "2" with scriptableObject damage value.
                 _machineGunTarget.GetComponent<Enemies.Enemy>().DecreaseHealth(2);
-                Debug.Log($"Dealing MachineGun damage to: {_machineGunTarget.gameObject.name}");
-                _machineGunCooldown = scriptableObject.defaultRateOfFire;
-            }
-            else
-            {
-                foreach (var pS in particleSystems) { pS.Stop(); }
+                _machineGunCooldown = 1.5f;
             }
             yield return null;
         }

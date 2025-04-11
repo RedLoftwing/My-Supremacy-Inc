@@ -57,13 +57,13 @@ namespace Towers
             else
             {
                 //ELSE IF...there is a current target AND there is a turret...rotate the turret towards the target.
-                if (horizontalTurret != null)
+                if (horizontalTurret.Length > 0)
                 {
                     //Set the rotation speed over time value, and assigns it to singleStep.
                     float singleStep = scriptableObject.rotationSpeed * Time.deltaTime;
                     RotateTurret(horizontalTurret[0], singleStep, 'y', currentTarget);
                     
-                    if (verticalTurret != null)
+                    if (verticalTurret.Length > 0)
                     {
                         RotateTurret(verticalTurret[0], singleStep, 'x', currentTarget);
                     }
