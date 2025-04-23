@@ -241,8 +241,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableObject: {fileID: 11400000, guid: fb5e77b5c9557c94687146d8712bd4f5, type: 2}
-  horizontalTurret: {fileID: 0}
-  verticalTurret: {fileID: 0}
+  horizontalTurret:
+  - {fileID: 0}
+  verticalTurret:
+  - {fileID: 0}
   validTargets:
   - Unarmoured
   - Armoured
@@ -508,7 +510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3971974243828973563}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.100190185, y: -0.3184485, z: -0.03386908, w: 0.94202197}
+  m_LocalRotation: {x: -0.08936651, y: -0.43689007, z: -0.043672714, w: 0.89399856}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

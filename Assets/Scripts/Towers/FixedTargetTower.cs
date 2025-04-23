@@ -99,36 +99,35 @@ namespace Towers
             {
                 for (int i = 0; i < numColliders; i++)
                 {
-                    var nearbyIntelTower = Colliders[i].GetComponent<IntelligenceCentre>();
+                    var nearbyIntelTower = Colliders[i].GetComponentInParent<IntelligenceCentre>();
                     //IF the IntelligenceCentre component is true...check this tower's name and modify the corresponding stat IF it hasn't been modified previously.
                     if (nearbyIntelTower != null)
                     {
                         float difference = 0.001f;
-
                         switch (scriptableObject.towerName)
                         {
                             case "Encampment":
                                 if (Math.Abs(Range - scriptableObject.defaultRange) > difference)
                                 {
-                                    Range = Range * 1.4f;
+                                    Range *= 1.4f;
                                 }
                                 break;
                             case "ATEmplacement":
                                 if (Math.Abs(Damage - scriptableObject.defaultDamage) > difference)
                                 {
-                                    Damage = Damage * 1.4f;
+                                    Damage *= 1.4f;
                                 }
                                 break;
                             case "AAA":
                                 if (Math.Abs(RateOfFire - scriptableObject.defaultRateOfFire) > difference)
                                 {
-                                    RateOfFire = RateOfFire / 2;
+                                    RateOfFire /= 2;
                                 }
                                 break;
                             case "Tank":
                                 if (Math.Abs(Range - scriptableObject.defaultRange) > difference)
                                 {
-                                    Range = Range * 1.4f;
+                                    Range *= 1.4f;
                                 }
                                 break;
                             default:

@@ -25,6 +25,8 @@ namespace Towers
         protected float Damage;
         [Header("Rate of Fire Values")]
         protected float RateOfFire;
+
+        [SerializeField] public GameObject detectionRadiusCylinder;
         
         //Used to allow/block attacks.
         [SerializeField] protected bool isFireRunning;

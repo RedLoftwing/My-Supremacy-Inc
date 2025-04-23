@@ -20,7 +20,7 @@ namespace Towers
             Damage = scriptableObject.defaultDamage;
             Range = scriptableObject.defaultRange;
             RateOfFire = scriptableObject.defaultRateOfFire;
-
+            
             //Start Coroutine for updating stats.
             StartCoroutine(UpdateStats());
         }
@@ -41,32 +41,31 @@ namespace Towers
                     if (nearbyIntelTower != null)
                     {
                         float difference = 0.001f;
-                        
                         switch (scriptableObject.towerName)
                         {
                             case "Encampment":
                                 if (Math.Abs(Range - scriptableObject.defaultRange) < difference)
                                 {
-                                    Range = Range * 1.4f;
+                                    Range *= 1.4f;
                                     capsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
                                 }
                                 break;
                             case "ATEmplacement":
                                 if (Math.Abs(Damage - scriptableObject.defaultDamage) < difference)
                                 {
-                                    Damage = Damage * 1.4f;
+                                    Damage *= 1.4f;
                                 }
                                 break;
                             case "AAA":
                                 if (Math.Abs(RateOfFire - scriptableObject.defaultRateOfFire) < difference)
                                 {
-                                    RateOfFire = RateOfFire / 2;
+                                    RateOfFire /= 2;
                                 }
                                 break;
                             case "Tank":
                                 if (Math.Abs(Range - scriptableObject.defaultRange) < difference)
                                 {
-                                    Range = Range * 1.4f;
+                                    Range *= 1.4f;
                                     capsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
                                 }
                                 break;
@@ -76,6 +75,15 @@ namespace Towers
                         }
                     }
                 }
+            }
+            
+            // Update the size of the detection radius based on the detection collider size.
+            if (detectionRadiusCylinder)
+            {
+                detectionRadiusCylinder.transform.localScale = new Vector3(
+                    capsuleCollider.radius * 2, 
+                    detectionRadiusCylinder.transform.localScale.y, 
+                    capsuleCollider.radius * 2);
             }
 
             //Wait 5 seconds, and then start coroutine again.
@@ -109,7 +117,5 @@ namespace Towers
                 }
             }
         }
-
-
     }
 }

@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 371047768148591189}
   - component: {fileID: -9038415335660670661}
   - component: {fileID: 8303421182184130753}
+  - component: {fileID: 2686768841143935540}
   m_Layer: 8
   m_Name: MSI-Artillery
   m_TagString: Untagged
@@ -418,6 +419,7 @@ MonoBehaviour:
   towerLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  detectionRadiusCylinder: {fileID: 0}
   isFireRunning: 0
   weaponFire: {fileID: 8303421182184130753}
   hasExplosiveAmmo: 1
@@ -536,6 +538,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &2686768841143935540
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4164769204276530325}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.5
+  m_Height: 400
+  m_Direction: 1
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &4380335247321372479
 GameObject:
   m_ObjectHideFlags: 0

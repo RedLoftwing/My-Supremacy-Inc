@@ -25,7 +25,12 @@ public class WorldInteraction : MonoBehaviour
     private TileInfo _previousTileInfo;
 
     public SO_Scripts.TowerInfo[] towerInfo; 
+    
+    private readonly Collider[] _localColliders = new Collider[10];
+    private Tower _localTower;
 
+    private Transform _test;
+    
     private void Update()
     {
         //IF the pointer is over UI...set _isClickDisabled to true...ELSE set to false. Prevents interaction of elements behind UI.
@@ -40,13 +45,14 @@ public class WorldInteraction : MonoBehaviour
         }
 
         //IsClickDisabled = EventSystem.current.IsPointerOverGameObject();
+        //Debug.Log($"Click is disabled? {IsClickDisabled}");
     }
 
     public void OnLeftMouseButton()
     {
-        if (_lastPlacedTower)
+        // For Artillery: IF there is a lastPlacedTower...Try get it's FixedTargetTower component...IF successful...set targeting position.
+        if (_lastPlacedTower && _lastPlacedTower.TryGetComponent<FixedTargetTower>(out var fixedTargetTower))
         {
-            var fixedTargetTower = _lastPlacedTower.GetComponent<FixedTargetTower>();
             if (fixedTargetTower && fixedTargetTower.isSelectingTarget)
             {
                 fixedTargetTower.ConfirmTarget();
@@ -66,9 +72,76 @@ public class WorldInteraction : MonoBehaviour
             //IF tileInfo is true...
             if(tileInfo)
             {
+                // -- Grid Highlight activation --
                 //Ensures the grid highlight object is set to active, and moves it to the build point of the tile.
                 gridHighlight.gameObject.SetActive(true);
                 gridHighlight.position = tileInfo.transform.position;
+                
+                
+                //ClearLocalTower();
+                if (_localTower && _localTower.detectionRadiusCylinder)
+                {
+                    Debug.Log($"Local Tower called {_localTower.name} has been found. Deactivating cylinder.");
+                    _localTower.detectionRadiusCylinder.SetActive(false);
+                }
+                _localTower = null;
+                Debug.Log("Local Tower is null.");
+
+                
+                
+                // -- Detection Radius Cylinder activation & FixedTargetTower retargeting --
+                // Check if a tower is in this spot...IF there is a tower, show the range of the tower by activating the detection radius cylinder.
+                if (!tileInfo.isTileAvailable)
+                {
+                    // for (int i = 0; i < _localColliders.Length; i++)
+                    // {
+                    //     _localColliders.SetValue(null, i);
+                    // }
+                    _test = tileInfo.transform;
+                    // Physics.OverlapSphereNonAlloc(tileInfo.transform.position, 2, _localColliders, towerLayerMask);
+                    // foreach (var localCollider in _localColliders)
+                    // {
+                    //     if (localCollider)
+                    //     {
+                    //         if (localCollider.TryGetComponent(out _localTower))
+                    //         {
+                    //             Debug.Log($"Local Tower: {_localTower.name}");
+                    //             if (_localTower.detectionRadiusCylinder)
+                    //             {
+                    //                 _localTower.detectionRadiusCylinder.SetActive(true);
+                    //             }
+                    //             else if (_localTower.TryGetComponent(out FixedTargetTower localFixedTargetTower))
+                    //             {
+                    //                 Debug.Log($"Local Fixed Target Tower: {localFixedTargetTower.name}");
+                    //                 localFixedTargetTower.isSelectingTarget = true;
+                    //             }
+                    //             else
+                    //             {
+                    //                 Debug.Log("Nada");
+                    //             }
+                    //         }
+                    //     }
+                    //     break;
+                    // }
+                    Physics.OverlapSphereNonAlloc(tileInfo.transform.position, 1, _localColliders, towerLayerMask);
+                    for (int i = 0; i < _localColliders.Length; i++)
+                    {
+                        if (_localColliders[i].TryGetComponent(out _localTower))
+                        {
+                            Debug.Log($"Local Tower: {_localTower.name}");
+                            if (_localTower.detectionRadiusCylinder)
+                            {
+                                _localTower.detectionRadiusCylinder.SetActive(true);
+                            }
+                            else if (_localTower.TryGetComponent(out FixedTargetTower localFixedTargetTower))
+                            {
+                                Debug.Log($"Local Fixed Target Tower: {localFixedTargetTower.name}");
+                                localFixedTargetTower.isSelectingTarget = true;
+                            }
+                        }
+                    }
+
+                }
 
                 //IF a tower in the tower menu has been selected...
                 if (heldTower)
@@ -155,6 +228,7 @@ public class WorldInteraction : MonoBehaviour
         // Instantiate a new tower on the build point, and set heldTower to null.
         Audio2DManager.Instance.PlayBuildSfx();
         _lastPlacedTower = Instantiate(heldTower.towerPrefab, tileInfo.transform.position, Quaternion.identity);
+        _lastPlacedTower.TryGetComponent(out _localTower);
         heldTower = null;
         Destroy(_activeHologramTower);
         //
@@ -172,5 +246,26 @@ public class WorldInteraction : MonoBehaviour
     {
         // Clear grid highlight.
         gridHighlight.gameObject.SetActive(false);
+        ClearLocalTower();
+    }
+
+    private void ClearLocalTower()
+    {
+        // Clear localTower's detection radius cylinder...if it exists.
+        if (!_localTower) return;
+        if (_localTower.detectionRadiusCylinder)
+        {
+            _localTower.detectionRadiusCylinder.SetActive(false);
+        }
+        _localTower = null;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        if (_test)
+        {
+            Gizmos.DrawSphere(_test.position, 4);
+        }
     }
 }
