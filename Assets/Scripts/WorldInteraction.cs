@@ -7,9 +7,7 @@ using UnityEngine.EventSystems;
 
 public class WorldInteraction : MonoBehaviour
 {
-    [SerializeField] private UserInterface userInterfaceScript;
-    [SerializeField] private Player.PlayerStats playerStatsScript;
-    [SerializeField] private Cheats cheatsScript;
+    public static WorldInteraction Instance { get; private set; }
 
     public static bool IsClickDisabled;
     [SerializeField] private Transform gridHighlight;
@@ -28,8 +26,13 @@ public class WorldInteraction : MonoBehaviour
     
     private readonly Collider[] _localColliders = new Collider[10];
     private Tower _localTower;
-
-    private Transform _test;
+    private FixedTargetTower _localFixedTargetTower;
+    
+    private void Awake()
+    {
+        if (Instance == null) { Instance = this; }
+        else { Destroy(gameObject); }
+    }
     
     private void Update()
     {
@@ -77,70 +80,36 @@ public class WorldInteraction : MonoBehaviour
                 gridHighlight.gameObject.SetActive(true);
                 gridHighlight.position = tileInfo.transform.position;
                 
-                
-                //ClearLocalTower();
-                if (_localTower && _localTower.detectionRadiusCylinder)
-                {
-                    Debug.Log($"Local Tower called {_localTower.name} has been found. Deactivating cylinder.");
-                    _localTower.detectionRadiusCylinder.SetActive(false);
-                }
-                _localTower = null;
-                Debug.Log("Local Tower is null.");
-
-                
+                // Reset local tower variables and deactivate any tower specific vfx (i.e. detection radius cylinder).
+                ClearLocalTower();
                 
                 // -- Detection Radius Cylinder activation & FixedTargetTower retargeting --
                 // Check if a tower is in this spot...IF there is a tower, show the range of the tower by activating the detection radius cylinder.
                 if (!tileInfo.isTileAvailable)
                 {
-                    // for (int i = 0; i < _localColliders.Length; i++)
-                    // {
-                    //     _localColliders.SetValue(null, i);
-                    // }
-                    _test = tileInfo.transform;
-                    // Physics.OverlapSphereNonAlloc(tileInfo.transform.position, 2, _localColliders, towerLayerMask);
-                    // foreach (var localCollider in _localColliders)
-                    // {
-                    //     if (localCollider)
-                    //     {
-                    //         if (localCollider.TryGetComponent(out _localTower))
-                    //         {
-                    //             Debug.Log($"Local Tower: {_localTower.name}");
-                    //             if (_localTower.detectionRadiusCylinder)
-                    //             {
-                    //                 _localTower.detectionRadiusCylinder.SetActive(true);
-                    //             }
-                    //             else if (_localTower.TryGetComponent(out FixedTargetTower localFixedTargetTower))
-                    //             {
-                    //                 Debug.Log($"Local Fixed Target Tower: {localFixedTargetTower.name}");
-                    //                 localFixedTargetTower.isSelectingTarget = true;
-                    //             }
-                    //             else
-                    //             {
-                    //                 Debug.Log("Nada");
-                    //             }
-                    //         }
-                    //     }
-                    //     break;
-                    // }
-                    Physics.OverlapSphereNonAlloc(tileInfo.transform.position, 1, _localColliders, towerLayerMask);
-                    for (int i = 0; i < _localColliders.Length; i++)
+                    var towerIsSelecting = _localFixedTargetTower && _localFixedTargetTower.isSelectingTarget;
+                    if (!towerIsSelecting)
                     {
-                        if (_localColliders[i].TryGetComponent(out _localTower))
+                        Physics.OverlapSphereNonAlloc(tileInfo.transform.position, 2, _localColliders, towerLayerMask);
+                        foreach (var localCollider in _localColliders)
                         {
-                            Debug.Log($"Local Tower: {_localTower.name}");
-                            if (_localTower.detectionRadiusCylinder)
+                            if (localCollider)
                             {
-                                _localTower.detectionRadiusCylinder.SetActive(true);
-                            }
-                            else if (_localTower.TryGetComponent(out FixedTargetTower localFixedTargetTower))
-                            {
-                                Debug.Log($"Local Fixed Target Tower: {localFixedTargetTower.name}");
-                                localFixedTargetTower.isSelectingTarget = true;
+                                if (localCollider.TryGetComponent(out _localTower))
+                                {
+                                    if (_localTower.detectionRadiusCylinder)
+                                    {
+                                        _localTower.detectionRadiusCylinder.SetActive(true);
+                                    }
+                                    else if (_localTower.TryGetComponent(out _localFixedTargetTower))
+                                    {
+                                        _localFixedTargetTower.isSelectingTarget = true;
+                                        _localFixedTargetTower.targetHighlight.SetActive(true);
+                                    }
+                                }
                             }
                         }
                     }
-
                 }
 
                 //IF a tower in the tower menu has been selected...
@@ -150,7 +119,7 @@ public class WorldInteraction : MonoBehaviour
                     if (tileInfo.isTileAvailable)
                     {
                         //IF isInfiniteCash is false...and then IF the cost of the tower is less than or equal to the amount of cash available...
-                        if (!cheatsScript.isInfiniteCash)
+                        if (!Cheats.Instance.isInfiniteCash)
                         {
                             // if (chosenTower.GetComponent<Towers.Tower>().towerCost <= playerStatsScript.cash)
                             // {
@@ -164,10 +133,10 @@ public class WorldInteraction : MonoBehaviour
                             // {
                             //     
                             // }
-                            if (heldTower.towerCost <= playerStatsScript.cash)
+                            if (heldTower.towerCost <= Player.PlayerStats.Instance.cash)
                             {
                                 //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
-                                playerStatsScript.SpendCash(heldTower.towerCost);
+                                Player.PlayerStats.Instance.SpendCash(heldTower.towerCost);
                                 Build(tileInfo);
                             }
                         }
@@ -229,6 +198,7 @@ public class WorldInteraction : MonoBehaviour
         Audio2DManager.Instance.PlayBuildSfx();
         _lastPlacedTower = Instantiate(heldTower.towerPrefab, tileInfo.transform.position, Quaternion.identity);
         _lastPlacedTower.TryGetComponent(out _localTower);
+        _lastPlacedTower.TryGetComponent(out _localFixedTargetTower);
         heldTower = null;
         Destroy(_activeHologramTower);
         //
@@ -251,21 +221,11 @@ public class WorldInteraction : MonoBehaviour
 
     private void ClearLocalTower()
     {
-        // Clear localTower's detection radius cylinder...if it exists.
+        // Clear localTower's detection radius cylinder or the target highlight...if it exists.
         if (!_localTower) return;
-        if (_localTower.detectionRadiusCylinder)
-        {
-            _localTower.detectionRadiusCylinder.SetActive(false);
-        }
+        if (_localTower.detectionRadiusCylinder) { _localTower.detectionRadiusCylinder.SetActive(false); }
+        else if (_localFixedTargetTower) { _localFixedTargetTower.targetHighlight.SetActive(false); }
         _localTower = null;
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        if (_test)
-        {
-            Gizmos.DrawSphere(_test.position, 4);
-        }
+        _localFixedTargetTower = null;
     }
 }

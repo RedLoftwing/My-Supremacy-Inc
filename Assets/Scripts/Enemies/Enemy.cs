@@ -21,6 +21,8 @@ namespace Enemies
 
         private float _timeSinceDamageReceived;
 
+        [SerializeField] private Rigidbody rb;
+
         private void Start()
         {
             //Sets _defaultHealth value.
@@ -81,13 +83,14 @@ namespace Enemies
         private void OnTriggerEnter(Collider other)
         {
             //On collision enter...get wave component. IF not null, start coroutine.
-            var waveComp = other.gameObject.GetComponent<Wave>();
+            other.gameObject.TryGetComponent<Wave>(out var waveComp);
             if (waveComp)
             {
+                Debug.Log("Wave collision");
                 StartCoroutine(Freeze(4));
             }
 
-            var waterCell = other.gameObject.GetComponent<WaterCell>();
+            other.gameObject.TryGetComponent<WaterCell>(out var waterCell);
             if (waterCell)
             {
                 transform.position = waterCell.gameObject.transform.position;
@@ -98,7 +101,8 @@ namespace Enemies
         private IEnumerator Freeze(int duration)
         {
             //Freeze the unit.
-            this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            rb.constraints = RigidbodyConstraints.FreezePosition;
+            _splineAnimate.Pause();
             //IF duration is less than or equal to 4...
             if (duration <= 4)
             {
@@ -124,7 +128,8 @@ namespace Enemies
             }
 
             //Unfreeze the unit.
-            this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.None;
+            _splineAnimate.Play();
         }
 
         private void OnDestroy()

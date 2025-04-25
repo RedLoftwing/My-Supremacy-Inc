@@ -10,57 +10,57 @@ RWStructuredBuffer<float> vertexYOffset;
 RWStructuredBuffer<float3> outputVertices;
 
 // Parameters
-float3 intersectingObjectPosition;
-float3 objectSize;
-float ascendSpeed;
-float descendSpeed;
-float deltaTime;
-float maxVertHeight;
+float3 _intersectingObjectPosition;
+float3 _objectHalfSize;
+float _ascendSpeed;
+float _descendSpeed;
+float _deltaTime;
+float _maxVertHeight;
+
+bool IsWithinBounds(float3 inVPos, float3 inMinBounds, float3 inMaxBounds);
 
 [numthreads(1, 1, 1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // Read the vertex position
-    float3 vertex = vertices[id.x];
-    float3 originalVertex = originalVertexPos[id.x];
+    // Read and store this vertex's position.
+    float3 vPos = vertices[id.x];
+    float3 originalVPos = originalVertexPos[id.x];
 
-    // Define the bounds
-    float3 halfSize = objectSize / 2;
-    float3 objectPositionCentre = intersectingObjectPosition + halfSize;
-    float3 minBounds = objectPositionCentre - halfSize;
-    float3 maxBounds = objectPositionCentre + halfSize;
+    // Define the bounds of the object.
+    float3 objectPositionCentre = _intersectingObjectPosition + _objectHalfSize;
+    float3 minBounds = objectPositionCentre - _objectHalfSize;
+    float3 maxBounds = objectPositionCentre + _objectHalfSize;
 
-    // Check if the vertex is within the bounds
-    bool isWithinBounds = (vertex.x >= minBounds.x) && (vertex.x <= maxBounds.x) &&
-                          (vertex.y >= minBounds.y) && (vertex.y <= maxBounds.y) &&
-                          (vertex.z >= minBounds.z) && (vertex.z <= maxBounds.z);
-
-    // Get the current y-offset for the vertex
+    // Get the current y-offset for this vertex.
     float currentYOffset = vertexYOffset[id.x];
-
-    if (isWithinBounds)
+    // IF the vertex position is within the bounds of the object...increase the Y offset value...otherwise lerp the Y offset between its current value and 0. 
+    if (IsWithinBounds(vPos, minBounds, maxBounds))
     {
-        // Increment the y-offset if within bounds
-        currentYOffset += ascendSpeed * deltaTime;
+        currentYOffset += _ascendSpeed * _deltaTime;
     }
     else
     {
-        // Gradually return to original y-position if not intersecting
-        currentYOffset = lerp(currentYOffset, 0.0, deltaTime * descendSpeed);
+        currentYOffset = lerp(currentYOffset, 0.0, _deltaTime * _descendSpeed);
     }
 
-    // Calculate the new potential y-position
-    float newYPosition = originalVertex.y + currentYOffset;
-
-    // Clamp the y-position to the maximum height
-    newYPosition = min(newYPosition, maxVertHeight);
+    // Calculate the new y-position and ensure it is not above the maximum vertex height.
+    float newYPosition = originalVPos.y + currentYOffset;
+    newYPosition = min(newYPosition, _maxVertHeight);
 
     // Update the y-offset buffer with the clamped value
-    vertexYOffset[id.x] = newYPosition - originalVertex.y;
+    vertexYOffset[id.x] = newYPosition - originalVPos.y;
 
     // Apply the clamped y-offset to the vertex position
-    vertex.y = newYPosition;
+    vPos.y = newYPosition;
 
     // Write the modified vertex position to the output buffer
-    outputVertices[id.x] = vertex;
+    outputVertices[id.x] = vPos;
+}
+
+bool IsWithinBounds(float3 inVPos, float3 inMinBounds, float3 inMaxBounds)
+{
+    // Check if the vertex position is within the bounds.
+    return (inVPos.x >= inMinBounds.x) && (inVPos.x <= inMaxBounds.x) &&
+           (inVPos.y >= inMinBounds.y) && (inVPos.y <= inMaxBounds.y) &&
+           (inVPos.z >= inMinBounds.z) && (inVPos.z <= inMaxBounds.z);
 }

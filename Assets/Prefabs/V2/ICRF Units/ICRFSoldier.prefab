@@ -121,12 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385ffab2eeb081a4999b15bccbc3f2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStateScript: {fileID: 0}
-  cheatsScript: {fileID: 0}
   health: 5
   strength: 1
   isExplosive: 0
   explosionVFX: {fileID: 8158747274008320101, guid: bd936cfade491834fb654e3e19e7a72c, type: 3}
+  rb: {fileID: -2329583092162184707}
 --- !u!114 &77060410888341753
 MonoBehaviour:
   m_ObjectHideFlags: 0

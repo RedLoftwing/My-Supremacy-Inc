@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Splines;
 using Random = UnityEngine.Random;
 
 public class UserInterface : MonoBehaviour
@@ -56,10 +57,10 @@ public class UserInterface : MonoBehaviour
     public TextMeshProUGUI finalHealthValue;
 
     public GameObject[] panelArray;
-    [SerializeField] private GameObject mainMenuPanel;
-    [SerializeField] private GameObject mapSelectPanel;
+    //[SerializeField] private GameObject mainMenuPanel;
+    //[SerializeField] private GameObject mapSelectPanel;
     public GameObject pauseMenu;
-    [SerializeField] private GameObject settingsPanel;
+    //[SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject enemySpawnSection;
 
     [SerializeField] private GameObject reversedSpline;
@@ -232,7 +233,7 @@ public class UserInterface : MonoBehaviour
         //IF cash is greater than or equal to 70...Instantiate waveObj at spawn point AND call SpendCash.
         if(Player.PlayerStats.Instance.cash >= abilitySO[1].abilityExpenditureAmount)
         {
-            Instantiate(abilitySO[1].abilityPrefab, reversedSpline.transform.position, Quaternion.identity);
+            VertexAdjuster.Instance.intersectingObject = Instantiate(abilitySO[1].abilityPrefab, reversedSpline.transform.position, Quaternion.identity);
             Player.PlayerStats.Instance.SpendCash(abilitySO[1].abilityExpenditureAmount);
         }
     }

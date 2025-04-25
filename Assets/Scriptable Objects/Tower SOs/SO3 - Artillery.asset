@@ -25,7 +25,7 @@ MonoBehaviour:
   maxNoOfTargets: 0
   defaultRange: 0
   defaultDamage: 8
-  defaultRateOfFire: 0
+  defaultRateOfFire: 3
   rotationSpeed: 4
   weaponFire: {fileID: 0}
   towerPrefab: {fileID: 4164769204276530325, guid: 868adeeebf9c06a48af3f12dc9d16365, type: 3}

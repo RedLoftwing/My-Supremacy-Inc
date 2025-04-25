@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 636435527232498887}
   - component: {fileID: 4138002849927653439}
   - component: {fileID: 6745633403282167095}
+  - component: {fileID: 9118249856724637251}
   m_Layer: 0
   m_Name: Wave
   m_TagString: Wave
@@ -40,18 +41,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4124865214692001840}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e0ba92cbc9157148867d7eec2bae31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 11, y: 10, z: 11}
-  waterLowerSpeed: 0.01
-  waterRiseSpeed: 0.15
-  water: {fileID: 0}
-  _localVertices: []
-  computeShader: {fileID: 7200000, guid: d8ec7c2053c7fbb458f1942dee0ab7f2, type: 3}
-  vertexData: []
 --- !u!114 &6745633403282167095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
   m_PlayOnAwake: 1
-  m_LoopMode: 1
+  m_LoopMode: 0
   m_Method: 1
   m_Duration: 52.5
   m_MaxSpeed: 10
@@ -75,3 +69,24 @@ MonoBehaviour:
   m_ObjectForwardAxis: 5
   m_ObjectUpAxis: 4
   m_StartOffset: 0
+--- !u!65 &9118249856724637251
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124865214692001840}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 20, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}

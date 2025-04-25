@@ -252,6 +252,7 @@ MonoBehaviour:
   towerLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  detectionRadiusCylinder: {fileID: 0}
   isFireRunning: 0
   weaponFire: {fileID: 7230235272716745539}
   hasExplosiveAmmo: 1
@@ -262,7 +263,6 @@ MonoBehaviour:
     m_Bits: 192
   isSelectingTarget: 1
   targetHighlight: {fileID: 5985451004683756133}
-  gameStateScript: {fileID: 0}
   midPoint: {x: 0, y: 0, z: 0}
   explosionPrefab: {fileID: 8158747274008320101, guid: 407c5728110a5914f8e977473a52b157, type: 3}
   explosionRadius: 10
@@ -510,7 +510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3971974243828973563}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.08936651, y: -0.43689007, z: -0.043672714, w: 0.89399856}
+  m_LocalRotation: {x: -0.10285056, y: -0.4620943, z: -0.05405755, w: 0.8791863}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

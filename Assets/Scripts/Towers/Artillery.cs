@@ -5,7 +5,6 @@ namespace Towers
 {
     public class Artillery : FixedTargetTower
     {
-        [SerializeField] private GameState gameStateScript;
         [SerializeField] private Vector3 midPoint;
 
         [SerializeField] private GameObject explosionPrefab;
@@ -21,12 +20,11 @@ namespace Towers
         [SerializeField] private Vector3 targetDir;
         [SerializeField] private Animator artyBarrelAnimator;
 
-        private void Start()
+        private void Awake()
         {
-            //Grabs the GameState component from the Manager object and stores it.
-            gameStateScript = GameObject.Find("Manager").GetComponent<GameState>();
+            TowerSpawned();
         }
-
+        
         private void Update()
         {
             StartCoroutine(ManualUpdate());
@@ -48,7 +46,7 @@ namespace Towers
         private IEnumerator FireWeapon()
         {
             //Checks if the game is in between waves. If it is, the weapon will not fire.
-            if (!gameStateScript.isInterWave)
+            if (!GameState.Instance.isInterWave)
             {
                 //Sets isFireRunning to true. Prevents constant execution of FireTurret.
                 isFireRunning = true;
