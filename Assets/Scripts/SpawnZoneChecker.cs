@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class SpawnZoneChecker : MonoBehaviour
 {
-    [SerializeField] private GameState gameStateScript;
     private float _timerValue;
 
     private void OnTriggerStay(Collider other)
@@ -12,14 +11,14 @@ public class SpawnZoneChecker : MonoBehaviour
         //IF Enemy component is true...Set isSpawnOccupied to true.
         if (enemy)
         {
-            gameStateScript.isSpawnZoneOccupied = true;
+            GameState.Instance.isSpawnZoneOccupied = true;
 
             //Increase timer value.
             _timerValue++;
             //IF isSpawnZoneOccupied is true AND timerValue is greater than 50...Set bool to false and reset timer value.
-            if(gameStateScript.isSpawnZoneOccupied && _timerValue > 60)
+            if(GameState.Instance.isSpawnZoneOccupied && _timerValue > 60)
             {
-                gameStateScript.isSpawnZoneOccupied = false;
+                GameState.Instance.isSpawnZoneOccupied = false;
                 _timerValue = 0;
             }
         }
@@ -28,7 +27,7 @@ public class SpawnZoneChecker : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         //Upon exiting this collider...Set bool to false and reset timer value.
-        gameStateScript.isSpawnZoneOccupied = false;
+        GameState.Instance.isSpawnZoneOccupied = false;
         _timerValue = 0;
     }
 }

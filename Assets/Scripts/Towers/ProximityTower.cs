@@ -6,16 +6,13 @@ namespace Towers
 {
     public class ProximityTower : Tower
     {
-        private Cheats _cheatsScript;
         protected GameObject currentTarget;
         
         protected void TowerSpawned()
         {
-            //Grab cheats component and store it as cheatsScript.
-            _cheatsScript = GameObject.Find("Manager").GetComponent<Cheats>();
             //Grabs the collider component to allow it to be adjusted in size. Uses the value of range to set the size. Collider used for detecting enemies within proximity.
             capsuleCollider = GetComponent<CapsuleCollider>();
-            capsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
+            capsuleCollider.radius = Range * Cheats.Instance.variableTowerRangeSlider.value;
             
             Damage = scriptableObject.defaultDamage;
             Range = scriptableObject.defaultRange;
@@ -28,7 +25,7 @@ namespace Towers
         private IEnumerator UpdateStats()
         {
             //Updates the radius of the capsule collider when called. Multiplying the set range by the variableTowerRangeSlider value.
-            capsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
+            capsuleCollider.radius = Range * Cheats.Instance.variableTowerRangeSlider.value;
             //Gathers all colliders within the radius of the tower.
             int numColliders = Physics.OverlapSphereNonAlloc(transform.position, 15, Colliders, towerLayerMask);
             //IF the number of colliders is greater than 0...then go through each collider, and find the IntelligenceCentre component.
@@ -47,7 +44,7 @@ namespace Towers
                                 if (Math.Abs(Range - scriptableObject.defaultRange) < difference)
                                 {
                                     Range *= 1.4f;
-                                    capsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
+                                    capsuleCollider.radius = Range * Cheats.Instance.variableTowerRangeSlider.value;
                                 }
                                 break;
                             case "ATEmplacement":
@@ -66,7 +63,7 @@ namespace Towers
                                 if (Math.Abs(Range - scriptableObject.defaultRange) < difference)
                                 {
                                     Range *= 1.4f;
-                                    capsuleCollider.radius = Range * _cheatsScript.variableTowerRangeSlider.value;
+                                    capsuleCollider.radius = Range * Cheats.Instance.variableTowerRangeSlider.value;
                                 }
                                 break;
                             default:

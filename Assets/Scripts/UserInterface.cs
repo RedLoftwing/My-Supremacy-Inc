@@ -10,14 +10,11 @@ using Random = UnityEngine.Random;
 
 public class UserInterface : MonoBehaviour
 {
+    public static UserInterface Instance { get; private set; }
     private readonly string[] _potentialNames = {"Tower Button", "Tower Button (1)", "Tower Button (2)", "Tower Button (3)", "Tower Button (4)", "Tower Button (5)", "Tower Button (6)"};
     [SerializeField] private GameObject[] purchasableOptions;
     private UIHover[] _buttonUIHoverComp = new UIHover[10];
     private Button[] _buttonComp = new Button[10];
-    [Header("Script Instance References")]
-    [SerializeField] private WorldInteraction worldInteractionScript;
-    [SerializeField] private GameState gameStateScript;
-    [SerializeField] private Player.PlayerStats playerStatsScript;
     private Scene _currentScene;
     [SerializeField] private LayerMask uiLayerMask;
     private GameObject _buttonObj;
@@ -70,6 +67,12 @@ public class UserInterface : MonoBehaviour
 
     [SerializeField] private AbilityInfo[] abilitySO;
 
+    private void Awake()
+    {
+        if (Instance == null) { Instance = this; }
+        else { Destroy(gameObject); }
+    }
+    
     private void Start()
     {
         //Finds the active scene and stores it as currentScene.
@@ -91,7 +94,7 @@ public class UserInterface : MonoBehaviour
             //Set active state for the "Active Wave" UI object.
             activeWavePanel.SetActive(false);
             //Set Wave text values.
-            waveText.SetText("Wave: " + gameStateScript.waveNumber + "/10");
+            waveText.SetText("Wave: " + GameState.Instance.waveNumber + "/10");
         }
         //ELSE IF the active scene's name IS "MainMenu"...set anything that needs to be disabled as such.
         else if (_currentScene.name == "MainMenu")
@@ -186,7 +189,7 @@ public class UserInterface : MonoBehaviour
         buttonHighlightObj.SetActive(true);
         buttonHighlightObj.transform.position = _buttonObj.transform.position;
         //Assign the appropriate tower scriptable object (defined by towerValue) to the heldTower value.
-        worldInteractionScript.heldTower = worldInteractionScript.towerInfo[towerValue];
+        WorldInteraction.Instance.heldTower = WorldInteraction.Instance.towerInfo[towerValue];
     }
 
     private IEnumerator GameTimer()
@@ -204,11 +207,11 @@ public class UserInterface : MonoBehaviour
     public void PlayButton()
     {
         //IF the game is currently in between waves...
-        if(gameStateScript.isInterWave)
+        if(GameState.Instance.isInterWave)
         {
             //Advance to next wave and set isInterWave to false.
-            gameStateScript.waveNumber++;
-            gameStateScript.isInterWave = false;
+            GameState.Instance.waveNumber++;
+            GameState.Instance.isInterWave = false;
         }
     }
 
@@ -216,10 +219,10 @@ public class UserInterface : MonoBehaviour
     {
         //Sell water for cash.
         //IF water supply is greater than or equal to 5...call DecreaseWaterSupply and AwardCash.
-        if(playerStatsScript.water >= abilitySO[0].abilityExpenditureAmount)
+        if(Player.PlayerStats.Instance.water >= abilitySO[0].abilityExpenditureAmount)
         {
-            playerStatsScript.DecreaseWaterSupply(abilitySO[0].abilityExpenditureAmount);
-            playerStatsScript.AwardCash(abilitySO[0].abilityIncomeAmount);
+            Player.PlayerStats.Instance.DecreaseWaterSupply(abilitySO[0].abilityExpenditureAmount);
+            Player.PlayerStats.Instance.AwardCash(abilitySO[0].abilityIncomeAmount);
             //AllowPurchasableSelection();
         }
     }
@@ -227,22 +230,22 @@ public class UserInterface : MonoBehaviour
     public void WaterAbility2()
     {
         //IF cash is greater than or equal to 70...Instantiate waveObj at spawn point AND call SpendCash.
-        if(playerStatsScript.cash >= abilitySO[1].abilityExpenditureAmount)
+        if(Player.PlayerStats.Instance.cash >= abilitySO[1].abilityExpenditureAmount)
         {
             Instantiate(abilitySO[1].abilityPrefab, reversedSpline.transform.position, Quaternion.identity);
-            playerStatsScript.SpendCash(abilitySO[1].abilityExpenditureAmount);
+            Player.PlayerStats.Instance.SpendCash(abilitySO[1].abilityExpenditureAmount);
         }
     }
 
     public void WaterAbility3()
     {
         //IF cash is greater than or equal to 70...Instantiate waterCellObj at a random location on the path AND call SpendCash.
-        if (playerStatsScript.cash >= abilitySO[2].abilityExpenditureAmount)
+        if (Player.PlayerStats.Instance.cash >= abilitySO[2].abilityExpenditureAmount)
         {
             var paths = GameObject.Find("Enemy Path Group").GetComponentsInChildren<Transform>();
             var randomNum = Random.Range(10, paths.Length - 10);
             Instantiate(abilitySO[2].abilityPrefab, paths[randomNum].position, Quaternion.identity);
-            playerStatsScript.SpendCash(abilitySO[2].abilityExpenditureAmount);
+            Player.PlayerStats.Instance.SpendCash(abilitySO[2].abilityExpenditureAmount);
         }
     }
 
@@ -265,7 +268,7 @@ public class UserInterface : MonoBehaviour
         {
             if (_buttonUIHoverComp[i].purchasableType == UIHover.PurchasableType.Tower)
             {
-                var activeState = _buttonUIHoverComp[i].towerInfo.towerCost > playerStatsScript.cash;
+                var activeState = _buttonUIHoverComp[i].towerInfo.towerCost > Player.PlayerStats.Instance.cash;
                 _buttonComp[i].interactable = !activeState;
                 _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(activeState);
             }
@@ -273,11 +276,11 @@ public class UserInterface : MonoBehaviour
             {
                 if (_buttonUIHoverComp[i].abilityInfo.abilityExpenditureCurrencyType == AbilityInfo.CurrencyTypes.Water)
                 {
-                    _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].abilityInfo.abilityExpenditureAmount > playerStatsScript.water);
+                    _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].abilityInfo.abilityExpenditureAmount > Player.PlayerStats.Instance.water);
                 }
                 else
                 {
-                    _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].abilityInfo.abilityExpenditureAmount > playerStatsScript.cash);
+                    _buttonUIHoverComp[i].buttonGreyOutFilter.SetActive(_buttonUIHoverComp[i].abilityInfo.abilityExpenditureAmount > Player.PlayerStats.Instance.cash);
                 }
             }
         }

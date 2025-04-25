@@ -1,9 +1,18 @@
+using System;
 using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
+    public static GridGenerator Instance { get; private set; }
+    
     [SerializeField] [Min(10)] private float gridFrequency = 10f;
     [SerializeField] [Min(30)] private int gridSize = 30;
+
+    private void Awake()
+    {
+        if (Instance == null) { Instance = this; }
+        else { Destroy(gameObject); }
+    }
 
     public Vector3 GetNearestPointOnGrid(Vector3 pos)
     {

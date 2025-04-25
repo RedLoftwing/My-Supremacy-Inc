@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class Cheats : MonoBehaviour
 {
-    [SerializeField] private GameState gameStateScript;
+    public static Cheats Instance { get; private set; }
+    
     [SerializeField] private TextMeshProUGUI infinitePlayerHealthActivityText;
     [SerializeField] private TextMeshProUGUI infinitePlayerCashActivityText;
     [SerializeField] private TextMeshProUGUI infiniteWaterActivityText;
@@ -19,6 +21,16 @@ public class Cheats : MonoBehaviour
 
     public Slider variableEnemyDamageOutputSlider;
     public Slider variableTowerRangeSlider;
+
+    private void Awake()
+    {
+        if (Instance == null) { Instance = this; }
+        else
+        {
+            Debug.LogError("Multiple Cheat Instances");
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -141,30 +153,30 @@ public class Cheats : MonoBehaviour
     public void CallSpawnInfantry()
     {
         //If a button equipped with this function is pressed, it will call a function that will spawn an Infantry unit.
-        gameStateScript.ManualSpawnUnit(0);
+        GameState.Instance.ManualSpawnUnit(0);
     }
 
     public void CallSpawnRover()
     {
         //If a button equipped with this function is pressed, it will call a function that will spawn a Rover unit.
-        gameStateScript.ManualSpawnUnit(1);
+        GameState.Instance.ManualSpawnUnit(1);
     }
 
     public void CallSpawnAPC()
     {
         //If a button equipped with this function is pressed, it will call a function that will spawn an APC unit.
-        gameStateScript.ManualSpawnUnit(2);
+        GameState.Instance.ManualSpawnUnit(2);
     }
 
     public void CallSpawnTank()
     {
         //If a button equipped with this function is pressed, it will call a function that will spawn a Tank unit.
-        gameStateScript.ManualSpawnUnit(3);
+        GameState.Instance.ManualSpawnUnit(3);
     }
 
     public void CallSpawnJet()
     {
         //If a button equipped with this function is pressed, it will call a function that will spawn a Jet unit.
-        gameStateScript.ManualSpawnUnit(4);
+        GameState.Instance.ManualSpawnUnit(4);
     }
 }

@@ -7,8 +7,6 @@ namespace Enemies
 {
     public class Enemy : MonoBehaviour
     {
-        [SerializeField] private GameState gameStateScript;
-        [SerializeField] private Cheats cheatsScript;
         [SerializeField] protected float health;
         private float _defaultHealth;
         public float strength;
@@ -25,10 +23,6 @@ namespace Enemies
 
         private void Start()
         {
-            //Grab components and stores them as their own variables.
-            gameStateScript = GameObject.Find("Manager").GetComponent<GameState>();
-            cheatsScript = GameObject.Find("Manager").GetComponent<Cheats>();
-
             //Sets _defaultHealth value.
             _defaultHealth = health;
 
@@ -48,9 +42,9 @@ namespace Enemies
         public void DecreaseHealth(float inReceivedDamage)
         {
             // IF enemies are set to invincible in the cheats menu...return.
-            if (cheatsScript.isInvincibleEnemies) return;
+            if (Cheats.Instance.isInvincibleEnemies) return;
             // IF enemies are NOT set to be instantly killed when hit...proceed.
-            if (!cheatsScript.isOneHitKill)
+            if (!Cheats.Instance.isOneHitKill)
             {
                 // Only proceed to apply a new dose of damage to the unit when sufficient time has passed (1.35f currently).
                 if (!(_timeSinceDamageReceived > 1.35f)) return;
@@ -136,7 +130,7 @@ namespace Enemies
         private void OnDestroy()
         {
             //On destruction of this game object, remove 1 from the thisWavesEnemies value.
-            gameStateScript.thisWavesEnemies--;
+            GameState.Instance.thisWavesEnemies--;
         }
     }
 }

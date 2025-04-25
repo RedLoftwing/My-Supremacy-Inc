@@ -6,10 +6,7 @@ namespace Player
 {
     public class PlayerStats : MonoBehaviour
     {
-        [SerializeField] private SuperVillain superVillainScript;
-        [SerializeField] private GameState gameStateScript;
-        [SerializeField] private UserInterface userInterface;
-        [SerializeField] private Cheats cheatsScript;
+        public static PlayerStats Instance { get; private set; }
 
         public float health;
         public int cash;
@@ -19,6 +16,12 @@ namespace Player
         [SerializeField] private TextMeshProUGUI cashText;
         [SerializeField] private TextMeshProUGUI waterText;
 
+        private void Awake()
+        {
+            if (Instance == null) { Instance = this; }
+            else { Destroy(gameObject); }
+        }
+        
         private void Start()
         {
             //Set the player's stat values to their default value.
@@ -41,16 +44,16 @@ namespace Player
         public void DecreaseHealth(float receivedDamage)
         {
             //IF isInfinitePlayerHealth is false...proceed.
-            if (!cheatsScript.isInfinitePlayerHealth)
+            if (!Cheats.Instance.isInfinitePlayerHealth)
             {
                 health -= receivedDamage;
                 healthText.SetText(health.ToString(CultureInfo.InvariantCulture));
-                superVillainScript.AngerState();
+                SuperVillain.Instance.AngerState();
 
                 //IF health reaches 0...call DeclareEndGame.
                 if (health <= 0)
                 {
-                    gameStateScript.DeclareEndGame();
+                    GameState.Instance.DeclareEndGame();
                 }
             }
         }
@@ -60,19 +63,19 @@ namespace Player
         {
             cash += rewardAmount;
             cashText.SetText(cash.ToString());
-            userInterface.AllowPurchasableSelection();
+            UserInterface.Instance.AllowPurchasableSelection();
         }
 
         //Called when the player's cash value needs to be decreased. Uses the value of cost.
         public void SpendCash(int cost)
         {
             //IF isInfiniteCash is false...proceed.
-            if (!cheatsScript.isInfiniteCash)
+            if (!Cheats.Instance.isInfiniteCash)
             {
                 cash -= cost;
                 cashText.SetText(cash.ToString());
             }
-            userInterface.AllowPurchasableSelection();
+            UserInterface.Instance.AllowPurchasableSelection();
         }
 
         //Called when the player's cash value needs to be decreased. Uses the value of cost. This version avoids 
@@ -99,11 +102,9 @@ namespace Player
         public void DecreaseWaterSupply(float decreaseWaterAmount)
         {
             //IF isInfiniteWater is false...proceed.
-            if (!cheatsScript.isInfiniteWater)
-            {
-                water -= decreaseWaterAmount;
-                waterText.SetText(water.ToString(CultureInfo.InvariantCulture));
-            }
+            if (Cheats.Instance.isInfiniteWater) return;
+            water -= decreaseWaterAmount;
+            waterText.SetText(water.ToString(CultureInfo.InvariantCulture));
         }
     }
 }

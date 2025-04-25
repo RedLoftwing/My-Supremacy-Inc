@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Globalization;
+using Player;
 using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-    [SerializeField] private UserInterface userInterfaceScript;
-    [SerializeField] private Player.PlayerStats playerStatsScript;
-    [SerializeField] private Player.SuperVillain superVillainScript;
-
+    public static GameState Instance { get; private set; }
     public int waveNumber;
     public bool isInterWave;
     public bool isSpawningActive;
@@ -29,6 +27,12 @@ public class GameState : MonoBehaviour
     private readonly int[] _wave9Composition = new int[] { 22, 16, 10, 6, 2 };
     private readonly int[] _wave10Composition = new int[] { 22, 16, 14, 8, 4 };
 
+    private void Awake()
+    {
+        if (Instance == null) { Instance = this; }
+        else { Destroy(gameObject); }
+    }
+    
     // Start is called before the first frame update
     private void Start()
     {
@@ -84,8 +88,8 @@ public class GameState : MonoBehaviour
 
     private IEnumerator Wave(int[] thisWaveComposition)
     {
-        userInterfaceScript.activeWavePanel.SetActive(true);
-        userInterfaceScript.waveText.SetText("Wave: " + waveNumber + "/10");
+        UserInterface.Instance.activeWavePanel.SetActive(true);
+        UserInterface.Instance.waveText.SetText("Wave: " + waveNumber + "/10");
         //Set to true to prevent calling coroutine again.
         isSpawningActive = true;
 
@@ -124,8 +128,8 @@ public class GameState : MonoBehaviour
         //Set isInterWave to true, isSpawningActive to false. Turn off the Active Wave panel object, and call the cheering animation function for the Super Villain.
         isInterWave = true;
         isSpawningActive = false;
-        userInterfaceScript.activeWavePanel.SetActive(false);
-        superVillainScript.CheerState();
+        UserInterface.Instance.activeWavePanel.SetActive(false);
+        SuperVillain.Instance.CheerState();
 
         //IF waveNumber is 10 or greater...
         if (waveNumber >= 10)
@@ -134,29 +138,29 @@ public class GameState : MonoBehaviour
         }
 
         //Award Cash and Water.
-        playerStatsScript.AwardCash(480);
-        playerStatsScript.IncreaseWaterSupply(4 + (4 * numberOfPumpingStations));
+        PlayerStats.Instance.AwardCash(480);
+        PlayerStats.Instance.IncreaseWaterSupply(4 + (4 * numberOfPumpingStations));
         yield return null;
     }
 
     public void DeclareEndGame()
     {
-        userInterfaceScript.endGamePanel.SetActive(true);
+        UserInterface.Instance.endGamePanel.SetActive(true);
 
         //Check for Victory Type.
         //IF health is less than or equal to 0...
-        if(playerStatsScript.health <= 0)
+        if(PlayerStats.Instance.health <= 0)
         {
             //IF water is greater than or equal to 50...Call the method with the string depending on value.
-            DeclareEndGameText((playerStatsScript.water >= 50) ? "Close Defeat" : "Decisive Defeat");
+            DeclareEndGameText((PlayerStats.Instance.water >= 50) ? "Close Defeat" : "Decisive Defeat");
         }
         //ELSE IF health is less than or equal to 10 AND water is less than or equal to 10...call method with string.
-        else if (playerStatsScript.health <= 10 && playerStatsScript.water <= 10)
+        else if (PlayerStats.Instance.health <= 10 && PlayerStats.Instance.water <= 10)
         {
             DeclareEndGameText("Heroic Victory");
         }
         //ELSE IF health is less than or equal to 40 AND water is less than or equal to 20...call method with string.
-        else if (playerStatsScript.health <= 40 && playerStatsScript.water <= 20)
+        else if (PlayerStats.Instance.health <= 40 && PlayerStats.Instance.water <= 20)
         {
             DeclareEndGameText("Pyrrhic Victory");
         }
@@ -164,20 +168,20 @@ public class GameState : MonoBehaviour
         else
         {
             //IF water is less than or equal to 65...Call the method with the string depending on value
-            DeclareEndGameText((playerStatsScript.water <= 65) ? "Close Victory" : "Decisive Victory");
+            DeclareEndGameText((PlayerStats.Instance.water <= 65) ? "Close Victory" : "Decisive Victory");
         }
 
         //Set the final stat fields.
-        userInterfaceScript.finalWaterValue.SetText("Water - " + playerStatsScript.water.ToString(CultureInfo.InvariantCulture) + "%");
-        userInterfaceScript.finalCashValue.SetText("Cash - " + playerStatsScript.cash.ToString());
-        userInterfaceScript.finalHealthValue.SetText("Health - " + playerStatsScript.health.ToString(CultureInfo.InvariantCulture));
+        UserInterface.Instance.finalWaterValue.SetText("Water - " + PlayerStats.Instance.water.ToString(CultureInfo.InvariantCulture) + "%");
+        UserInterface.Instance.finalCashValue.SetText("Cash - " + PlayerStats.Instance.cash.ToString());
+        UserInterface.Instance.finalHealthValue.SetText("Health - " + PlayerStats.Instance.health.ToString(CultureInfo.InvariantCulture));
     }
 
     private void DeclareEndGameText(string victoryDefeatType)
     {
         //Sets the text in both text fields.
-        userInterfaceScript.endGameTextPanel.SetText(victoryDefeatType);
-        userInterfaceScript.endGameBackTextPanel.SetText(victoryDefeatType);
+        UserInterface.Instance.endGameTextPanel.SetText(victoryDefeatType);
+        UserInterface.Instance.endGameBackTextPanel.SetText(victoryDefeatType);
     }
 
     public void ManualSpawnUnit(int requestedUnit)
@@ -202,13 +206,13 @@ public class GameState : MonoBehaviour
         if (Time.timeScale != 0)
         {
             Time.timeScale = 0;
-            userInterfaceScript.pauseMenu.SetActive(true);
+            UserInterface.Instance.pauseMenu.SetActive(true);
         }
         //ELSE IF the timescale IS 0...set timescale to 1 and hide the pause menu object.
         else if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
-            userInterfaceScript.pauseMenu.SetActive(false);
+            UserInterface.Instance.pauseMenu.SetActive(false);
         }
     }
 
@@ -227,7 +231,7 @@ public class GameState : MonoBehaviour
         else if (Mathf.Abs(Time.timeScale - 3.0f) <= difference)
         {
             Time.timeScale = 1;
-            userInterfaceScript.pauseMenu.SetActive(false);
+            UserInterface.Instance.pauseMenu.SetActive(false);
         }
     }
 }

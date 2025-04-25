@@ -8,6 +8,8 @@ namespace Player.Camera
 {
     public class CameraController : MonoBehaviour
     {
+        public static CameraController Instance { get; private set; }
+        
         public Transform camTransform;
         public float zoomDirectionScroll;
 
@@ -31,9 +33,13 @@ namespace Player.Camera
         public float rotateSensitivity;
         public float zoomValue;
         public float zoomSensitivity;
-
-        public float test;
-
+        
+        private void Awake()
+        {
+            if (Instance == null) { Instance = this; }
+            else { Destroy(gameObject); }
+        }
+        
         private void Start()
         {
             //Sets default values.
