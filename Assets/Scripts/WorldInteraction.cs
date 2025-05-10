@@ -1,6 +1,4 @@
 using Towers;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
@@ -28,138 +26,144 @@ public class WorldInteraction : MonoBehaviour
     private Tower _localTower;
     private FixedTargetTower _localFixedTargetTower;
     
-    private void Awake()
-    {
+    private void Awake() {
         if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
     }
     
-    private void Update()
-    {
-        //IF the pointer is over UI...set _isClickDisabled to true...ELSE set to false. Prevents interaction of elements behind UI.
-        
-        if(EventSystem.current.IsPointerOverGameObject())
-        {
-            IsClickDisabled = true;
-        }
-        else
-        {
-            IsClickDisabled = false;
-        }
-
-        //IsClickDisabled = EventSystem.current.IsPointerOverGameObject();
-        //Debug.Log($"Click is disabled? {IsClickDisabled}");
+    private void Update()  {
+        // Prevents interaction of elements behind UI. IsPointerOverGameObject? (UI), if true, marks click disabled as true.
+        IsClickDisabled = EventSystem.current.IsPointerOverGameObject();
     }
 
-    public void OnLeftMouseButton()
-    {
-        // For Artillery: IF there is a lastPlacedTower...Try get it's FixedTargetTower component...IF successful...set targeting position.
-        if (_lastPlacedTower && _lastPlacedTower.TryGetComponent<FixedTargetTower>(out var fixedTargetTower))
-        {
-            if (fixedTargetTower && fixedTargetTower.isSelectingTarget)
-            {
-                fixedTargetTower.ConfirmTarget();
-            }
-        }
-        //IF the pointer is not over UI...then exit function, otherwise continue. 
+    public void OnLeftMouseButton() {
+        if (HandleArtilleryTargetPlacement()) return;
+
+        // Ensure the pointer is not over UI before continuing.
         if (IsClickDisabled) return;
+        // Ensure there is a tile hit by the ray before continuing. 
+        if (!FireRayAtClickPoint(out var tileInfo)) return;
         
-        //Conduct a raycast from the camera to where the player has clicked, and store it.
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        //
+        HighlightTile(tileInfo);
 
-        //If the raycast hits something on the specified layer mask...
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 10000, terrainLayerMask))
+        //IF a tower in the tower menu has been selected...
+        if (heldTower)
         {
-            //Get the TileInfo component from the tile's child, and store it.
-            var tileInfo = hitInfo.collider.GetComponentInChildren<TileInfo>();
-            //IF tileInfo is true...
-            if(tileInfo)
+            //IF the tile is unoccupied...
+            if (tileInfo.isTileAvailable)
             {
-                // -- Grid Highlight activation --
-                //Ensures the grid highlight object is set to active, and moves it to the build point of the tile.
-                gridHighlight.gameObject.SetActive(true);
-                gridHighlight.position = tileInfo.transform.position;
-                
-                // Reset local tower variables and deactivate any tower specific vfx (i.e. detection radius cylinder).
-                ClearLocalTower();
-                
-                // -- Detection Radius Cylinder activation & FixedTargetTower retargeting --
-                // Check if a tower is in this spot...IF there is a tower, show the range of the tower by activating the detection radius cylinder.
-                if (!tileInfo.isTileAvailable)
+                //IF isInfiniteCash is false...and then IF the cost of the tower is less than or equal to the amount of cash available...
+                if (!Cheats.Instance.isInfiniteCash)
                 {
-                    var towerIsSelecting = _localFixedTargetTower && _localFixedTargetTower.isSelectingTarget;
-                    if (!towerIsSelecting)
-                    {
-                        Physics.OverlapSphereNonAlloc(tileInfo.transform.position, 2, _localColliders, towerLayerMask);
-                        foreach (var localCollider in _localColliders)
-                        {
-                            if (localCollider)
-                            {
-                                if (localCollider.TryGetComponent(out _localTower))
-                                {
-                                    if (_localTower.detectionRadiusCylinder)
-                                    {
-                                        _localTower.detectionRadiusCylinder.SetActive(true);
-                                    }
-                                    else if (_localTower.TryGetComponent(out _localFixedTargetTower))
-                                    {
-                                        _localFixedTargetTower.isSelectingTarget = true;
-                                        _localFixedTargetTower.targetHighlight.SetActive(true);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                //IF a tower in the tower menu has been selected...
-                if (heldTower)
-                {
-                    //IF the tile is unoccupied...
-                    if (tileInfo.isTileAvailable)
-                    {
-                        //IF isInfiniteCash is false...and then IF the cost of the tower is less than or equal to the amount of cash available...
-                        if (!Cheats.Instance.isInfiniteCash)
-                        {
-                            // if (chosenTower.GetComponent<Towers.Tower>().towerCost <= playerStatsScript.cash)
-                            // {
-                            //     //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
-                            //     playerStatsScript.SpendCash(chosenTower.GetComponent<Towers.Tower>().towerCost);
-                            //     Build(tileInfo);
-                            // }
+                    // if (chosenTower.GetComponent<Towers.Tower>().towerCost <= playerStatsScript.cash)
+                    // {
+                    //     //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
+                    //     playerStatsScript.SpendCash(chosenTower.GetComponent<Towers.Tower>().towerCost);
+                    //     Build(tileInfo);
+                    // }
                                 
-                            //TODO: This
-                            // if (towerAndAbilitiesInfo[chosenTower].towerCost <= playerStatsScript.cash)
-                            // {
-                            //     
-                            // }
-                            if (heldTower.towerCost <= Player.PlayerStats.Instance.cash)
-                            {
-                                //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
-                                Player.PlayerStats.Instance.SpendCash(heldTower.towerCost);
-                                Build(tileInfo);
-                            }
-                        }
-                        //ELSE...Instantiate a new tower on the build point, and set chosenTower to null.
-                        else
-                        {
-                            //Call Build with the tileInfo component.
-                            Build(tileInfo);
-                        }
-                    }
-                    //ELSE...clear the chosenTower and hologramTower variables, and destroy the _activeHologramTower gameobject.
-                    else
+                    //TODO: This
+                    // if (towerAndAbilitiesInfo[chosenTower].towerCost <= playerStatsScript.cash)
+                    // {
+                    //     
+                    // }
+                    if (heldTower.towerCost <= Player.PlayerStats.Instance.cash)
                     {
-                        heldTower = null;
-                        Destroy(_activeHologramTower);
+                        //Call SpendCash with the cost of the tower, and then call Build with the tileInfo component.
+                        Player.PlayerStats.Instance.SpendCash(heldTower.towerCost);
+                        Build(tileInfo);
                     }
                 }
+                //ELSE...Instantiate a new tower on the build point, and set chosenTower to null.
+                else
+                {
+                    //Call Build with the tileInfo component.
+                    Build(tileInfo);
+                }
+            }
+            //ELSE...clear the chosenTower and hologramTower variables, and destroy the _activeHologramTower gameobject.
+            else
+            {
+                heldTower = null;
+                Destroy(_activeHologramTower);
+            }
+        }
+    }
+    
+    private bool HandleArtilleryTargetPlacement() {
+        // IF there is a lastPlacedTower...Try get it's FixedTargetTower component...IF successful...set targeting position.
+        if (!_lastPlacedTower || !_lastPlacedTower.TryGetComponent<FixedTargetTower>(out var fixedTargetTower)) return false;
+        
+        // IF the fixed target type tower is selecting a target...confirm its target.
+        if (!fixedTargetTower.isSelectingTarget) return false;
+        fixedTargetTower.ConfirmTarget();
+        return true;
+    }
+
+    private bool FireRayAtClickPoint(out TileInfo tileInfo) {
+        tileInfo = null;
+
+        // Ensure there is a main camera (to fire a ray from) before continuing.
+        if (!Camera.main) return false;
+        
+        // Conduct a raycast from the camera to where the player has clicked, and store it.
+        var ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        
+        // IF the raycast hits something on the specified layer mask...continue.
+        if (!Physics.Raycast(ray, out var hitInfo, 10000, terrainLayerMask)) return false;
+        
+        // Get the TileInfo component from the tile's child, and store it.
+        tileInfo = hitInfo.collider.GetComponentInChildren<TileInfo>();
+        return true;
+    }
+
+    private void HighlightTile(TileInfo inTileInfo) {
+        //Ensures the grid highlight object is set to active, and moves it to the build point (top surface) of the tile.
+        gridHighlight.gameObject.SetActive(true);
+        gridHighlight.position = inTileInfo.transform.position;
+        
+        // Reset local tower variables and deactivate any tower specific vfx (i.e. detection radius cylinder).
+        ClearLocalTower();
+        
+        // -- Detection Radius Cylinder activation & FixedTargetTower retargeting --
+        // Check if a tower is in this spot...IF there is a tower, show the range of the tower by activating the detection radius cylinder.
+        if (!inTileInfo.isTileAvailable)
+        {
+            // IF the tower in this spot is a fixed target tower...ensure it is not actively selecting a target.
+            var towerIsSelecting = _localFixedTargetTower && _localFixedTargetTower.isSelectingTarget;
+            if (towerIsSelecting) return;
+            
+            // Get local tower colliders.
+            Physics.OverlapSphereNonAlloc(inTileInfo.transform.position, 1, _localColliders, towerLayerMask);
+            
+            // Find the closest tower.
+            Collider closestCollider = null;
+            var closestDistance = float.MaxValue;
+            foreach (var localCollider in _localColliders) {
+                if (!localCollider) continue;
+                
+                var distance = Vector3.Distance(inTileInfo.transform.position, localCollider.transform.position);
+                if (distance < closestDistance) {
+                    closestCollider = localCollider;
+                    closestDistance = distance;
+                }
+            }
+            
+            // Ensures a tower is found && that the closest one is determined before continuing.
+            if (!closestCollider || !closestCollider.TryGetComponent(out _localTower)) return;
+            // IF the tower has detection radius cylinder...activate the cylinder...ELSE IF it's a fixed target tower...allow it to select a new target.
+            if (_localTower.detectionRadiusCylinder) {
+                _localTower.detectionRadiusCylinder.SetActive(true);
+            }
+            else if (_localTower.TryGetComponent(out _localFixedTargetTower)) {
+                _localFixedTargetTower.isSelectingTarget = true;
+                _localFixedTargetTower.targetHighlight.SetActive(true);
             }
         }
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         //IF a tower in the tower menu has been selected...
         if (heldTower)
         {
@@ -223,7 +227,10 @@ public class WorldInteraction : MonoBehaviour
     {
         // Clear localTower's detection radius cylinder or the target highlight...if it exists.
         if (!_localTower) return;
-        if (_localTower.detectionRadiusCylinder) { _localTower.detectionRadiusCylinder.SetActive(false); }
+        if (_localTower.detectionRadiusCylinder) {
+            Debug.Log($"Clearing the radius cylinder of: {_localTower.gameObject.name}");
+            _localTower.detectionRadiusCylinder.SetActive(false);
+        }
         else if (_localFixedTargetTower) { _localFixedTargetTower.targetHighlight.SetActive(false); }
         _localTower = null;
         _localFixedTargetTower = null;
