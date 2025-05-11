@@ -134,8 +134,8 @@ namespace Enemies
 
         private void OnDestroy()
         {
-            //On destruction of this game object, remove 1 from the thisWavesEnemies value.
-            GameState.Instance.thisWavesEnemies--;
+            //On destruction of this game object, remove 1 from the totalWaveEnemyCount value.
+            GameState.Instance.totalWaveEnemyCount--;
         }
     }
 }

@@ -95,7 +95,7 @@ public class UserInterface : MonoBehaviour
             //Set active state for the "Active Wave" UI object.
             activeWavePanel.SetActive(false);
             //Set Wave text values.
-            waveText.SetText("Wave: " + GameState.Instance.waveNumber + "/10");
+            waveText.SetText($"Wave: {GameState.Instance.WaveNumber}/{GameState.Instance.waveCompositions.Length}");
         }
         //ELSE IF the active scene's name IS "MainMenu"...set anything that needs to be disabled as such.
         else if (_currentScene.name == "MainMenu")
@@ -200,20 +200,16 @@ public class UserInterface : MonoBehaviour
         {
             //Wait 1 second...then set text to the value of gameTime (Converted from float value to minutes and seconds), then increase the value of gameTime by 1.
             yield return new WaitForSeconds(1);
-            gameTimerText.SetText(System.TimeSpan.FromSeconds(_gameTime).ToString("mm':'ss"));
+            gameTimerText.SetText(TimeSpan.FromSeconds(_gameTime).ToString("mm':'ss"));
             _gameTime++;
         }
     }
 
-    public void PlayButton()
-    {
-        //IF the game is currently in between waves...
-        if(GameState.Instance.isInterWave)
-        {
-            //Advance to next wave and set isInterWave to false.
-            GameState.Instance.waveNumber++;
-            GameState.Instance.isInterWave = false;
-        }
+    public void PlayButton() {
+        // Ensures the game is currently between waves before continuing.
+        if (!GameState.Instance.IsInterWave) return;
+        // Start the next wave.
+        StartCoroutine(GameState.Instance.Wave(GameState.Instance.waveCompositions[GameState.Instance.WaveNumber].waveComposition));
     }
 
     public void WaterAbility1()

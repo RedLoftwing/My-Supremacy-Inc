@@ -8201,11 +8201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918192960c3691b4fa51e0a9c2b62c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveNumber: 0
-  isInterWave: 0
   isSpawningActive: 0
   isSpawnZoneOccupied: 0
-  thisWavesEnemies: 0
+  totalWaveEnemyCount: 0
   spawnPoint: {fileID: 531673222}
   numberOfPumpingStations: 0
   unitPrefabs:
@@ -8214,6 +8212,17 @@ MonoBehaviour:
   - {fileID: 913257598907012746, guid: 522b80c3aab51424a95fc78d8f517974, type: 3}
   - {fileID: 4341621959466864014, guid: 4b19839399bc10a48a6f021bbe04d157, type: 3}
   - {fileID: 3031343933564001086, guid: ccb544820ecfc7a418531fcc32884975, type: 3}
+  waveCompositions:
+  - waveComposition: 0500000000000000000000000000000000000000
+  - waveComposition: 0800000003000000000000000000000000000000
+  - waveComposition: 0a00000003000000000000000000000000000000
+  - waveComposition: 0c00000005000000020000000000000000000000
+  - waveComposition: 0f00000005000000040000000000000000000000
+  - waveComposition: 120000000a000000060000000100000000000000
+  - waveComposition: 140000000e000000080000000300000000000000
+  - waveComposition: 140000000e0000000a0000000400000000000000
+  - waveComposition: 16000000100000000a0000000600000002000000
+  - waveComposition: 16000000100000000e0000000800000004000000
 --- !u!114 &326924685
 MonoBehaviour:
   m_ObjectHideFlags: 0

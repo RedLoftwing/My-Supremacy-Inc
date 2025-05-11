@@ -46,7 +46,7 @@ namespace Towers
         private IEnumerator FireWeapon()
         {
             //Checks if the game is in between waves. If it is, the weapon will not fire.
-            if (!GameState.Instance.isInterWave)
+            if (!GameState.Instance.IsInterWave)
             {
                 //Sets isFireRunning to true. Prevents constant execution of FireTurret.
                 isFireRunning = true;
