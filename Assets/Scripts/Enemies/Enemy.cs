@@ -27,10 +27,10 @@ namespace Enemies
         {
             //Sets _defaultHealth value.
             _defaultHealth = health;
-
+            
             //Set up the spline to use and follow along.
-            _splineAnimate = this.GetComponent<SplineAnimate>();
-            var splineTag = !this.CompareTag("Aerial") ? "Spline1" : "Spline2";
+            _splineAnimate = GetComponent<SplineAnimate>();
+            var splineTag = !CompareTag("Aerial") ? "Spline1" : "Spline2";
             _splineAnimate.Container = GameObject.FindGameObjectWithTag(splineTag).GetComponent<SplineContainer>();
             _splineAnimate.Play();
         }

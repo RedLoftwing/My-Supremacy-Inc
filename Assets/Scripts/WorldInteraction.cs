@@ -207,10 +207,7 @@ public class WorldInteraction : MonoBehaviour
     {
         // Clear localTower's detection radius cylinder or the target highlight...if it exists.
         if (!_localTower) return;
-        if (_localTower.detectionRadiusCylinder) {
-            Debug.Log($"Clearing the radius cylinder of: {_localTower.gameObject.name}");
-            _localTower.detectionRadiusCylinder.SetActive(false);
-        }
+        if (_localTower.detectionRadiusCylinder) { _localTower.detectionRadiusCylinder.SetActive(false); }
         else if (_localFixedTargetTower) { _localFixedTargetTower.targetHighlight.SetActive(false); }
         _localTower = null;
         _localFixedTargetTower = null;

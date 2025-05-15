@@ -60,9 +60,9 @@ public class GameState : MonoBehaviour {
             }
         }
         // 123456789
-        // C----B--R
+        // C--S-BO-R
 
-        // Wait until the number of enemies this wave is equal to or less than 0...
+        // Wait until the number of enemies in this wave is equal to or less than 0...
         yield return new WaitUntil(() => totalWaveEnemyCount <= 0);
         // Switch to an inter-wave state from an active wave state.
         GoToActiveWaveState(false);
