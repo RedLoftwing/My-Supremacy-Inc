@@ -18,6 +18,7 @@ MonoBehaviour:
     targetting air units.
   attackTypeInfo: 'Attacks: Infantry, Armour and Air'
   towerCost: 1000
+  targetTypes: 000000000100000002000000
   infantry: 0
   unarmoured: 0
   armoured: 0

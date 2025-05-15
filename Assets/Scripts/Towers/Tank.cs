@@ -26,39 +26,39 @@ namespace Towers
             TowerSpawned();
         }
 
-        private void Update()
-        {
-            availableTargets.RemoveAll(target => target == null || !target.activeInHierarchy);
-            
-            _cannonCooldown -= Time.deltaTime;
-            _machineGunCooldown -= Time.deltaTime;
-            
-            switch (availableTargets.Count)
-            {
-                case > 0:
-                    float singleStep = scriptableObject.rotationSpeed * Time.deltaTime;
-                    if(_cannonTarget) RotateTurret(horizontalTurret[0], singleStep, 'y', _cannonTarget.gameObject);
-                    if (_machineGunTarget && _machineGunTarget.gameObject.CompareTag("Aerial"))
-                    {
-                        RotateTurret(horizontalTurret[1], singleStep, 'y', _machineGunTarget.gameObject);
-                        RotateTurret(verticalTurret[1], singleStep, 'x', _machineGunTarget.gameObject);
-                    }
-                    else if (_machineGunTarget)
-                    {
-                        RotateTurret(horizontalTurret[1], singleStep, 'y', _machineGunTarget.gameObject);
-                    }
-                    _attackCannonCoroutine = StartCoroutine(AttackCannon());
-                    _attackMachineGunCoroutine = StartCoroutine(AttackMachineGun());
-                    break;
-                case <= 0 when _attackCannonCoroutine != null && _attackMachineGunCoroutine != null:
-                    StopCoroutine(_attackCannonCoroutine);
-                    StopCoroutine(_attackMachineGunCoroutine);
-                    _attackCannonCoroutine = null;
-                    _attackMachineGunCoroutine = null;
-                    foreach (var pS in particleSystems) { pS.Stop(); }
-                    break;
-            }
-        }
+        // private void Update()
+        // {
+        //     availableTargets.RemoveAll(target => target == null || !target.activeInHierarchy);
+        //     
+        //     _cannonCooldown -= Time.deltaTime;
+        //     _machineGunCooldown -= Time.deltaTime;
+        //     
+        //     switch (availableTargets.Count)
+        //     {
+        //         case > 0:
+        //             float singleStep = scriptableObject.rotationSpeed * Time.deltaTime;
+        //             if(_cannonTarget) RotateTurret(horizontalTurret[0], singleStep, 'y', _cannonTarget.gameObject);
+        //             if (_machineGunTarget && _machineGunTarget.gameObject.CompareTag("Aerial"))
+        //             {
+        //                 RotateTurret(horizontalTurret[1], singleStep, 'y', _machineGunTarget.gameObject);
+        //                 RotateTurret(verticalTurret[1], singleStep, 'x', _machineGunTarget.gameObject);
+        //             }
+        //             else if (_machineGunTarget)
+        //             {
+        //                 RotateTurret(horizontalTurret[1], singleStep, 'y', _machineGunTarget.gameObject);
+        //             }
+        //             _attackCannonCoroutine = StartCoroutine(AttackCannon());
+        //             _attackMachineGunCoroutine = StartCoroutine(AttackMachineGun());
+        //             break;
+        //         case <= 0 when _attackCannonCoroutine != null && _attackMachineGunCoroutine != null:
+        //             StopCoroutine(_attackCannonCoroutine);
+        //             StopCoroutine(_attackMachineGunCoroutine);
+        //             _attackCannonCoroutine = null;
+        //             _attackMachineGunCoroutine = null;
+        //             foreach (var pS in particleSystems) { pS.Stop(); }
+        //             break;
+        //     }
+        // }
 
         private IEnumerator AttackCannon()
         {

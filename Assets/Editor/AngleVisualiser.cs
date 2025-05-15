@@ -17,7 +17,7 @@ namespace Editor
             {
                 foreach (var firePoint in troopTower.firePoints)
                 {
-                    var firePointTransform = firePoint.transform;
+                    var firePointTransform = firePoint.firePointPiece.transform;
                     var distanceBetweenCentreAndFirePoint = firePointTransform.position - transform.position;
                     var trueTotalRadius = troopTower.capsuleCollider.radius - distanceBetweenCentreAndFirePoint.magnitude;
 

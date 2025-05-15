@@ -16,6 +16,7 @@ MonoBehaviour:
   towerDescription: Automatically attacks multiple unarmoured ground targets at once.
   attackTypeInfo: 'Attacks: Infantry'
   towerCost: 150
+  targetTypes: 00000000
   infantry: 0
   unarmoured: 0
   armoured: 0

@@ -17,6 +17,7 @@ MonoBehaviour:
     homing missile.
   attackTypeInfo: 'Attacks: Air'
   towerCost: 300
+  targetTypes: 02000000
   infantry: 0
   unarmoured: 0
   armoured: 0

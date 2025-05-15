@@ -17,6 +17,7 @@ MonoBehaviour:
     warhead.
   attackTypeInfo: 'Attacks: Armour'
   towerCost: 275
+  targetTypes: 01000000
   infantry: 0
   unarmoured: 0
   armoured: 0

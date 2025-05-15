@@ -6,7 +6,7 @@ namespace Towers
     public class TroopEncampment : ProximityTowerMultiTarget
     {
         public float maxAngle;
-        public Transform[] firePoints;
+        //public Transform[] firePoints;
         private float[] _firePointCooldowns;
         public ParticleSystem[] particleSystems;
         private float _cosMaxAngle;
@@ -51,7 +51,7 @@ namespace Towers
         {
             for (int i = 0; i < firePoints.Length; i++)
             {
-                var target = DetectSingleTarget(firePoints[i]);
+                var target = DetectSingleTarget(firePoints[i].firePointPiece.transform);
 
                 if (target != null)
                 {

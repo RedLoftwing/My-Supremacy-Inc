@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: -7363565693864074823}
   - component: {fileID: -3519644581296255747}
   - component: {fileID: -7541567391150948753}
+  - component: {fileID: 3679738672515326866}
   m_Layer: 8
   m_Name: MSI-ATEmplacement
   m_TagString: Untagged
@@ -450,26 +451,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6456349710716917000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04145f4f48feb484c94355de52c6c5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableObject: {fileID: 11400000, guid: 41fb4cb685845694a8ba302066d0752a, type: 2}
-  horizontalTurret:
-  - {fileID: 8461237496327610558}
-  verticalTurret: []
-  validTargets:
-  - Armoured
+  turretAxes: []
+  firePoints: []
+  nearbyTargets: []
   capsuleCollider: {fileID: 0}
-  towerLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
   detectionRadiusCylinder: {fileID: 2597101263447433786}
-  isFireRunning: 0
-  weaponFire: {fileID: -7541567391150948753}
-  hasExplosiveAmmo: 1
-  explosiveEffect: {fileID: 8158747274008320101, guid: 407c5728110a5914f8e977473a52b157, type: 3}
   smokePlumes:
   - {fileID: 2827852169169566139}
   - {fileID: 3440375648285389856}
@@ -570,6 +562,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3679738672515326866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456349710716917000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b529bcc10e1b6a344ba215ff0e5a69df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableObject: {fileID: 0}
+  turretAxes: []
+  firePoints:
+  - firePointPiece: {fileID: 8131503390887331497}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0
+    target: {fileID: 0}
+    particleSystem: {fileID: 0}
+    isFiring: 0
+  nearbyTargets: []
+  capsuleCollider: {fileID: 0}
+  detectionRadiusCylinder: {fileID: 0}
 --- !u!1 &7166637717176198419
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +649,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 46037937473110784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8131503390887331497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4322473989410662202}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4322473989410662202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131503390887331497}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.011924, y: 0.0003, z: 0.01164}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4588662789006646099}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &8461237496327610558
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +711,7 @@ Transform:
   m_Children:
   - {fileID: 2850499350116257076}
   - {fileID: 6271825449184882153}
+  - {fileID: 4322473989410662202}
   m_Father: {fileID: 2070231081060851453}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &8983410929343865900

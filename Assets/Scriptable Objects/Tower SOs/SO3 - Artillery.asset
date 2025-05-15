@@ -17,6 +17,7 @@ MonoBehaviour:
     deals strong damage to ground units within it's explosive radius.
   attackTypeInfo: 'Attacks: Infantry and Armour'
   towerCost: 600
+  targetTypes: 0000000001000000
   infantry: 0
   unarmoured: 0
   armoured: 0
