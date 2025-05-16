@@ -70,10 +70,13 @@ namespace Towers
                             foreach (var validTarget in validTargets)
                             {
                                 //IF an enemy tag matches a validTarget string...Deal damage to each enemy.
-                                if (enemyToDamage.CompareTag(validTarget))
-                                {
+                                if (enemyToDamage.CompareTag(validTarget)) {
+                                    var damageToDeal = Damage;
                                     //TODO: Alert so defaultDamage influences the damage value used (Could be affected by nearby Intel Centres). Maybe look at this script's parent class (FixedTargetTower) function ManualUpdate.
-                                    enemyToDamage.DecreaseHealth(scriptableObject.defaultDamage);
+                                    if (enemyToDamage.CompareTag("Armoured")) {
+                                        damageToDeal *= 2f;
+                                    }
+                                    enemyToDamage.DecreaseHealth(damageToDeal);
                                 }
                             }
                         }

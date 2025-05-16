@@ -6122,7 +6122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &250037245
 Transform:
   m_ObjectHideFlags: 0
@@ -8204,7 +8204,6 @@ MonoBehaviour:
   isSpawningActive: 0
   isSpawnZoneOccupied: 0
   totalWaveEnemyCount: 0
-  spawnPoint: {fileID: 531673222}
   numberOfPumpingStations: 0
   unitPrefabs:
   - {fileID: 457507351964597292, guid: 4591b37d1e2e8b549a7debd1ad192cc4, type: 3}
@@ -12156,11 +12155,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6600477478216940264, guid: aca2b09d1b47e4e4da8a5ce993081440, type: 3}
   m_PrefabInstance: {fileID: 530387507}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &531673222 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5707718110026842377, guid: 9595f57f0627a964e88dedf8d3a873ca, type: 3}
-  m_PrefabInstance: {fileID: 805066962}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &537790037
 PrefabInstance:

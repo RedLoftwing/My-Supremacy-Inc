@@ -115,7 +115,7 @@ namespace Towers
                             case "Artillery":
                                 if (Math.Abs(RateOfFire - scriptableObject.defaultRateOfFire) < difference)
                                 {
-                                    RateOfFire *= 1.4f;
+                                    RateOfFire /= 1.4f;
                                 }
                                 break;
                             default:
