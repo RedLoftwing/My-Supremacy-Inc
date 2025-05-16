@@ -86,8 +86,7 @@ public class UserInterface : MonoBehaviour
         }
         
         //IF the active scene's name is NOT "MainMenu"...then proceed with setting gameplay variables.
-        if (_currentScene.name != "MainMenu")
-        {
+        if (_currentScene.name != "MainMenu") {
             //Game Timer values set to default. Calls coroutine to start timer.
             _gameTime = 0;
             gameTimerText.SetText(System.TimeSpan.FromSeconds(_gameTime).ToString("mm':'ss"));
@@ -96,10 +95,18 @@ public class UserInterface : MonoBehaviour
             activeWavePanel.SetActive(false);
             //Set Wave text values.
             waveText.SetText($"Wave: {GameState.Instance.WaveNumber}/{GameState.Instance.waveCompositions.Length}");
+            
+            //Set panel position points.
+            _towerPanelPoint[0] = towerInfoPanel.transform.position;
+            _towerPanelPoint[1] = new Vector3(_towerPanelPoint[0].x - 214.5f, _towerPanelPoint[0].y, _towerPanelPoint[0].z);
+            _abilityPanelPoint[0] = abilityInfoPanel.transform.position;
+            _abilityPanelPoint[1] = new Vector3(_abilityPanelPoint[0].x, _abilityPanelPoint[0].y + 165, _abilityPanelPoint[0].z);
+        
+            //
+            AllowPurchasableSelection();
         }
         //ELSE IF the active scene's name IS "MainMenu"...set anything that needs to be disabled as such.
-        else if (_currentScene.name == "MainMenu")
-        {
+        else if (_currentScene.name == "MainMenu") {
             //Gets the Button components from each of the children objects, and stores them in the childrenComponents array.
             var childrenComponents = enemySpawnSection.GetComponentsInChildren<Button>();
             //For each button in the childrenComponents array... 
@@ -109,19 +116,10 @@ public class UserInterface : MonoBehaviour
                 button.interactable = false;
             }
         }
-        
-        //Set panel position points.
-        _towerPanelPoint[0] = towerInfoPanel.transform.position;
-        _towerPanelPoint[1] = new Vector3(_towerPanelPoint[0].x - 214.5f, _towerPanelPoint[0].y, _towerPanelPoint[0].z);
-        _abilityPanelPoint[0] = abilityInfoPanel.transform.position;
-        _abilityPanelPoint[1] = new Vector3(_abilityPanelPoint[0].x, _abilityPanelPoint[0].y + 165, _abilityPanelPoint[0].z);
-        
-        //
-        AllowPurchasableSelection();
     }
 
-    private void Update()
-    {
+    private void Update() {
+        if (_currentScene.name == "MainMenu") return;
         PanelSlide(isCursorOverTowerButton, ref _towerCursorHoverTimer, towerInfoPanel, _towerPanelPoint);
         PanelSlide(isCursorOverAbilityButton, ref _abilityCursorHoverTimer, abilityInfoPanel, _abilityPanelPoint);
     }

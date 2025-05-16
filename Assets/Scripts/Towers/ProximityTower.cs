@@ -47,13 +47,13 @@ namespace Towers
                                     capsuleCollider.radius = Range * Cheats.Instance.variableTowerRangeSlider.value;
                                 }
                                 break;
-                            case "ATEmplacement":
+                            case "Anti-Tank Emplacement":
                                 if (Math.Abs(Damage - scriptableObject.defaultDamage) < difference)
                                 {
                                     Damage *= 1.4f;
                                 }
                                 break;
-                            case "AAA":
+                            case "Anti-Aircraft Artillery":
                                 if (Math.Abs(RateOfFire - scriptableObject.defaultRateOfFire) < difference)
                                 {
                                     RateOfFire /= 2;
