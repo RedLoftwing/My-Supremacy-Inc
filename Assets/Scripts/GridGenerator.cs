@@ -16,14 +16,18 @@ public class GridGenerator : MonoBehaviour
 
     public Vector3 GetNearestPointOnGrid(Vector3 pos)
     {
-        //Divides the X, Y and Z values of the position by the grid frequency value, and rounds it to the nearest int.
-        int xCount = Mathf.RoundToInt(pos.x / gridFrequency);
-        int yCount = Mathf.RoundToInt(pos.y / gridFrequency);
-        int zCount = Mathf.RoundToInt(pos.z / gridFrequency);
-        //Creates a new vector, result, using the rounded X, Y and Z values and multiplying them by the grid frequency. 
-        Vector3 result = new Vector3(xCount * gridFrequency, yCount * gridFrequency, zCount * gridFrequency);
-        //Returns the centered position to caller.
-        return result;
+        ////Divides the X, Y and Z values of the position by the grid frequency value, and rounds it to the nearest int.
+        //int xCount = Mathf.RoundToInt(pos.x / gridFrequency);
+        //int yCount = Mathf.RoundToInt(pos.y / gridFrequency);
+        //int zCount = Mathf.RoundToInt(pos.z / gridFrequency);
+        ////Creates a new vector, result, using the rounded X, Y and Z values and multiplying them by the grid frequency. 
+        //Vector3 result = new Vector3(xCount * gridFrequency, yCount * gridFrequency, zCount * gridFrequency);
+        ////Returns the centered position to caller.
+        //return result;
+        int x = Mathf.RoundToInt(pos.x);
+        int y = Mathf.RoundToInt(pos.y);
+        int z = Mathf.RoundToInt(pos.z);
+        return new Vector3(x, y, z);
     }
 
     private void OnDrawGizmos()

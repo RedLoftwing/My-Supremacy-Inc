@@ -1,92 +1,128 @@
+using Enemies;
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static Towers.Tower;
 
-namespace Towers
-{
-    public class Artillery : FixedTargetTower
-    {
-        [SerializeField] private Vector3 midPoint;
+namespace Towers {
+    public class Artillery : Tower {
+        [Header("Artillery Specific Variables")]
+        [SerializeField] private LayerMask terrainLayerMask;
+        [SerializeField] private LayerMask enemyLayerMask;
+        [HideInInspector] public bool isSelectingTarget;
 
+        public GameObject targetHighlight;
+        [SerializeField] private Animator artyBarrelAnimator;
         [SerializeField] private GameObject explosionPrefab;
         [SerializeField] private float explosionRadius;
-        [SerializeField] private LayerMask enemyLayerMask;
-        private GameObject _explosion;
+        private Collider[] enemyColliders = new Collider[100];
 
-        [SerializeField] private GameObject barrel;
-
-        [SerializeField] private Quaternion lookAtMidPoint;
-        [SerializeField] private Quaternion limitLookAtMidPoint;
-
-        [SerializeField] private Vector3 targetDir;
-        [SerializeField] private Animator artyBarrelAnimator;
-
-        private void Awake()
-        {
-            TowerSpawned();
+        protected override void TowerSpawned() {
+            isSelectingTarget = true;
+            base.TowerSpawned();
         }
-        
-        private void Update()
-        {
-            StartCoroutine(ManualUpdate());
 
-            //Calculate the mid-point between the turret and the target, and store as midPoint.
-            midPoint = Vector3.Lerp(horizontalTurret[0].transform.position, currentTarget, 0.5f);
-            //Raise midPoint up to Y: 25.
-            midPoint = new Vector3(midPoint.x, 25, midPoint.z);
-            //Rotate the barrel to look at the midpoint.
-            barrel.transform.LookAt(midPoint);
+        public void ConfirmTarget() {
+            isSelectingTarget = false;
+            WorldInteraction.Instance.isClickDisabled = false;
+        }
 
-            //IF isFireRunning is false...start the FireWeapon coroutine.
-            if (!isFireRunning)
-            {
-                StartCoroutine(FireWeapon());
+        protected override void UpdateSystems() {
+            if (isSelectingTarget) SetTargetLocation();
+            if (!GameState.Instance.IsInterWave) {
+                FireWeapon(aimPoints[0], nearbyTargets[0]);
             }
         }
 
-        private IEnumerator FireWeapon()
-        {
-            //Checks if the game is in between waves. If it is, the weapon will not fire.
-            if (!GameState.Instance.IsInterWave)
-            {
-                //Sets isFireRunning to true. Prevents constant execution of FireTurret.
-                isFireRunning = true;
-                //Plays the barrel animation, then wait 1 second.
-                artyBarrelAnimator.SetTrigger("trFire");
-                yield return new WaitForSeconds(0.5f);
-                //Spawn explosion object at current target, and play the explosion sound effect.
-                _explosion = Instantiate(explosionPrefab, currentTarget, Quaternion.identity);
-                weaponFire.Play();
-                //Gathers all colliders within the "explosions" radius...
-                int numColliders = Physics.OverlapSphereNonAlloc(_explosion.transform.position, explosionRadius, Colliders, enemyLayerMask);
-                //IF the number of colliders is greater than 0...then go through each collider, and find the enemy component.
-                if (numColliders > 0)
-                {
-                    for (int i = 0; i < numColliders; i++)
-                    {
-                        var enemyToDamage = Colliders[i].GetComponent<Enemies.Enemy>();
-                        //IF the enemy component is true...Go through each string within the validTargets array, and check if the enemy tag matches any...
-                        if (enemyToDamage != null)
-                        {
-                            foreach (var validTarget in validTargets)
-                            {
-                                //IF an enemy tag matches a validTarget string...Deal damage to each enemy.
-                                if (enemyToDamage.CompareTag(validTarget)) {
-                                    var damageToDeal = Damage;
-                                    //TODO: Alert so defaultDamage influences the damage value used (Could be affected by nearby Intel Centres). Maybe look at this script's parent class (FixedTargetTower) function ManualUpdate.
-                                    if (enemyToDamage.CompareTag("Armoured")) {
-                                        damageToDeal *= 2f;
-                                    }
-                                    enemyToDamage.DecreaseHealth(damageToDeal);
-                                }
-                            }
+        protected override void FireWeapon(AimPoint inAimPoint, GameObject inGO) {
+            aimPoints[0].timeSinceLastFired += Time.deltaTime;
+            if (aimPoints[0].timeSinceLastFired > RateOfFire) StartCoroutine(FireProcedure());
+        }
+
+        private IEnumerator FireProcedure() {
+            // Visualise the firing process. Playing the barrel animation, and each of the particle systems.
+            aimPoints[0].timeSinceLastFired = 0;
+            artyBarrelAnimator.SetTrigger("trFire");
+            foreach (var pS in aimPoints[0].pS) pS.Play();
+            yield return new WaitForSeconds(0.5f);
+
+            // Create explosion at the target point, get all colliders within the radius, and go through each to find the enemy component.
+            Instantiate(explosionPrefab, nearbyTargets[0].transform.position, Quaternion.identity);
+            var numColliders = Physics.OverlapSphereNonAlloc(nearbyTargets[0].transform.position, explosionRadius, enemyColliders, enemyLayerMask);
+            if (numColliders > 0) {
+                for (int i = 0; i < numColliders; i++) {
+                    enemyColliders[i].TryGetComponent<Enemy>(out var enemyToDamage);
+                    if (!enemyToDamage) yield return null;
+                    // Check to ensure that the detected enemy type is a valid target for this tower.
+                    foreach (var targetType in scriptableObject.targetTypes) {
+                        if (enemyToDamage.gameObject.CompareTag(targetType.ToString())) {
+                            // Calculate damage based on if the enemy is "Armoured", then deal damage to it.
+                            var damageToDeal = Damage;
+                            if (enemyToDamage.CompareTag("Armoured")) damageToDeal *= 2f;
+                            enemyToDamage.DecreaseHealth(damageToDeal);
                         }
                     }
                 }
-
-                //Wait set amount of seconds after spawning...then set isFireRunning to false.
-                yield return new WaitForSeconds(RateOfFire);
-                isFireRunning = false;
             }
+
+            //Wait set amount of seconds after spawning...then set isFireRunning to false.
+            yield return new WaitForSeconds(RateOfFire);
+        }
+
+        protected override void UpdateParticleSystem() {
+            foreach (var pS in aimPoints[0].pS) {
+                if (!GameState.Instance.IsInterWave) pS.Play();
+                else pS.Stop();
+            }
+        }
+
+        protected override void CheckTurretRotations() {
+            if (isSelectingTarget) {
+                foreach (var turretAxis in turretAxes) {
+                    if (turretAxis.turretAxisType is not (TurretAxisTypes.Horizontal or TurretAxisTypes.Vertical)) continue;
+                    turretAxis.turretAxisPiece.transform.LookAt(nearbyTargets[0].transform);
+                }
+            }
+        }
+
+        private void SetTargetLocation() {
+            if (!Camera.main) return;
+            var ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 2000, terrainLayerMask)) {
+                //Determines the required terrain Y axis offset.
+                Vector3 terrainOffset;
+                switch (hitInfo.collider.gameObject.tag) {
+                    case "Height-0.0":
+                        terrainOffset = Vector3.zero;
+                        break;
+                    case "Height-2.5":
+                        terrainOffset = new Vector3(0.0f, 2.5f, 0.0f);
+                        //_terrainOffset = Vector3.up * 2.5f;
+                        break;
+                    case "Height-5.0":
+                        terrainOffset = new Vector3(0.0f, 5f, 0.0f);
+                        break;
+                    default:
+                        terrainOffset = Vector3.zero;
+                        break;
+                }
+
+                // Ensures the target highlight object is set to active.
+                targetHighlight.gameObject.SetActive(true);
+
+                // Set targetHighlight and the nearbyTarget to the impact point of the raycast.
+                var tilePos = hitInfo.collider.gameObject.transform.position;
+                targetHighlight.transform.position = tilePos + terrainOffset;
+                nearbyTargets[0].transform.position = tilePos + terrainOffset;
+
+                CheckTurretRotations();
+            }
+        }
+
+        private void OnDrawGizmos() {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(nearbyTargets[0].transform.position, explosionRadius);
         }
     }
 }

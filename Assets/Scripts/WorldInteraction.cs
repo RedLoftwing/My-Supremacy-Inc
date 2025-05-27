@@ -7,7 +7,7 @@ public class WorldInteraction : MonoBehaviour
 {
     public static WorldInteraction Instance { get; private set; }
 
-    public static bool IsClickDisabled;
+    public bool isClickDisabled;
     [SerializeField] private Transform gridHighlight;
     public SO_Scripts.TowerInfo heldTower;
     private GameObject _lastPlacedTower;
@@ -24,7 +24,9 @@ public class WorldInteraction : MonoBehaviour
     
     private readonly Collider[] _localColliders = new Collider[10];
     private Tower _localTower;
-    private FixedTargetTower _localFixedTargetTower;
+    //private FixedTargetTower _localFixedTargetTower;
+    //private Tower _localFixedTargetTower;
+    private Artillery _localFixedTargetTower;
     
     private void Awake() {
         if (Instance == null) { Instance = this; }
@@ -33,14 +35,14 @@ public class WorldInteraction : MonoBehaviour
     
     private void Update()  {
         // Prevents interaction of elements behind UI. IsPointerOverGameObject? (UI), if true, marks click disabled as true.
-        IsClickDisabled = EventSystem.current.IsPointerOverGameObject();
+        isClickDisabled = EventSystem.current.IsPointerOverGameObject();
     }
 
     public void OnLeftMouseButton() {
         if (HandleArtilleryTargetPlacement()) return;
 
         // Ensure the pointer is not over UI before continuing.
-        if (IsClickDisabled) return;
+        if (isClickDisabled) return;
         // Ensure there is a tile hit by the ray before continuing. 
         if (!FireRayAtClickPoint(out var tileInfo)) return;
         
@@ -55,11 +57,12 @@ public class WorldInteraction : MonoBehaviour
     
     private bool HandleArtilleryTargetPlacement() {
         // IF there is a lastPlacedTower...Try get it's FixedTargetTower component...IF successful...set targeting position.
-        if (!_lastPlacedTower || !_lastPlacedTower.TryGetComponent<FixedTargetTower>(out var fixedTargetTower)) return false;
+        //if (!_lastPlacedTower || !_lastPlacedTower.TryGetComponent<FixedTargetTower>(out var fixedTargetTower)) return false;
+        if (!_lastPlacedTower || !_lastPlacedTower.TryGetComponent<Artillery>(out var artilleryTower)) return false;
         
         // IF the fixed target type tower is selecting a target...confirm its target.
-        if (!fixedTargetTower.isSelectingTarget) return false;
-        fixedTargetTower.ConfirmTarget();
+        if (!artilleryTower.isSelectingTarget) return false;
+        artilleryTower.ConfirmTarget();
         return true;
     }
 

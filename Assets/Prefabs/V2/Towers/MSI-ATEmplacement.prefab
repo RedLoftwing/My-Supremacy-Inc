@@ -284,6 +284,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4850969800125943549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5285946233869321938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6634413772956198292}
+  m_Layer: 0
+  m_Name: AimPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6634413772956198292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5285946233869321938}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.011924, y: 0.0003, z: 0.01164}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4588662789006646099}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5354081126798736525
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,8 +422,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4939510230977988890}
   - component: {fileID: -7363565693864074823}
-  - component: {fileID: -3519644581296255747}
   - component: {fileID: -7541567391150948753}
+  - component: {fileID: 7942461970288724386}
   m_Layer: 8
   m_Name: MSI-ATEmplacement
   m_TagString: Untagged
@@ -443,37 +474,6 @@ CapsuleCollider:
   m_Height: 400
   m_Direction: 1
   m_Center: {x: 0, y: 5, z: 0}
---- !u!114 &-3519644581296255747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6456349710716917000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04145f4f48feb484c94355de52c6c5ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableObject: {fileID: 11400000, guid: 41fb4cb685845694a8ba302066d0752a, type: 2}
-  horizontalTurret:
-  - {fileID: 8461237496327610558}
-  verticalTurret: []
-  validTargets:
-  - Armoured
-  capsuleCollider: {fileID: 0}
-  towerLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  detectionRadiusCylinder: {fileID: 2597101263447433786}
-  isFireRunning: 0
-  weaponFire: {fileID: -7541567391150948753}
-  hasExplosiveAmmo: 1
-  explosiveEffect: {fileID: 8158747274008320101, guid: 407c5728110a5914f8e977473a52b157, type: 3}
-  smokePlumes:
-  - {fileID: 2827852169169566139}
-  - {fileID: 3440375648285389856}
-  - {fileID: 7560113691336230852}
 --- !u!82 &-7541567391150948753
 AudioSource:
   m_ObjectHideFlags: 0
@@ -570,6 +570,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7942461970288724386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456349710716917000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b529bcc10e1b6a344ba215ff0e5a69df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableObject: {fileID: 11400000, guid: 41fb4cb685845694a8ba302066d0752a, type: 2}
+  turretAxes:
+  - turretAxisPiece: {fileID: 8461237496327610558}
+    turretAxisType: 0
+    dot: 0
+    turretRotationSpeed: 36
+  aimPoints:
+  - aimPointPiece: {fileID: 5285946233869321938}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.925
+    target: {fileID: 0}
+    pS:
+    - {fileID: 2827852169169566139}
+    - {fileID: 7560113691336230852}
+    - {fileID: 3440375648285389856}
+  capsuleCollider: {fileID: -7363565693864074823}
+  detectionRadiusCylinder: {fileID: 2597101263447433786}
+  nearbyTargets: []
 --- !u!1 &7166637717176198419
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +693,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2850499350116257076}
+  - {fileID: 6634413772956198292}
   - {fileID: 6271825449184882153}
   m_Father: {fileID: 2070231081060851453}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}

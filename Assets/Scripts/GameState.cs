@@ -41,11 +41,11 @@ public class GameState : MonoBehaviour {
         WaveNumber++;
         UserInterface.Instance.waveText.SetText($"Wave: {WaveNumber}/{waveCompositions.Length}");
         
-        // Switch to an active wave state from an inter-wave state.
-        GoToActiveWaveState(true);
-
         // Set the number of enemies present in this wave.
         totalWaveEnemyCount = thisWaveComposition[0] + thisWaveComposition[1] + thisWaveComposition[2] + thisWaveComposition[3] + thisWaveComposition[4];
+
+        // Switch to an active wave state from an inter-wave state.
+        GoToActiveWaveState(true);
 
         // Goes through each unit class type within the requested wave composition.
         for (var unitType = 0; unitType < thisWaveComposition.Length; unitType++) {

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8374330857399854647}
   - component: {fileID: 8076364408459802960}
   - component: {fileID: 5938436193204751525}
-  - component: {fileID: 8183835700673504366}
   - component: {fileID: 2357775616472272696}
+  - component: {fileID: 977952835196010375}
   m_Layer: 8
   m_Name: MSI-Encampment
   m_TagString: Untagged
@@ -123,64 +123,6 @@ CapsuleCollider:
   m_Height: 400
   m_Direction: 1
   m_Center: {x: 0, y: 5, z: 0}
---- !u!114 &8183835700673504366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15016957066617091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7c7e4e2949b4cc4fbf1938d33b7e93d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableObject: {fileID: 11400000, guid: ef9cff6c56f54ac4690bfb5f7cba46e0, type: 2}
-  horizontalTurret:
-  - {fileID: 0}
-  verticalTurret:
-  - {fileID: 0}
-  validTargets:
-  - Unarmoured
-  capsuleCollider: {fileID: 5938436193204751525}
-  towerLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  detectionRadiusCylinder: {fileID: 4472326498262718251}
-  isFireRunning: 0
-  weaponFire: {fileID: 2357775616472272696}
-  hasExplosiveAmmo: 0
-  explosiveEffect: {fileID: 0}
-  availableTargets: []
-  maxAngle: 60
-  firePoints:
-  - {fileID: 1000959961312264387}
-  - {fileID: 6020952078267641659}
-  - {fileID: 980336164484250968}
-  - {fileID: 6423858611720578721}
-  - {fileID: 4289468279235709542}
-  - {fileID: 4596872024603626006}
-  - {fileID: 6144600874338504439}
-  - {fileID: 7991560415474313238}
-  - {fileID: 2136383330028946076}
-  - {fileID: 4736127405537317745}
-  - {fileID: 1044744760219518733}
-  - {fileID: 2619977021400997596}
-  particleSystems:
-  - {fileID: 1703975731259492553}
-  - {fileID: 3845979870197786871}
-  - {fileID: 669891320397641047}
-  - {fileID: 6904550577386640414}
-  - {fileID: 9185409255394238782}
-  - {fileID: 1457901579645290472}
-  - {fileID: 7857839390392364010}
-  - {fileID: 6613175070823239430}
-  - {fileID: 1249359846837918589}
-  - {fileID: 1145141843905480230}
-  - {fileID: 8553148388790026064}
-  - {fileID: 4621851470882310026}
-  showFireAngles: 0
-  showParticleSystems: 1
 --- !u!82 &2357775616472272696
 AudioSource:
   m_ObjectHideFlags: 0
@@ -277,6 +219,110 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &977952835196010375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15016957066617091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b529bcc10e1b6a344ba215ff0e5a69df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableObject: {fileID: 11400000, guid: ef9cff6c56f54ac4690bfb5f7cba46e0, type: 2}
+  turretAxes: []
+  firePoints:
+  - firePointPiece: {fileID: 4072437738576234849}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 1703975731259492553}
+  - firePointPiece: {fileID: 4915931972921359191}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 3845979870197786871}
+  - firePointPiece: {fileID: 7851187816533845341}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 669891320397641047}
+  - firePointPiece: {fileID: 3293334103391152411}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 6904550577386640414}
+  - firePointPiece: {fileID: 8401288555584229727}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 9185409255394238782}
+  - firePointPiece: {fileID: 2575521806858086309}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 1457901579645290472}
+  - firePointPiece: {fileID: 8310624427481742877}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 7857839390392364010}
+  - firePointPiece: {fileID: 7891360587540161725}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 6613175070823239430}
+  - firePointPiece: {fileID: 2059128791760938912}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 1249359846837918589}
+  - firePointPiece: {fileID: 1759892527302342560}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 1145141843905480230}
+  - firePointPiece: {fileID: 8525416961827758596}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 8553148388790026064}
+  - firePointPiece: {fileID: 5061644714274879341}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.5
+    target: {fileID: 0}
+    pS:
+    - {fileID: 4621851470882310026}
+  nearbyTargets: []
+  capsuleCollider: {fileID: 5938436193204751525}
+  detectionRadiusCylinder: {fileID: 4472326498262718251}
+  isSelectingTarget: 0
+  targetHighlight: {fileID: 0}
 --- !u!1 &1759892527302342560
 GameObject:
   m_ObjectHideFlags: 0
