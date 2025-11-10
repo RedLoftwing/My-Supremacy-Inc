@@ -16,7 +16,9 @@ MonoBehaviour:
   towerDescription: Pumps more water per round. Allowing you to use abilities more
     frequently.
   attackTypeInfo: N/A
+  towerType: 2
   towerCost: 150
+  targetTypes: 
   infantry: 0
   unarmoured: 0
   armoured: 0

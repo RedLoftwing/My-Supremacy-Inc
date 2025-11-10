@@ -72,9 +72,9 @@ namespace Enemies
             if (isExplosive)
             {
                 Instantiate(explosionVFX, transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(1f);
             }
-
-            yield return new WaitForSeconds(1f);
+            else yield return null;
             
             //Destroy this enemy unit.
             Destroy(gameObject);

@@ -15,6 +15,7 @@ MonoBehaviour:
   towerName: Encampment
   towerDescription: Automatically attacks multiple unarmoured ground targets at once.
   attackTypeInfo: 'Attacks: Infantry'
+  towerType: 1
   towerCost: 150
   targetTypes: 00000000
   infantry: 0

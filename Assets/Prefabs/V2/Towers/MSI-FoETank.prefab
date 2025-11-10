@@ -215,6 +215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1869580612761005441}
   - {fileID: 7753036409558439125}
   - {fileID: 7624741433733342071}
   m_Father: {fileID: 6701089547604348782}
@@ -260,8 +261,8 @@ GameObject:
   m_Component:
   - component: {fileID: 448625401330669786}
   - component: {fileID: 4914381606463560856}
-  - component: {fileID: 8123940676451591995}
   - component: {fileID: -2032007243899067790}
+  - component: {fileID: 5483411598988789735}
   m_Layer: 8
   m_Name: MSI-FoETank
   m_TagString: Untagged
@@ -312,43 +313,6 @@ CapsuleCollider:
   m_Height: 400
   m_Direction: 1
   m_Center: {x: 0, y: 5, z: 0}
---- !u!114 &8123940676451591995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3274802431849024240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ef19b4d3e52f314d94ee3a8097f61b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableObject: {fileID: 11400000, guid: f0c84f02cd9eba1499146b6f2150a1c6, type: 2}
-  horizontalTurret:
-  - {fileID: 4133757038706850571}
-  - {fileID: 4966485095053813844}
-  verticalTurret:
-  - {fileID: 2047725639750605476}
-  - {fileID: 4386027223361725826}
-  validTargets:
-  - Unarmoured
-  - Armoured
-  - Aerial
-  capsuleCollider: {fileID: 0}
-  towerLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  detectionRadiusCylinder: {fileID: 8035674543550252023}
-  isFireRunning: 0
-  weaponFire: {fileID: 4046727170839740952, guid: 99c89509ea6dc7a45928472a417f31b0, type: 3}
-  hasExplosiveAmmo: 1
-  explosiveEffect: {fileID: 8158747274008320101, guid: 407c5728110a5914f8e977473a52b157, type: 3}
-  availableTargets: []
-  particleSystems:
-  - {fileID: 2378272569592667695}
-  - {fileID: 6148375193467214710}
-  - {fileID: 62491301726399537}
 --- !u!82 &-2032007243899067790
 AudioSource:
   m_ObjectHideFlags: 0
@@ -445,6 +409,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5483411598988789735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3274802431849024240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b529bcc10e1b6a344ba215ff0e5a69df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableObject: {fileID: 11400000, guid: f0c84f02cd9eba1499146b6f2150a1c6, type: 2}
+  turretAxes:
+  - turretAxisPiece: {fileID: 4133757038706850571}
+    turretAxisType: 0
+    dot: 0
+    turretRotationSpeed: 10
+  - turretAxisPiece: {fileID: 2047725639750605476}
+    turretAxisType: 1
+    dot: 0
+    turretRotationSpeed: 6
+  - turretAxisPiece: {fileID: 4966485095053813844}
+    turretAxisType: 0
+    dot: 0
+    turretRotationSpeed: 20
+  - turretAxisPiece: {fileID: 4386027223361725826}
+    turretAxisType: 1
+    dot: 0
+    turretRotationSpeed: 20
+  aimPoints:
+  - aimPointPiece: {fileID: 6237584626196662485}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.975
+    validTargetTypes: 0000000001000000
+    target: {fileID: 0}
+    pS:
+    - {fileID: 2378272569592667695}
+    - {fileID: 6148375193467214710}
+  - aimPointPiece: {fileID: 4386027223361725826}
+    timeSinceLastFired: 0
+    dot: 0
+    dotThreshold: 0.985
+    validTargetTypes: 0000000002000000
+    target: {fileID: 0}
+    pS:
+    - {fileID: 62491301726399537}
+  capsuleCollider: {fileID: 4914381606463560856}
+  detectionRadiusCylinder: {fileID: 8035674543550252023}
+  nearbyTargets: []
 --- !u!1 &3684798151868280120
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,6 +901,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 182024176369356311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6237584626196662485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869580612761005441}
+  m_Layer: 0
+  m_Name: Turret Cannon Aimpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1869580612761005441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6237584626196662485}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 625004837798961136}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!1 &6959740483776782292
 GameObject:
   m_ObjectHideFlags: 0

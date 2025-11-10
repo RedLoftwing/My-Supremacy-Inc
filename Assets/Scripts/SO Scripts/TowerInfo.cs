@@ -13,6 +13,13 @@ namespace SO_Scripts
         public string towerName;
         public string towerDescription;
         public string attackTypeInfo;
+        public enum TowerType {
+            NotSelected,
+            Armed,
+            Economic,
+            Intelligence
+        }
+        public TowerType towerType;
         [Header("Expenditure")]
         public int towerCost;
         [Header("Valid Targets")] 

@@ -15,7 +15,9 @@ MonoBehaviour:
   towerName: Intelligence Centre
   towerDescription: Provides a boost to the stats of nearby damage-dealing towers.
   attackTypeInfo: N/A
+  towerType: 3
   towerCost: 400
+  targetTypes: 
   infantry: 0
   unarmoured: 0
   armoured: 0

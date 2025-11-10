@@ -16,7 +16,9 @@ MonoBehaviour:
   towerDescription: Automatically attacks a single airborne target with a powerful
     homing missile.
   attackTypeInfo: 'Attacks: Air'
+  towerType: 1
   towerCost: 300
+  targetTypes: 02000000
   infantry: 0
   unarmoured: 0
   armoured: 0
@@ -26,7 +28,7 @@ MonoBehaviour:
   defaultRange: 35
   defaultDamage: 2
   defaultRateOfFire: 5
-  rotationSpeed: 4
+  rotationSpeed: 0
   weaponFire: {fileID: 0}
   towerPrefab: {fileID: 5802229012705776996, guid: 60331c98e8434dc4aa970a243a14d94d, type: 3}
   hologramPrefab: {fileID: 2023657263617589092, guid: 870390cb2f0d1c0408f560e7fe458e60, type: 3}

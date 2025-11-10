@@ -29,6 +29,7 @@ namespace Towers {
             public float timeSinceLastFired;
             public float dot;
             public float dotThreshold = 0.5f;
+            public SO_Scripts.TowerInfo.TargetTypes[] validTargetTypes;
             public Enemy target;
             public ParticleSystem[] pS;
         }
@@ -94,14 +95,16 @@ namespace Towers {
             RateOfFire = scriptableObject.defaultRateOfFire;
             
             // TODO: Temp
-            capsuleCollider.radius = Range;
+            if (capsuleCollider) capsuleCollider.radius = Range;
             if (detectionRadiusCylinder) {
                 var newSize = new Vector3(Range * 2, 200, Range * 2);
                 detectionRadiusCylinder.transform.localScale = newSize;
             }
 
-            _isMultiTarget = (aimPoints.Length > 1);
-            _isMultiPS = (aimPoints[0].pS.Length > 1);
+            if (scriptableObject.towerType == SO_Scripts.TowerInfo.TowerType.Armed) {
+                _isMultiTarget = (aimPoints.Length > 1);
+                _isMultiPS = (aimPoints[0].pS.Length > 1);
+            }
             
             // Start Coroutine for updating stats.
             StartCoroutine(UpdateStats());
@@ -219,12 +222,10 @@ namespace Towers {
         }
 
         protected virtual void FireWeapon(AimPoint inAimPoint, GameObject inGO) {
-            if (!inGO) {
-                return;
-            }
+            if (!inGO) return;
             inGO.TryGetComponent(out Enemy enemy);
             UpdateMultiParticleSystem();
-            enemy.DecreaseHealth(2);
+            enemy.DecreaseHealth(Damage);
             inAimPoint.timeSinceLastFired = 0f;
         }
 
@@ -233,9 +234,13 @@ namespace Towers {
             other.TryGetComponent<Enemy>(out var enemyComp);
             if (!enemyComp) return;
             if (nearbyTargets.Contains(enemyComp.gameObject)) return;
-            foreach (var targetType in scriptableObject.targetTypes) {
-                if (other.gameObject.CompareTag(targetType.ToString())) {
-                    nearbyTargets.Add(other.gameObject);
+
+            foreach (var aimPoint in aimPoints) {
+                foreach (var targetType in aimPoint.validTargetTypes) {
+                    if (other.gameObject.CompareTag(targetType.ToString())) {
+                        nearbyTargets.Add(other.gameObject);
+                        // NOTE: Swap this to have a nearbyTargets list on each aim point. Else the tank's weapons will attack all enemy types. i.e. machine gun will attack all & cannon will attack all.
+                    }
                 }
             }
         }
@@ -254,10 +259,15 @@ namespace Towers {
         }
 
         private void OnDrawGizmos() {
-            Gizmos.color = Color.red;
+            if (aimPoints.Length < 1) return;
             foreach (var aimPoint in aimPoints) {
-                if (aimPoint.target) {
-                    Gizmos.DrawLine(aimPoint.aimPointPiece.transform.position, aimPoint.target.transform.position);
+                if (aimPoint.aimPointPiece) {
+                    Gizmos.color = Color.yellow;
+                    Gizmos.DrawLine(aimPoint.aimPointPiece.transform.position, aimPoint.aimPointPiece.transform.position + aimPoint.aimPointPiece.transform.forward * 3f);
+                    if (aimPoint.target) {
+                        Gizmos.color = Color.red;
+                        Gizmos.DrawLine(aimPoint.aimPointPiece.transform.position, aimPoint.target.transform.position);
+                    }
                 }
             }
         }
